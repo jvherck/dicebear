@@ -11,7 +11,7 @@ class Avatar:
 
         :param type: the type of avatar you want to create; check the whole list at https://avatars.dicebear.com/styles
         :param seed: the seed for the avatar; the avatar will be edited according to the seed.
-        :param options: `class: dict`
+        :param options: `class: dict` the options for the avatar; check the whole list at https://avatars.dicebear.com/docs/options
         """
         self.type: str = type
         self.seed: str = seed
