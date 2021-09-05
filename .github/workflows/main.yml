@@ -15,8 +15,8 @@ jobs:
         uses: casperdcl/deploy-pypi@v2
         with:
           user: ${{ secrets.PYPI_USER }}
-          # PyPI password or API token
           password: ${{ secrets.PYPI_PASS }}
+          requirements: twine wheel
           url: https://upload.pypi.org/legacy/
           skip_existing: false
 
