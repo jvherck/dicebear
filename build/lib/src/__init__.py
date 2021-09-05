@@ -11,7 +11,7 @@ class Avatar:
 
         :param type: the type of avatar you want to create; check the whole list at https://avatars.dicebear.com/styles
         :param seed: the seed for the avatar; the avatar will be edited according to the seed.
-        :param options: `class: dict`
+        :param options: `class: dict` the options for the avatar; check the whole list at https://avatars.dicebear.com/docs/options
         """
         self.type: str = type
         self.seed: str = seed
@@ -42,13 +42,14 @@ class Avatar:
         else:
             self.avatar = r.request('GET', url.format(self.type, self.seed)).url
 
-    def edit(self, key: str, value: Union[str, dict]):
-        if key == 'type':
-            self.type = value
-        elif key == 'seed':
-            self.seed = value
-        elif key == 'options':
-            self.options = value
+
+    def edit(self, *, type: str = None, seed: str = None, options: dict = None):
+        if type is not None:
+            self.type = type
+        if seed is not None:
+            self.seed = seed
+        if options is not None:
+            self.options = options
 
 
 
