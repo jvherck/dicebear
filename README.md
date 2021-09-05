@@ -14,6 +14,9 @@ options = {
     "rotate": 90
 }
 
-av = Avatar(type="avataaars", seed="John Apple", options=options) # This returns a URL to the avatar
+av = Avatar(type="avataaars", seed="John Apple", options=options) # this returns a URL to the avatar
+print(av)
+
+av.edit(options={"flip": True}) # this will edit the avatar instance 
 print(av)
 ```

@@ -42,13 +42,13 @@ class Avatar:
         else:
             self.avatar = r.request('GET', url.format(self.type, self.seed)).url
 
-    def edit(self, key: str, value: Union[str, dict]):
-        if key == 'type':
-            self.type = value
-        elif key == 'seed':
-            self.seed = value
-        elif key == 'options':
-            self.options = value
+    def edit(self, *, type: str = None, seed: str = None, options: dict = None):
+        if type is not None:
+            self.type = type
+        if seed is not None:
+            self.seed = seed
+        if options is not None:
+            self.options = options
 
 
 
