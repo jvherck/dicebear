@@ -42,6 +42,7 @@ class Avatar:
         else:
             self.avatar = r.request('GET', url.format(self.type, self.seed)).url
 
+
     def edit(self, *, type: str = None, seed: str = None, options: dict = None):
         if type is not None:
             self.type = type
