@@ -6,7 +6,6 @@ with open("README.md", "r", encoding="utf-8") as fh:
 __version__ = '0.1.1'
 DESCRIPTION = "A python API wrapper for DiceBear's avatar generating API."
 
-# Setting up
 setup(
     name="dicebear",
     version=__version__,
