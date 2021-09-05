@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: PyPI Deployment
+        uses: casperdcl/deploy-pypi@v2
+        with:
+          user: ${{ secrets.PYPI_USER }}
+          # PyPI password or API token
+          password: ${{ secrets.PYPI_PASS }}
+          url: https://upload.pypi.org/legacy/
+          skip_existing: false
+
