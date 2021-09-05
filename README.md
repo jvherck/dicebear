@@ -20,3 +20,20 @@ print(av)
 av.edit(options={"flip": True}) # this will edit the avatar instance 
 print(av)
 ```
+
+### Options
+All the possible options for the avatar.
+
+* `seed` (type: string) - the seed for the avatar generator
+* `dataUri` (type: boolean) - wether or not to give the dataUri 
+* `flip` (type: boolean) - flips the image vertically
+* `rotate` (type: int) - rotates the avatar
+* `scale` (type: int) - edits the scale of the avatar
+* `radius` (type: int) - edits the radius of the avatar
+* `size` (type: int) - the size of the avatar
+* `backgroundColor` (type: hex 0x) - the background color of the avatar
+* `translateX` (type: int) - move the avatar horizontally
+* `translateY` (type: int) - move the avatar vertically
+
+### Styles
+All the possible avatar styles.
