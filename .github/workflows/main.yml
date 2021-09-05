@@ -14,6 +14,6 @@ jobs:
       - name: Deploy Pypi
         uses: remorses/pypi@v3
         with:
-          setup_file: \setup.py
+          setup_file: dicebear/setup.py
           username: ${{ secrets.PYPI_USER }}
           password: ${{ secrets.PYPI_PASS }}
