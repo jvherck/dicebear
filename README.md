@@ -21,7 +21,29 @@ av.edit(options={"flip": True}) # this will edit the avatar instance
 print(av)
 ```
 
-### Options
+
+### Styles
+All the possible avatar styles.
+
+* `avataaars`
+* `big-ears`
+* `big-ears-neutral`
+* `big-smile`
+* `bottts`
+* `croodles`
+* `croodles-neutral`
+* `gridy`
+* `identicon`
+* `initials`
+* `jdenticon`
+* `micah`
+* `miniavs`
+* `open-peeps`
+* `personas`
+* `pixel-art`
+* `pixel-art-neutral`
+
+### Base Options
 All the possible options for the avatar.
 
 * `seed` (type: string) - the seed for the avatar generator
@@ -35,5 +57,5 @@ All the possible options for the avatar.
 * `translateX` (type: int) - move the avatar horizontally
 * `translateY` (type: int) - move the avatar vertically
 
-### Styles
-All the possible avatar styles.
+### Style Options 
+Specific options to get a more detailed avatar.
