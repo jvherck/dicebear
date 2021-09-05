@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: dicebear
+Version: 0.1.1
+Summary: A python API wrapper for DiceBear's avatar generating API.
+Home-page: UNKNOWN
+Author: jvherck
+Author-email: <jvh.discord@gmail.com>
+License: UNKNOWN
+Description: `dicebear` is an API wrapper for https://dicebear.com. Using the API you can get custom avatars for your program.
+        
+        * _Docs coming soon_
+Keywords: python,dicebear,avatar,generating,API,wrapper
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Other Audience
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Artistic Software
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Multimedia :: Graphics
+Description-Content-Type: text/markdown
