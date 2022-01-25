@@ -54,6 +54,7 @@ class DColor(str):
 class DStyle(str):
     """
     All possible styles for the avatars. Visit https://avatars.dicebear.com/styles to see what they look like.
+    Only works with attributes
     """
     adventurer = styles[0]
     adventurer_neutral = styles[1]
@@ -72,6 +73,9 @@ class DStyle(str):
     personas = styles[14]
     pixel_art = styles[15]
     pixel_art_neutral = styles[16]
+    def __init__(self):
+        """Only use `.attribute` to use a style."""
+        pass
 
 
 default_options: dict = {options[0]: False, options[1]: False, options[2]: 0, options[3]: 100, options[4]: 0,
