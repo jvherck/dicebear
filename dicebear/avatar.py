@@ -31,19 +31,21 @@ _url = "https://avatars.dicebear.com/api/{}/{}.svg?"
 class DAvatar:
     default_options: dict = default_options
     all_options: list = options
-    def __init__(self, style: DStyle, seed: str, *, options: DOptions = None):
+    def __init__(self, style: DStyle, seed: str, *, base_options: DOptions = None, options: dict = None): # TODO: add specific options
         """
         Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
+        Clickable links: https://github.com/jvherck/dicebear#styles , https://github.com/jvherck/dicebear#base-options , https://github.com/jvherck/dicebear#specific-style-options
 
         :param style: the style of avatar you want to create; check the whole list at https://github.com/jvherck/dicebear#styles
         :param seed: the seed for the avatar; the avatar will be edited according to the seed.
-        :param options: `class: dict` the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
+        :param base_options: `class: DOptions` the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
+        :param options: `class: dict` specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
         """
-        if options is None:
-            options = DOptions.empty
+        if base_options is None:
+            base_options = DOptions.empty
         self._style: DStyle = style
         self._seed: str = seed
-        self._options: DOptions = options
+        self._options: DOptions = base_options
         self._avatar_url = None
         self._avatar_svg = None
         self._url = None
