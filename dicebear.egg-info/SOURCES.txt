@@ -8,3 +8,6 @@ dicebear.egg-info/dependency_links.txt
 dicebear.egg-info/requires.txt
 dicebear.egg-info/top_level.txt
 src/__init__.py
+src/avatar.py
+src/errors.py
+src/models.py

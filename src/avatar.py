@@ -12,9 +12,11 @@ class DAvatar:
     all_options: list = options
     def __init__(self, style: DStyle, seed: str, *, options: DOptions = None):
         """
-        :param type: the type of avatar you want to create; check the whole list at https://avatars.dicebear.com/styles
+        Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
+
+        :param style: the style of avatar you want to create; check the whole list at https://github.com/jvherck/dicebear#styles
         :param seed: the seed for the avatar; the avatar will be edited according to the seed.
-        :param options: `class: dict` the options for the avatar; check the whole list at https://avatars.dicebear.com/docs/options
+        :param options: `class: dict` the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
         """
         if options is None:
             options = DOptions.empty
@@ -23,26 +25,48 @@ class DAvatar:
         self._options: DOptions = options
         self._avatar_url = None
         self._avatar_svg = None
+        self._url = None
         self.__get_avatar_url()
 
     @property
     def style(self) -> DStyle:
+        """
+        :return: the style of the avatar
+        """
         return self._style
     @property
     def seed(self) -> str:
+        """
+        :return: the seed of the avatar
+        """
         return self._seed
     @property
     def options(self) -> DOptions:
+        """
+        :return: the options of the avatar
+        """
         _option_list = {}
         for key in self._options:
             if self._options[key] != DAvatar.default_options[key]:
                 _option_list.update({key: self._options[key]})
         return DOptions(fromdict=_option_list)
     @property
-    def avatar_url(self) -> DUrl:
+    def url_svg(self) -> str:
+        """
+        :return: url to avatar (svg, use `.to_png()` to convert to png)
+        """
         return self._avatar_url
     @property
-    def avatar_svg(self) -> str:
+    def url_png(self) -> str:
+        """
+        :return:  url to avatar (png, use `.url_svg` to convert to svg)
+        """
+        return self._url
+    @property
+    def full_svg(self) -> str:
+        """
+        :return: the raw svg code of the avatar
+        """
         return self._avatar_svg
 
     def __repr__(self):
@@ -51,7 +75,7 @@ class DAvatar:
 
     def __str__(self):
         self.__get_avatar_url()
-        return self._avatar_url
+        return self._url
 
     def __get_avatar_url(self):
         _link = _url
@@ -79,16 +103,18 @@ class DAvatar:
         self._avatar_url = req.url
         self._avatar_svg = req.text
         self._content = req.content
+        self.to_png()
 
 
     def edit(self, *, style: DStyle = None, seed: str = None, extra_options: DOptions = None, blank_options: DOptions = None) -> str:
         """
+        Edit an already existing avatar.
 
         :param style: edit the avatar's style (style of drawing)
         :param seed: edit the avatar's seed (string to determine its looks)
         :param extra_options: edit the avatar's options (old options stay, these get added) -- cannot be used at the same time with `blank_options` !
         :param blank_options: reset old options and set these options as new ones (new options) -- cannot be used at the same with `extra_options` !
-        :return:
+        :return: returns the link to the avatar url (png)
         """
         if style:
             self._style = style
@@ -100,4 +126,13 @@ class DAvatar:
             self._options = blank_options
 
         self.__get_avatar_url()
-        return self._avatar_url
+        return self._url
+
+    def to_png(self):
+        """
+        Turns the avatar from svg into png and returns the url.
+
+        :return: class `str` :: link to png avatar
+        """
+        self._url = self._avatar_url.replace(".svg", ".png")
+        return self._url

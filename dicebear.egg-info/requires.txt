@@ -1,1 +1,2 @@
-requests
+requests>=2.27.1
+urllib>=1.26.8

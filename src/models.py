@@ -10,12 +10,17 @@ styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
 
 
 class DColor(str):
-    def __init__(self, hex_code: str = "#ffffff"):
-        if not hex_code.startswith("#"):
-            hex_code = "#" + hex_code
-        if len(hex_code) not in [4, 7]:
-            raise IncorrectColor(str(hex_code))
-        self.hex_code: str = str(hex_code)
+    def __init__(self, html_code: str = "#ffffff"):
+        """
+        Colors used in this package. This uses HTML color codes!
+
+        :param html_code: the html color code to use as color
+        """
+        if not html_code.startswith("#"):
+            html_code = "#" + html_code
+        if len(html_code) not in [4, 7]:
+            raise IncorrectColor(str(html_code))
+        self.hex_code: str = str(html_code)
         super().__init__()
 
     def __str__(self):
@@ -25,6 +30,9 @@ class DColor(str):
 
 
 class DStyle(str):
+    """
+    All possible styles for the avatars. Visit https://avatars.dicebear.com/styles to see what they look like.
+    """
     adventurer = styles[0]
     adventurer_neutral = styles[1]
     avataaars = styles[2]
@@ -51,6 +59,11 @@ class DOptions(dict):
     empty: dict = {}
     def __init__(self, *, dataUri: bool = False, flip: bool = False, rotate: int = 0, scale: int = 100,
                  radius: int = 0, size: int = 0, backgroundColor: DColor = DColor(), translateX: int = 0, translateY: int = 0, **kwargs):
+        """
+        Go to https://github.com/jvherck/dicebear#base-options to see all info
+
+        :param kwargs: `fromdict` to use a custom dict instead of args (if you use this kwarg all other args will be neglected)
+        """
         # kwargs: list = [dataUri, flip, rotate, scale, radius, size, backgroundColor, translateX, translateY]
         dic = kwargs.get("fromdict", {})
         current: dict = {"dataUri": dataUri, "flip": flip, "rotate": rotate, "scale": scale, "radius": radius, "size": size,
@@ -65,23 +78,23 @@ class DOptions(dict):
 
 
 
-class DUrl:
-    def __init__(self, url: str,):
-        self._url = url
-
-    def __str__(self) -> str:
-        return str(self._url)
-    def __repr__(self) -> str:
-        return str(self._url)
-    def __eq__(self, other) -> bool:
-        if isinstance(other, DUrl):
-            if str(other) == str(self._url):
-                return True
-        return False
-    def __ne__(self, other) -> bool:
-        if isinstance(other, (str, DUrl)):
-            if str(other) != str(self._url):
-                return True
-        return False
+# class DUrl:
+#     def __init__(self, url: str,):
+#         self._url = url
+#
+#     def __str__(self) -> str:
+#         return str(self._url)
+#     def __repr__(self) -> str:
+#         return str(self._url)
+#     def __eq__(self, other) -> bool:
+#         if isinstance(other, DUrl):
+#             if str(other) == str(self._url):
+#                 return True
+#         return False
+#     def __ne__(self, other) -> bool:
+#         if isinstance(other, (str, DUrl)):
+#             if str(other) != str(self._url):
+#                 return True
+#         return False
 
 
