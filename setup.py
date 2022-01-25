@@ -3,12 +3,13 @@ from setuptools import setup, find_packages
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-__version__ = "0.2.4"
+__version__ = "0.2.5"
 DESCRIPTION = "A python API wrapper for DiceBear's avatar generating API."
 
 setup(
     name="dicebear",
     version=__version__,
+    license="MIT License",
     author="jvherck",
     author_email="<jvh.discord@gmail.com>",
     description=DESCRIPTION,
