@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-__version__ = "0.2.3"
+__version__ = "0.2.4"
 DESCRIPTION = "A python API wrapper for DiceBear's avatar generating API."
 
 setup(
@@ -15,7 +15,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['requests>=2.27.1', 'urllib>=1.26.8'],
+    install_requires=['requests', 'urllib3'],
     keywords=['python', 'dicebear', 'avatar', 'generating', 'API', 'wrapper', 'image', 'svg'],
     classifiers=[
         "Development Status :: 4 - Beta",
