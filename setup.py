@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
+from .src import __version__
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-__version__ = '0.1.2'
 DESCRIPTION = "A python API wrapper for DiceBear's avatar generating API."
 
 setup(
@@ -15,8 +15,8 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['requests'],
-    keywords=['python', 'dicebear', 'avatar', 'generating', 'API', 'wrapper'],
+    install_requires=['requests', 'pyvips'],
+    keywords=['python', 'dicebear', 'avatar', 'generating', 'API', 'wrapper', 'image', 'svg'],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
