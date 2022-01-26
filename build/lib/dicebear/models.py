@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2021 jvherck (on GitHub)
+# Copyright (c) 2022 jvherck (https://jvherck.github.io/dicebear/)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -42,18 +42,19 @@ class DColor(str):
             html_code = "#" + html_code
         if len(html_code) not in [4, 7]:
             raise IncorrectColor(str(html_code))
-        self.hex_code: str = str(html_code)
+        self.html_code: str = str(html_code)
         super().__init__()
 
     def __str__(self):
-        return f"{self.hex_code}"
+        return f"{self.html_code}"
     def __repr__(self):
-        return f"{self.hex_code}"
+        return f"{self.html_code}"
 
 
 class DStyle(str):
     """
-    All possible styles for the avatars. Visit https://avatars.dicebear.com/styles to see what they look like.
+    All possible styles for the avatars. Visit https://avatars.dicebear.com/styles to see what they look like.\n
+    - Note: Only works with attributes!
     """
     adventurer = styles[0]
     adventurer_neutral = styles[1]
@@ -72,6 +73,9 @@ class DStyle(str):
     personas = styles[14]
     pixel_art = styles[15]
     pixel_art_neutral = styles[16]
+    def __init__(self):
+        """Only use `.attribute` to use a style."""
+        pass
 
 
 default_options: dict = {options[0]: False, options[1]: False, options[2]: 0, options[3]: 100, options[4]: 0,
