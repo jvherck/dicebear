@@ -3,39 +3,58 @@
 \
 For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebear/tree/main/examples).
 
+---
+
 ## Useful links
 * PyPI: https://pypi.org/project/dicebear/
 * GitHub: https://github.com/jvherck/dicebear
+* Dicebear: https://dicebear.com
+
+---
 
 ## How to install
 Run `pip install dicebear`\
 If that doesn't work try `py -m pip install dicebear`
 
+---
+
 ## Usage
 ```python
 from dicebear import DAvatar, DStyle, DOptions, DColor
 
-options = DOptions(backgroundColor=DColor("#00ddd0"))
+options = DOptions(
+    backgroundColor=DColor("#00ddd0"),
+    rotate=90
+)
 
-av = DAvatar(style=DStyle.pixel_art, seed="John Apple", options=options)
-# this returns a URL to the avatar
+av = DAvatar(
+    style=DStyle.pixel_art,
+    seed="John Apple",
+    options=options
+)
 
-print(av)
-# str(DAvatar) returns the png url to the avatar
+print(av.url_svg)
 
-print(av.style, av.seed, av.options)
+av.edit(
+    extra_options=DOptions(
+        backgroundColor=DColor("#000000")
+    )
+)
+# This will keep the `rotate` option but override the `backgroundColor` option
 
-av.edit(extra_options=DOptions(flip=True))
-# edit the avatar more to your liking
-# using `extra_options` you add/replace these options to the old ones
-# using `blank_options` you reset the old options and add these new options
+print(av.url_png)
 
-print(av.url_png, av.url_svg)
+av.edit_specific(
+    blank_options={
+        "face": "variant04"
+    }
+)
+# This edits the style specific options
 
-print(av.full_svg)
-# using `DAvatar.avatar_svg` you can get the svg code for the avatar
+print(av.url_png)
 ```
 
+---
 
 ### Styles
 All the possible avatar styles. \
@@ -93,3 +112,16 @@ Specific options to get a more detailed avatar. This is different for every styl
 * [personas](https://avatars.dicebear.com/styles/personas#style-options)
 * [pixel-art](https://avatars.dicebear.com/styles/pixel-art#style-options)
 * [pixel-art-neutral](https://avatars.dicebear.com/styles/pixel-art-neutral#style-options)
+
+---
+
+## Credits
+Special thanks to [DiceBear](https://github.com/dicebear) 
+([Florian Körner](https://github.com/FlorianKoerner)) 
+for making this amazing API and to all artists that helped 
+making avatars!
+
+## Licenses and privacy policy
+- Dicebear **Licenses**: https://avatars.dicebear.com/licenses
+- Dicebear **Privacy Policy**: https://avatars.dicebear.com/legal/privacy-policy
+- Dicebear Python API wrapper (this project): https://choosealicense.com/licenses/mit/
