@@ -42,9 +42,9 @@ class DAvatar:
         :param specific_options: `class: dict` specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
         """
         if specific_options is None:
-            options = {}
+            specific_options = {}
         if options is None:
-            base_options = DOptions.empty
+            options = DOptions.empty
         self.__style: DStyle = style
         self.__seed: str = seed
         self.__options: DOptions = options
