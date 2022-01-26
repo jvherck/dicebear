@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2021 jvherck (on GitHub)
+# Copyright (c) 2022 jvherck (https://jvherck.github.io/dicebear/)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +25,13 @@ from .errors import *
 from .models import *
 
 
-_url = "https://avatars.dicebear.com/api/{}/{}.svg?"
+_url = "https://avatars.dicebear.com/api/{}/{}.png?"
 
 
 class DAvatar:
     default_options: dict = default_options
     all_options: list = options
-    def __init__(self, style: DStyle, seed: str, *, base_options: DOptions = None, options: dict = None): # TODO: add specific options
+    def __init__(self, style: DStyle, seed: str, *, base_options: DOptions = None, options: dict = None):
         """
         Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
         Clickable links: https://github.com/jvherck/dicebear#styles , https://github.com/jvherck/dicebear#base-options , https://github.com/jvherck/dicebear#specific-style-options
@@ -41,14 +41,17 @@ class DAvatar:
         :param base_options: `class: DOptions` the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
         :param options: `class: dict` specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
         """
+        if options is None:
+            options = {}
         if base_options is None:
             base_options = DOptions.empty
-        self._style: DStyle = style
-        self._seed: str = seed
-        self._options: DOptions = base_options
-        self._avatar_url = None
-        self._avatar_svg = None
-        self._url = None
+        self.__style: DStyle = style
+        self.__seed: str = seed
+        self.__options: DOptions = base_options
+        self.__specific: dict = options
+        self.__url_svg = None
+        self.__full_svg = None
+        self.__url_png = None
         self.__get_avatar_url()
 
     @property
@@ -56,77 +59,90 @@ class DAvatar:
         """
         :return: the style of the avatar
         """
-        return self._style
+        return self.__style
     @property
     def seed(self) -> str:
         """
         :return: the seed of the avatar
         """
-        return self._seed
+        return self.__seed
     @property
     def options(self) -> DOptions:
         """
         :return: the options of the avatar
         """
         _option_list = {}
-        for key in self._options:
-            if self._options[key] != DAvatar.default_options[key]:
-                _option_list.update({key: self._options[key]})
+        for key in self.__options:
+            if self.__options[key] != DAvatar.default_options[key]:
+                _option_list.update({key: self.__options[key]})
         return DOptions(fromdict=_option_list)
     @property
     def url_svg(self) -> str:
         """
         :return: url to avatar (svg, use `.to_png()` to convert to png)
         """
-        return self._avatar_url
+        return self.__url_svg
     @property
     def url_png(self) -> str:
         """
         :return:  url to avatar (png, use `.url_svg` to convert to svg)
         """
-        return self._url
+        return self.__url_png
     @property
     def full_svg(self) -> str:
         """
         :return: the raw svg code of the avatar
         """
-        return self._avatar_svg
+        return self.__full_svg
 
     def __repr__(self):
         self.__get_avatar_url()
-        return self._avatar_url
+        return self.__full_svg
 
     def __str__(self):
         self.__get_avatar_url()
-        return self._url
+        return self.__url_png
 
     def __get_avatar_url(self):
         _link = _url
         _options = []
         for item in options:
-            if item == "size" and "size" in self._options and self._options["size"] == 0:
+            if item == "size" and "size" in self.__options and self.__options["size"] == 0:
                 continue
-            elif item == "size" and "size" not in self._options:
+            elif item == "size" and "size" not in self.__options:
                 continue
-            elif item in self._options and self._options[item] == default_options[item]:
+            elif item in self.__options and self.__options[item] == default_options[item]:
                 continue
-            elif item not in self._options:
+            elif item not in self.__options:
                 continue
             else:
                 _options.append(
                     "{}={}".format(
                         quote(item),
-                        str(self._options[item]).lower() if type(self._options[item]) == bool else quote(str(self._options[item]))
+                        str(self.__options[item]).lower() if type(self.__options[item]) == bool else quote(str(self.__options[item]))
                     )
                 )
+        _specoptions = []
+        for item in self.__specific:
+            _specoptions.append(
+                "{}={}".format(
+                    quote(item),
+                    str(self.__specific[item]).lower() if type(self.__specific[item]) == bool else quote(
+                        str(self.__specific[item]))
+                )
+            )
         _link += "&".join(_options)
+        if len(_options) == 0 and len(_specoptions) > 0:
+            _link += "&".join(_specoptions)
+        else:
+            _link += "&" + "&".join(_specoptions)
         _link.replace("False", "false").replace("True", "true")
-        _link = _link.format(quote(self._style), quote(self._seed))
+        _link = _link.format(quote(self.__style), quote(self.__seed))
         req = r.request('GET', _link)
-        self._avatar_url = req.url
-        self._avatar_svg = req.text
-        self._content = req.content
-        self.to_png()
+        self.__url_png = req.url
+        self.__url_svg = self.to_svg()
+        self.__full_svg = req.text
+        self.__content = req.content
 
 
     def edit(self, *, style: DStyle = None, seed: str = None, extra_options: DOptions = None, blank_options: DOptions = None) -> str:
@@ -140,16 +156,32 @@ class DAvatar:
         :return: returns the link to the avatar url (png)
         """
         if style:
-            self._style = style
+            self.__style = style
         if seed:
-            self._seed = seed
+            self.__seed = seed
         if extra_options:
-            self._options.update(extra_options)
+            self.__options.update(extra_options)
         elif blank_options:
-            self._options = blank_options
+            self.__options = blank_options
 
         self.__get_avatar_url()
-        return self._url
+        return self.__url_png
+
+    def edit_specific(self, *, extra_options: dict = None, blank_options: dict = None):
+        """
+        Edit the specific options for an already existing avatar.
+
+        :param extra_options: edit the avatar's specific options (old options stay, these get added) -- cannot be used at the same time with `blank_options` !
+        :param blank_options: reset old specific options and set these options as new ones (new options) -- cannot be used at the same with `extra_options` !
+        :return: returns the link to the avatar url (png)
+        """
+        if extra_options:
+            self.__specific.update(extra_options)
+        elif blank_options:
+            self.__specific = blank_options
+
+        self.__get_avatar_url()
+        return self.__url_png
 
     def to_png(self):
         """
@@ -157,5 +189,14 @@ class DAvatar:
 
         :return: class `str` :: link to png avatar
         """
-        self._url = self._avatar_url.replace(".svg", ".png")
-        return self._url
+        self.__url_png = self.__url_svg.replace(".svg", ".png")
+        return self.__url_png
+
+    def to_svg(self):
+        """
+        Turns the avatar from svg into png and returns the url.
+
+        :return: class `str` :: link to png avatar
+        """
+        self.__url_svg = self.__url_png.replace(".png", ".svg")
+        return self.__url_svg

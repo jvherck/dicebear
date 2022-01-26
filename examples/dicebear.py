@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2021 jvherck (on GitHub)
+# Copyright (c) 2022 jvherck (https://jvherck.github.io/dicebear/)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +23,32 @@
 from dicebear import DAvatar, DStyle, DOptions, DColor
 
 options = DOptions(
-    backgroundColor=DColor("#00ddd0"), rotate=90
+    backgroundColor=DColor("#00ddd0"),
+    rotate=90
 )
 
-av = DAvatar(style=DStyle.pixel_art, seed="John Apple", options=options)
+av = DAvatar(
+    style=DStyle.pixel_art,
+    seed="John Apple",
+    options=options
+)
 
-av.edit(extra_options=DOptions(backgroundColor=DColor("#000000")))
+print(av.url_svg)
+
+av.edit(
+    extra_options=DOptions(
+        backgroundColor=DColor("#000000")
+    )
+)
 # This will keep the `rotate` option but override the `backgroundColor` option
+
+print(av.url_png)
+
+av.edit_specific(
+    blank_options={
+        "face": "variant04"
+    }
+)
+# This edits the style specific options
 
 print(av.url_png)
