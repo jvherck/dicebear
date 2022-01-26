@@ -31,24 +31,24 @@ _url = "https://avatars.dicebear.com/api/{}/{}.png?"
 class DAvatar:
     default_options: dict = default_options
     all_options: list = options
-    def __init__(self, style: DStyle, seed: str, *, base_options: DOptions = None, options: dict = None):
+    def __init__(self, style: DStyle, seed: str, *, options: DOptions = None, specific_options: dict = None):
         """
         Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
         Clickable links: https://github.com/jvherck/dicebear#styles , https://github.com/jvherck/dicebear#base-options , https://github.com/jvherck/dicebear#specific-style-options
 
         :param style: the style of avatar you want to create; check the whole list at https://github.com/jvherck/dicebear#styles
         :param seed: the seed for the avatar; the avatar will be edited according to the seed.
-        :param base_options: `class: DOptions` the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
-        :param options: `class: dict` specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
+        :param options: `class: DOptions` the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
+        :param specific_options: `class: dict` specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
         """
-        if options is None:
+        if specific_options is None:
             options = {}
-        if base_options is None:
+        if options is None:
             base_options = DOptions.empty
         self.__style: DStyle = style
         self.__seed: str = seed
-        self.__options: DOptions = base_options
-        self.__specific: dict = options
+        self.__options: DOptions = options
+        self.__specific: dict = specific_options
         self.__url_svg = None
         self.__full_svg = None
         self.__url_png = None
