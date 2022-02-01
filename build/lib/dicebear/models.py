@@ -78,6 +78,19 @@ class DStyle(str):
         pass
 
 
+class DFormat(str):
+    """
+    All possible image formats for saving or converting avatars.
+    - Note: Only works with attributes!
+    """
+    all_formats: list = ["png", "svg"]
+    png = "png"
+    svg = "svg"
+    def __init__(self):
+        """Only use `.attribute` to use a format."""
+        pass
+
+
 default_options: dict = {options[0]: False, options[1]: False, options[2]: 0, options[3]: 100, options[4]: 0,
              options[5]: 0, options[6]: DColor(), options[7]: 0, options[8]: 0}
 
