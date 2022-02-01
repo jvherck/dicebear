@@ -19,7 +19,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-__version__ = "0.2.13"
+__version__ = "0.2.14"
 
 from setuptools import setup, find_packages
 
@@ -38,7 +38,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['requests', 'urllib3'],
+    install_requires=['requests', 'urllib3', 'Pillow'],
     keywords=['python', 'dicebear', 'avatar', 'generating', 'API', 'wrapper', 'image', 'svg'],
     classifiers=[
         "Development Status :: 4 - Beta",

@@ -29,3 +29,18 @@ class InvalidOption(Exception):
     def __init__(self, wrong_option: str = None):
         super().__init__('Invalid option given: "{}" is not an existing option! (use `Avatar.options` to get all possible options)'.format(
             wrong_option))
+
+
+class ImageError(Exception):
+    def __init__(self, message: str = None):
+        super().__init__(message)
+
+
+class ImageValueError(ImageError):
+    def __init__(self, file_name: str = None):
+        super().__init__('The output format could not be determined from the file name ("{}")'.format(file_name))
+
+
+class ImageOSError(ImageError):
+    def __init__(self, message: str = None):
+        super().__init__('Fhe file could not be written. The file may have been created, and may contain partial data. ("{}")'.format(message))

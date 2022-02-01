@@ -19,8 +19,13 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import os
+import pathlib
+
 import requests as r
 from urllib.parse import quote
+from PIL import Image
+import io
 from .errors import *
 from .models import *
 
@@ -49,9 +54,10 @@ class DAvatar:
         self.__seed: str = seed
         self.__options: DOptions = options
         self.__specific: dict = specific_options
-        self.__url_svg = None
-        self.__full_svg = None
-        self.__url_png = None
+        self.__url_svg: str = None
+        self.__full_svg: str = None
+        self.__url_png: str = None
+        self.__content = None
         self.__get_avatar_url()
 
     @property
@@ -143,6 +149,7 @@ class DAvatar:
         self.__url_svg = self.to_svg()
         self.__full_svg = req.text
         self.__content = req.content
+        self.__response: r.Response = req
 
 
     def edit(self, *, style: DStyle = None, seed: str = None, extra_options: DOptions = None, blank_options: DOptions = None) -> str:
@@ -200,3 +207,39 @@ class DAvatar:
         """
         self.__url_svg = self.__url_png.replace(".png", ".svg")
         return self.__url_svg
+
+    def save(self, *, location: pathlib.Path = None, file_name: str = "dicebear_avatar", format: DFormat = DFormat.png):
+        """
+        Save a file to your device. (Currently overrides if a file with this name and format already exists!)
+
+        :param location: class `pathlib.Path` :: the folder to save the file in. (default is None which saves it in the current directory `os.getcwd()`
+        :param file_name: class `str` :: the name of the file to save. (default is "dicebear_avatar")
+        :param format: class `DFormat` :: the format of the file. (default is "png")
+        :return: returns the path when successful
+        """
+        if location is None:
+            location = pathlib.Path(os.getcwd())
+        _location = os.path.join(location, "{}.{}".format(file_name, format)) # TODO: when file exists add num
+        if format == DFormat.svg:
+            svg_text = r.request('GET', self.to_svg()).text
+        else:
+            img = Image.open(io.BytesIO(self.__response.content))
+        ret = -1
+        try:
+            if format == DFormat.svg:
+                with open(_location, "w", encoding="UTF-8") as f:
+                    f.write(svg_text)
+                f.close()
+            else:
+                img.save(_location, format)
+        except ValueError:
+            raise ImageValueError()
+        except OSError:
+            raise ImageOSError()
+        except Exception as e:
+            raise e
+        else:
+            ret = _location
+
+        return ret
+
