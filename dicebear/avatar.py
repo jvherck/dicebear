@@ -21,11 +21,11 @@
 # SOFTWARE.
 import os
 import pathlib
-
 import requests as r
 from urllib.parse import quote
 from PIL import Image
 import io
+from ast import literal_eval
 from .errors import *
 from .models import *
 
@@ -50,12 +50,14 @@ class DAvatar:
             specific_options = {}
         if options is None:
             options = DOptions.empty
+        if style not in styles:
+            raise Error("Invalid Style", '"{}" is not a valid style! Use `DStyle.`'.format(style))
         self.__style: DStyle = style
         self.__seed: str = seed
         self.__options: DOptions = options
         self.__specific: dict = specific_options
         self.__url_svg: str = None
-        self.__full_svg: str = None
+        self.__text: str = None
         self.__url_png: str = None
         self.__content = None
         self.__get_avatar_url()
@@ -95,11 +97,11 @@ class DAvatar:
         """
         return self.__url_png
     @property
-    def full_svg(self) -> str:
+    def text(self) -> str:
         """
-        :return: the raw svg code of the avatar
+        :return: returns the bytes of this request in str format
         """
-        return self.__full_svg
+        return self.__text
 
     def __repr__(self):
         self.__get_avatar_url()
@@ -145,9 +147,17 @@ class DAvatar:
         _link.replace("False", "false").replace("True", "true")
         _link = _link.format(quote(self.__style), quote(self.__seed))
         req = r.request('GET', _link)
+        status = ""
+        try:
+            status = literal_eval(req.text)
+        except ValueError:
+            pass
+        if type(status) == dict and "statusCode" in status:
+            raise HTTPError(status)
+
         self.__url_png = req.url
         self.__url_svg = self.to_svg()
-        self.__full_svg = req.text
+        self.__text = req.text
         self.__content = req.content
         self.__response: r.Response = req
 
