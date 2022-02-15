@@ -19,6 +19,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+from typing import Union
 
 class IncorrectColor(Exception):
     def __init__(self, wrong_color: str = None):
@@ -29,6 +30,17 @@ class InvalidOption(Exception):
     def __init__(self, wrong_option: str = None):
         super().__init__('Invalid option given: "{}" is not an existing option! (use `Avatar.options` to get all possible options)'.format(
             wrong_option))
+
+
+class Error(Exception):
+    def __init__(self, error_type: str = "", message: str = ""):
+        super().__init__('{}{}'.format(error_type + (': ' if error_type else ''), message))
+
+
+class HTTPError(Error):
+    def __init__(self, dic: dict):
+        super().__init__(message=str(dic))
+
 
 
 class ImageError(Exception):

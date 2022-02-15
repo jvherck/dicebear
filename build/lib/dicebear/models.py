@@ -21,8 +21,10 @@
 # SOFTWARE.
 
 from .errors import *
-from typing import Union
+from random import choice, choices
+from string import digits
 
+ascii_lowercase = "abcdef"
 
 options = ["dataUri", "flip", "rotate", "scale", "radius", "size", "backgroundColor", "translateX", "translateY"]
 styles = ["adventurer", "adventurer-neutral", "avataaars", "big-ears", "big-ears-neutral",
@@ -31,27 +33,33 @@ styles = ["adventurer", "adventurer-neutral", "avataaars", "big-ears", "big-ears
 styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
 
 
-class DColor(str):
+class DColor:
     def __init__(self, html_code: str = "#ffffff"):
         """
         Colors used in this package. This uses HTML color codes!
 
         :param html_code: the html color code to use as color
         """
+        if html_code in ["random", "rnd"]:
+            html_code = '#' + ''.join(choices(ascii_lowercase+digits, k=6))
         if not html_code.startswith("#"):
             html_code = "#" + html_code
         if len(html_code) not in [4, 7]:
             raise IncorrectColor(str(html_code))
         self.html_code: str = str(html_code)
-        super().__init__()
 
     def __str__(self):
         return f"{self.html_code}"
     def __repr__(self):
         return f"{self.html_code}"
 
+    @staticmethod
+    def random():
+        html_code = '#' + ''.join(choices(ascii_lowercase + digits, k=6))
+        return DColor(html_code)
 
-class DStyle(str):
+
+class DStyle:
     """
     All possible styles for the avatars. Visit https://avatars.dicebear.com/styles to see what they look like.\n
     - Note: Only works with attributes!
@@ -73,12 +81,14 @@ class DStyle(str):
     personas = styles[14]
     pixel_art = styles[15]
     pixel_art_neutral = styles[16]
+
+    random = choice(styles)
     def __init__(self):
         """Only use `.attribute` to use a style."""
         pass
 
 
-class DFormat(str):
+class DFormat:
     """
     All possible image formats for saving or converting avatars.
     - Note: Only works with attributes!

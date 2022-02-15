@@ -23,7 +23,6 @@ import os
 import pathlib
 import requests as r
 from urllib.parse import quote
-from PIL import Image
 import io
 from ast import literal_eval
 from .errors import *
@@ -105,7 +104,7 @@ class DAvatar:
 
     def __repr__(self):
         self.__get_avatar_url()
-        return self.__full_svg
+        return self.text
 
     def __str__(self):
         self.__get_avatar_url()
@@ -145,7 +144,7 @@ class DAvatar:
         else:
             _link += "&" + "&".join(_specoptions)
         _link.replace("False", "false").replace("True", "true")
-        _link = _link.format(quote(self.__style), quote(self.__seed))
+        _link = _link.format(quote(str(self.__style)), quote(self.__seed))
         req = r.request('GET', _link)
         status = ""
         try:
@@ -160,6 +159,15 @@ class DAvatar:
         self.__text = req.text
         self.__content = req.content
         self.__response: r.Response = req
+
+    @staticmethod
+    def __uniquify(path):
+        filename, extension = os.path.splitext(path)
+        counter = 1
+        while os.path.exists(path):
+            path = filename + "(" + str(counter) + ")" + extension
+            counter += 1
+        return path
 
 
     def edit(self, *, style: DStyle = None, seed: str = None, extra_options: DOptions = None, blank_options: DOptions = None) -> str:
@@ -220,20 +228,25 @@ class DAvatar:
 
     def save(self, *, location: pathlib.Path = None, file_name: str = "dicebear_avatar", format: DFormat = DFormat.png):
         """
-        Save a file to your device. (Currently overrides if a file with this name and format already exists!)
+        Save a file to your device.
 
         :param location: class `pathlib.Path` :: the folder to save the file in. (default is None which saves it in the current directory `os.getcwd()`
         :param file_name: class `str` :: the name of the file to save. (default is "dicebear_avatar")
         :param format: class `DFormat` :: the format of the file. (default is "png")
         :return: returns the path when successful
         """
+        if format not in DFormat.all_formats:
+            s = f'"{format}" is not a supported format!'
+            raise ImageError(s)
         if location is None:
             location = pathlib.Path(os.getcwd())
-        _location = os.path.join(location, "{}.{}".format(file_name, format)) # TODO: when file exists add num
+        _location = os.path.join(location, "{}.{}".format(file_name, format))
+        _location = self.__uniquify(_location)
         if format == DFormat.svg:
             svg_text = r.request('GET', self.to_svg()).text
         else:
-            img = Image.open(io.BytesIO(self.__response.content))
+            img = io.BytesIO(self.__response.content)
+            # img = Image.open(io.BytesIO(self.__response.content))
         ret = -1
         try:
             if format == DFormat.svg:
@@ -241,7 +254,10 @@ class DAvatar:
                     f.write(svg_text)
                 f.close()
             else:
-                img.save(_location, format)
+                with open(_location, "wb") as f:
+                    f.write(img.read())
+                f.close()
+                # img.save(_location, format)
         except ValueError:
             raise ImageValueError()
         except OSError:
