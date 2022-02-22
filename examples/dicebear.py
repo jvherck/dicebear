@@ -1,3 +1,4 @@
+import PIL.Image
 from dicebear import DAvatar, DStyle, DOptions, DColor
 
 options = DOptions(
@@ -30,3 +31,6 @@ av.edit_specific(
 # This edits the style specific options
 
 print(av.url_png)
+
+av_img: PIL.Image.Image = av.pillow()
+# converts the DAvatar to a PIL Image object

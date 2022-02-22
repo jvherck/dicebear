@@ -1,4 +1,5 @@
 # DiceBear Py Wrapper
+[![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads)](https://pepy.tech/project/dicebear) [![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=month&units=international_system&left_color=grey&right_color=orange&left_text=Downloads/Month)](https://pepy.tech/project/dicebear) \
 [`dicebear`](https://pypi.org/project/dicebear/) is an API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program.
 \
 For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebear/tree/main/examples).
@@ -19,6 +20,8 @@ If that doesn't work try `py -m pip install dicebear`
 ---
 
 ## Usage
+Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`). 
+When using a `PIL` function while it's not installed it will raise `dicebear.errors.PILError`.
 ```python
 from dicebear import DAvatar, DStyle, DOptions, DColor
 

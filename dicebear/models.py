@@ -19,10 +19,15 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import sys
+import traceback
 
 from .errors import *
 from random import choice, choices
 from string import digits
+
+class FindPil:
+    found: bool = True
 
 ascii_lowercase = "abcdef"
 
@@ -127,23 +132,10 @@ class DOptions(dict):
 
 
 
-# class DUrl:
-#     def __init__(self, url: str,):
-#         self._url = url
-#
-#     def __str__(self) -> str:
-#         return str(self._url)
-#     def __repr__(self) -> str:
-#         return str(self._url)
-#     def __eq__(self, other) -> bool:
-#         if isinstance(other, DUrl):
-#             if str(other) == str(self._url):
-#                 return True
-#         return False
-#     def __ne__(self, other) -> bool:
-#         if isinstance(other, (str, DUrl)):
-#             if str(other) != str(self._url):
-#                 return True
-#         return False
-
-
+def pilcheck(func):
+    def wrapper(*args, **kwargs):
+        if FindPil.found is True:
+            return func(*args, **kwargs)
+        else:
+            log_error(PILError())
+    return wrapper

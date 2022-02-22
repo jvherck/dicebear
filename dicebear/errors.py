@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 from typing import Union
+import logging
 
 class IncorrectColor(Exception):
     def __init__(self, wrong_color: str = None):
@@ -55,4 +56,21 @@ class ImageValueError(ImageError):
 
 class ImageOSError(ImageError):
     def __init__(self, message: str = None):
-        super().__init__('Fhe file could not be written. The file may have been created, and may contain partial data. ("{}")'.format(message))
+        super().__init__('The file could not be written. The file may have been created, and may contain partial data. ("{}")'.format(message))
+
+
+
+class PILError(ImageError):
+    def __init__(self, message: str = "To use this function you need to install Pillow."):
+        super().__init__('Module "PIL (=Pillow)" is not found! {}'.format(message))
+
+
+def log_error(exception: Exception | str):
+    _exc = exception
+    logger = logging.getLogger()
+    logger.setLevel(logging.ERROR)
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter(f"%(levelname)s: {_exc.__module__}: %(message)s"))
+    handler.setLevel(logging.ERROR)
+    logger.addHandler(handler)
+    logger.error(_exc)

@@ -19,14 +19,26 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import os
-import pathlib
+import modulefinder
+
 import requests as r
 from urllib.parse import quote
+
+import os
+import pathlib
 import io
 from ast import literal_eval
+
 from .errors import *
 from .models import *
+
+try:
+    from PIL import Image as i
+except Exception:
+    class i:
+        class Image:
+            pass
+    FindPil.found = False
 
 
 _url = "https://avatars.dicebear.com/api/{}/{}.png?"
@@ -35,7 +47,7 @@ _url = "https://avatars.dicebear.com/api/{}/{}.png?"
 class DAvatar:
     default_options: dict = default_options
     all_options: list = options
-    def __init__(self, style: DStyle, seed: str, *, options: DOptions = None, specific_options: dict = None):
+    def __init__(self, style: DStyle, seed: str, *, options: DOptions = None, specific_options: dict = None) -> None:
         """
         Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
         Clickable links: https://github.com/jvherck/dicebear#styles , https://github.com/jvherck/dicebear#base-options , https://github.com/jvherck/dicebear#specific-style-options
@@ -106,11 +118,19 @@ class DAvatar:
         self.__get_avatar_url()
         return self.text
 
-    def __str__(self):
+    def __str__(self) -> str:
         self.__get_avatar_url()
         return self.__url_png
 
-    def __get_avatar_url(self):
+    def __eq__(self, other):
+        return self.__url_png == other.__url_png
+    def __ne__(self, other):
+        return self.__url_png != other.__url_png
+    def __len__(self):
+        return len(self.__options)
+
+
+    def __get_avatar_url(self) -> None:
         _link = _url
         _options = []
         for item in options:
@@ -161,7 +181,7 @@ class DAvatar:
         self.__response: r.Response = req
 
     @staticmethod
-    def __uniquify(path):
+    def __uniquify(path) -> str:
         filename, extension = os.path.splitext(path)
         counter = 1
         while os.path.exists(path):
@@ -192,7 +212,7 @@ class DAvatar:
         self.__get_avatar_url()
         return self.__url_png
 
-    def edit_specific(self, *, extra_options: dict = None, blank_options: dict = None):
+    def edit_specific(self, *, extra_options: dict = None, blank_options: dict = None) -> str:
         """
         Edit the specific options for an already existing avatar.
 
@@ -208,7 +228,7 @@ class DAvatar:
         self.__get_avatar_url()
         return self.__url_png
 
-    def to_png(self):
+    def to_png(self) -> str:
         """
         Turns the avatar from svg into png and returns the url.
 
@@ -217,7 +237,7 @@ class DAvatar:
         self.__url_png = self.__url_svg.replace(".svg", ".png")
         return self.__url_png
 
-    def to_svg(self):
+    def to_svg(self) -> str:
         """
         Turns the avatar from svg into png and returns the url.
 
@@ -226,14 +246,14 @@ class DAvatar:
         self.__url_svg = self.__url_png.replace(".png", ".svg")
         return self.__url_svg
 
-    def save(self, *, location: pathlib.Path = None, file_name: str = "dicebear_avatar", format: DFormat = DFormat.png):
+    def save(self, *, location: pathlib.Path = None, file_name: str = "dicebear_avatar", format: DFormat = DFormat.png) -> str:
         """
         Save a file to your device.
 
         :param location: class `pathlib.Path` :: the folder to save the file in. (default is None which saves it in the current directory `os.getcwd()`
         :param file_name: class `str` :: the name of the file to save. (default is "dicebear_avatar")
         :param format: class `DFormat` :: the format of the file. (default is "png")
-        :return: returns the path when successful
+        :return: class `str` :: the path when successful
         """
         if format not in DFormat.all_formats:
             s = f'"{format}" is not a supported format!'
@@ -269,3 +289,14 @@ class DAvatar:
 
         return ret
 
+    @pilcheck
+    def pillow(self) -> i.Image:
+        """
+        Convert a DAvatar to a :py:class:`PIL.Image.Image` object.
+
+        :return: :py:class:`PIL.Image.Image`
+        :raise :py:class:`dicebear.errors.PILError`:
+        """
+        raw_img = i.open(io.BytesIO(self.__response.content)).tobytes()
+        img = i.frombytes("RGBA", (256, 256), raw_img)
+        return img
