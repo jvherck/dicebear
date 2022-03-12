@@ -62,6 +62,9 @@ class DColor:
     def random():
         html_code = '#' + ''.join(choices(ascii_lowercase + digits, k=6))
         return DColor(html_code)
+    @staticmethod
+    def transparent():
+        return
 
 
 class DStyle:
@@ -69,6 +72,7 @@ class DStyle:
     All possible styles for the avatars. Visit https://avatars.dicebear.com/styles to see what they look like.\n
     - Note: Only works with attributes!
     """
+    list = all_styles = styles
     adventurer = styles[0]
     adventurer_neutral = styles[1]
     avataaars = styles[2]
@@ -86,11 +90,16 @@ class DStyle:
     personas = styles[14]
     pixel_art = styles[15]
     pixel_art_neutral = styles[16]
-
     random = choice(styles)
+
     def __init__(self):
         """Only use `.attribute` to use a style."""
         pass
+
+    @staticmethod
+    def from_str(style_str: str):
+        """Get an avatar style from a string"""
+        return eval("DStyle.{}".format(style_str.replace("-", "_")))
 
 
 class DFormat:
@@ -98,12 +107,17 @@ class DFormat:
     All possible image formats for saving or converting avatars.
     - Note: Only works with attributes!
     """
-    all_formats: list = ["png", "svg"]
+    list = all_formats = ["png", "svg"]
     png = "png"
     svg = "svg"
     def __init__(self):
         """Only use `.attribute` to use a format."""
         pass
+
+    @staticmethod
+    def from_str(format_str: str):
+        """Get an avatar format from a string"""
+        return eval("DFormat.{}".format(format_str))
 
 
 default_options: dict = {options[0]: False, options[1]: False, options[2]: 0, options[3]: 100, options[4]: 0,

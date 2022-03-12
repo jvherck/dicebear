@@ -19,9 +19,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-__version__ = "0.3.0"
-
 from setuptools import setup, find_packages
+from dicebear import __version__
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
@@ -39,7 +38,11 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['requests', 'urllib3'],
+    entry_points="""
+    [console_scripts]
+    dicebear=dcli:cli
+    """,
+    install_requires=['requests', 'urllib3', 'click'],
     keywords=['python', 'dicebear', 'avatar', 'generating', 'API', 'wrapper', 'image', 'svg'],
     classifiers=[
         "Development Status :: 4 - Beta",

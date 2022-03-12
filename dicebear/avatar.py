@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import modulefinder
+from typing import overload
 
 import requests as r
 from urllib.parse import quote
@@ -47,7 +48,7 @@ _url = "https://avatars.dicebear.com/api/{}/{}.png?"
 class DAvatar:
     default_options: dict = default_options
     all_options: list = options
-    def __init__(self, style: DStyle, seed: str, *, options: DOptions = None, specific_options: dict = None) -> None:
+    def __init__(self, style: DStyle, seed: str = None, *, options: DOptions = None, specific_options: dict = None) -> None:
         """
         Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
         Clickable links: https://github.com/jvherck/dicebear#styles , https://github.com/jvherck/dicebear#base-options , https://github.com/jvherck/dicebear#specific-style-options
@@ -62,7 +63,7 @@ class DAvatar:
         if options is None:
             options = DOptions.empty
         if style not in styles:
-            raise Error("Invalid Style", '"{}" is not a valid style! Use `DStyle.`'.format(style))
+            raise Error("Invalid Style", '"{}" is not a valid style! Use `DStyle.list` to see all available styles'.format(style))
         self.__style: DStyle = style
         self.__seed: str = seed
         self.__options: DOptions = options
@@ -70,7 +71,8 @@ class DAvatar:
         self.__url_svg: str = None
         self.__text: str = None
         self.__url_png: str = None
-        self.__content = None
+        self.__content: bytes = None
+        self.__bytes: io.BytesIO = None
         self.__get_avatar_url()
 
     @property
@@ -164,7 +166,7 @@ class DAvatar:
         else:
             _link += "&" + "&".join(_specoptions)
         _link.replace("False", "false").replace("True", "true")
-        _link = _link.format(quote(str(self.__style)), quote(self.__seed))
+        _link = _link.format(quote(str(self.__style)), quote(self.__seed) if self.__seed is not None else "")
         req = r.request('GET', _link)
         status = ""
         try:
@@ -179,6 +181,7 @@ class DAvatar:
         self.__text = req.text
         self.__content = req.content
         self.__response: r.Response = req
+        self.__bytes = io.BytesIO(req.content)
 
     @staticmethod
     def __uniquify(path) -> str:
@@ -289,6 +292,7 @@ class DAvatar:
 
         return ret
 
+
     @pilcheck
     def pillow(self) -> i.Image:
         """
@@ -297,6 +301,14 @@ class DAvatar:
         :return: :py:class:`PIL.Image.Image`
         :raise :py:class:`dicebear.errors.PILError`:
         """
-        raw_img = i.open(io.BytesIO(self.__response.content)).tobytes()
+        raw_img = i.open(self.__bytes).tobytes()
         img = i.frombytes("RGBA", (256, 256), raw_img)
         return img
+
+    # @pilcheck
+    # def transparent(self) -> i.Image:
+    #     req = r.request("GET", self.url_svg)
+    #     _svg = req.text.replace('<rect fill="#000000" width="762" height="762" x="0" y="0"/>', '')
+    #     self.__bytes = io.BytesIO(bytes(_svg, "UTF-8"))
+    #     img = self.pillow()
+    #     return img
