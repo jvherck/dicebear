@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 0.4.9
+Version: 0.4.11
 Summary: A python API wrapper for DiceBear's avatar generating API.
 Home-page: https://github.com/jvherck/dicebear
 Author: jvherck
 Author-email: <jvh.discord@gmail.com>
 License: MIT License
-Keywords: python,dicebear_cli,avatar,generating,API,wrapper,image,svg,cli
+Keywords: python,dicebear,avatar,generating,API,wrapper,image,png,svg,cli
 Platform: UNKNOWN
 Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: Developers
