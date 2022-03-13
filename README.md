@@ -10,6 +10,7 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 * PyPI: https://pypi.org/project/dicebear/
 * GitHub: https://github.com/jvherck/dicebear
 * Dicebear: https://dicebear.com
+- Dicebear CLI: https://github.com/jvherck/dicebear-cli
 
 ---
 
@@ -64,15 +65,7 @@ image: PIL.Image.Image = av.pillow()
 Since version 0.4.0 there's a CLI for DiceBear. It can quickly create one or more avatars at a time
 but it can't take options.
 
-```shell
-dicebear --help
-```
-```shell
-dicebear create --help
-```
-```shell
-dicebear create avataaars -s John Apple -f svg
-```
+__To use the CLI go to__ https://github.com/jvherck/dicebear-cli __and use `pip install dicebear-cli` to install the CLI__
 
 ---
 

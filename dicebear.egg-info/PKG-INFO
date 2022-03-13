@@ -1,19 +1,19 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 0.4.0
+Version: 0.4.7
 Summary: A python API wrapper for DiceBear's avatar generating API.
 Home-page: https://github.com/jvherck/dicebear
 Author: jvherck
 Author-email: <jvh.discord@gmail.com>
 License: MIT License
-Keywords: python,dicebear,avatar,generating,API,wrapper,image,svg
+Keywords: python,dicebear,avatar,generating,API,wrapper,image,svg,cli
 Platform: UNKNOWN
 Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Other Audience
 Classifier: Programming Language :: Python :: 3
 Classifier: Operating System :: Unix
-Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: MacOS
 Classifier: Operating System :: Microsoft :: Windows
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Topic :: Artistic Software
@@ -34,6 +34,7 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 * PyPI: https://pypi.org/project/dicebear/
 * GitHub: https://github.com/jvherck/dicebear
 * Dicebear: https://dicebear.com
+- Dicebear CLI: https://github.com/jvherck/dicebear-cli
 
 ---
 
@@ -88,15 +89,7 @@ image: PIL.Image.Image = av.pillow()
 Since version 0.4.0 there's a CLI for DiceBear. It can quickly create one or more avatars at a time
 but it can't take options.
 
-```shell
-dicebear --help
-```
-```shell
-dicebear create --help
-```
-```shell
-dicebear create avataaars -s John Apple -f svg
-```
+__To use the CLI go to__ https://github.com/jvherck/dicebear-cli __and use `pip install dicebear-cli` to install the CLI__
 
 ---
 

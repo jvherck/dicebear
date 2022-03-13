@@ -38,19 +38,15 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    entry_points="""
-    [console_scripts]
-    dicebear=dcli:cli
-    """,
     install_requires=['requests', 'urllib3', 'click'],
-    keywords=['python', 'dicebear', 'avatar', 'generating', 'API', 'wrapper', 'image', 'svg'],
+    keywords=['python', 'dicebear', 'avatar', 'generating', 'API', 'wrapper', 'image', 'svg', 'cli'],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Intended Audience :: Other Audience",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",
-        "Operating System :: MacOS :: MacOS X",
+        "Operating System :: MacOS", # :: MacOS X
         "Operating System :: Microsoft :: Windows",
         "License :: OSI Approved :: MIT License",
         "Topic :: Artistic Software",

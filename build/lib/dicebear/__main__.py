@@ -1,12 +1,12 @@
 import click
-from dicebear import *
-from dicebear import __version__
-from dicebear.errors import Error
+from .__init__ import *
+from .__init__ import version
+from .errors import Error
 from random import choices, choice
 from string import ascii_lowercase, digits
 
 @click.group()
-@click.version_option(__version__, "--version", "-v")
+@click.version_option(version(), "--version", "-v")
 def cli():
     pass
 
@@ -58,7 +58,6 @@ def create(seed, style: str, count: int, format: str):
 def styles():
     for style in DStyle.list:
         click.echo(style)
-
 
 
 if __name__ == '__main__':
