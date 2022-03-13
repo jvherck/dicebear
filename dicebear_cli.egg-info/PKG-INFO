@@ -1,5 +1,5 @@
 Metadata-Version: 2.1
-Name: dicebear
+Name: dicebear-cli
 Version: 0.4.9
 Summary: A python API wrapper for DiceBear's avatar generating API.
 Home-page: https://github.com/jvherck/dicebear

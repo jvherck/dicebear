@@ -299,7 +299,7 @@ class DAvatar:
         Convert a DAvatar to a :py:class:`PIL.Image.Image` object.
 
         :return: :py:class:`PIL.Image.Image`
-        :raise :py:class:`dicebear.errors.PILError`:
+        :raise :py:class:`dicebear_cli.errors.PILError`:
         """
         raw_img = i.open(self.__bytes).tobytes()
         img = i.frombytes("RGBA", (256, 256), raw_img)
