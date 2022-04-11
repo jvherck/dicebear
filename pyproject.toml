@@ -13,5 +13,3 @@ output_dir = "docs"
 favicon = "images/favicon.png"
 logo = "images/favicon.png"
 name = "gitbook"
-hljs_languages = ["python"]
-colorscheme = "Atom One Dark"

@@ -1,0 +1,8 @@
+theme:
+  name: gitbook
+  colorscheme: "atom one dark"
+  highlightjs: true
+  hljs_languages:
+    - python
+
+repo_url: "https://github.com/jvherck/dicebear"
