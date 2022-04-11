@@ -16,6 +16,5 @@ repo_url = "https://github.com/jvherck/dicebear"
 favicon = "images/favicon.png"
 logo = "images/favicon.png"
 name = "gitbook"
-colorscheme = "atom one dark"
 highlightjs = true
 hljs_languages = ["python"]
