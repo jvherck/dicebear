@@ -38,7 +38,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['requests', 'urllib3', 'click'],
+    install_requires=['requests', 'urllib3'],
     keywords=['python', 'dicebear', 'avatar', 'generating', 'API', 'wrapper', 'image', 'png', 'svg', 'cli'],
     classifiers=[
         "Development Status :: 4 - Beta",
