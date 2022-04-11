@@ -15,6 +15,6 @@ repo_url = "https://github.com/jvherck/dicebear"
 [tool.portray.mkdocs.theme]
 favicon = "images/favicon.png"
 logo = "images/favicon.png"
-name = "mkdocs"
+name = "readthedocs"
 highlightjs = true
 hljs_languages = ["python"]
