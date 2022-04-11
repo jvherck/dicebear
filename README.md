@@ -69,6 +69,9 @@ __To use the CLI go to__ https://github.com/jvherck/dicebear-cli __and use `pip 
 
 ---
 
+## Customisation
+Customise your avatars with these possibilities.
+
 ### Styles
 All the possible avatar styles. \
 https://avatars.dicebear.com/styles

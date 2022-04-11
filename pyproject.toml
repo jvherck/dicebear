@@ -12,4 +12,6 @@ output_dir = "docs"
 [tool.portray.mkdocs.theme]
 favicon = "images/favicon.png"
 logo = "images/favicon.png"
-name = "readthedocs"
+name = "gitbook"
+hljs_languages = ["python"]
+colorscheme = "Atom One Dark"

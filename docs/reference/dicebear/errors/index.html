@@ -1,142 +1,100 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
-  <link rel="shortcut icon" href="../../../img/favicon.ico">
-  <title>Errors - dicebear_wrapper</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Errors - dicebear_wrapper</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <link rel="stylesheet" href="../../../css/theme.css" />
-  <link rel="stylesheet" href="../../../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Errors";
-    var mkdocs_page_input_path = "reference\\dicebear\\errors.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+<meta name="generator" content="mkdocs-1.2.4, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../css/style.min.css" rel="stylesheet"> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
 
-  <div class="wy-grid-for-nav">
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../.." target="_blank" class="custom-link">dicebear_wrapper</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../../..">Home</a>
+<li class="header">Reference</li>
 
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href="../../.." class="icon icon-home"> dicebear_wrapper</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+<li>
+<a href="#">Dicebear</a>
+<ul>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Reference</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Dicebear</a>
-    <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../avatar/">Avatar</a>
-                </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="./">Errors</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#log_error">log_error</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#error">Error</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#httperror">HTTPError</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#imageerror">ImageError</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#imageoserror">ImageOSError</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#imagevalueerror">ImageValueError</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#incorrectcolor">IncorrectColor</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#invalidoption">InvalidOption</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#pilerror">PILError</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../">Index</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../models/">Models</a>
-                </li>
-    </ul>
-                    </li>
-                </ul>
-      </div>
-    </div>
-    </nav>
+<li>
+<a href="../avatar/" class="">Avatar</a>
+</li>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+<li>
+<a href="./" class="active">Errors</a>
+</li>
 
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../..">dicebear_wrapper</a>
-      </nav>
+<li>
+<a href="../" class="">Index</a>
+</li>
 
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="../../..">Docs</a> &raquo;</li>
-    
-      
-        
-          <li>Reference &raquo;</li>
-        
-      
-        
-          <li>Dicebear &raquo;</li>
-        
-      
-    
-    <li>Errors</li>
-    <li class="wy-breadcrumbs-aside">
-      
-        <a href="https://github.com/jvherck/dicebear/edit/main/reference/dicebear/errors.md"> Edit on dicebear</a>
-      
-    </li>
-  </ul>
-  
-  <hr/>
-</div>
+<li>
+<a href="../models/" class="">Models</a>
+</li>
+</ul>
+</li>
 
-          <div role="main">
-            <div class="section">
-              
-                <h1 id="module-dicebearerrors">Module dicebear.errors</h1>
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="module-dicebearerrors">Module dicebear.errors</h1>
 <p>None</p>
 <p>None</p>
 <details class="example">
@@ -584,58 +542,34 @@
 
 <p>Exception.with_traceback(tb) --</p>
 <p>set self.<strong>traceback</strong> to tb and return self.</p>
-              
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../" class="btn btn-neutral float-right" title="Index">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../avatar/" class="btn btn-neutral" title="Avatar"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
 
-  <hr/>
 
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-  </div>
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-      
-        </div>
-      </div>
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
 
-    </section>
+</div> <!-- end of has-results -->
+<div class="no-results">
 
-  </div>
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
 
-  <div class="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href="../avatar/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
-</div>
-    <script>var base_url = '../../..';</script>
-    <script src="../../../js/theme_extra.js" defer></script>
-    <script src="../../../js/theme.js" defer></script>
-      <script src="../../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
 
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../js/main.js"></script>
+<script src="../../../search/main.js"></script>
+<script src="../../../js/gitbook.min.js"></script>
+<script src="../../../js/theme.min.js"></script>
 </body>
 </html>
