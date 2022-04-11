@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Models - dicebear_wrapper</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../../css/theme.css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Models";
+    var mkdocs_page_input_path = "reference\\dicebear\\models.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> dicebear_wrapper</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Reference</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="#">Dicebear</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../avatar/">Avatar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../errors/">Errors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../">Index</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Models</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#pilcheck">pilcheck</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#dcolor">DColor</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dformat">DFormat</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#doptions">DOptions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dstyle">DStyle</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#findpil">FindPil</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">dicebear_wrapper</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Reference &raquo;</li>
+        
+      
+        
+          <li>Dicebear &raquo;</li>
+        
+      
+    
+    <li>Models</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/jvherck/dicebear/edit/main/reference/dicebear/models.md"> Edit on dicebear</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="module-dicebearmodels">Module dicebear.models</h1>
+<p>None</p>
+<p>None</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">MIT</span><span class="w"> </span><span class="n">License</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Copyright</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="mi">2022</span><span class="w"> </span><span class="n">jvherck</span><span class="w"> </span><span class="p">(</span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">jvherck</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="o">/</span><span class="n">dicebear</span><span class="o">/</span><span class="p">)</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Permission</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">hereby</span><span class="w"> </span><span class="n">granted</span><span class="p">,</span><span class="w"> </span><span class="k">free</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">charge</span><span class="p">,</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="n">obtaining</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">copy</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">software</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">associated</span><span class="w"> </span><span class="n">documentation</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="p">(</span><span class="n">the</span><span class="w"> </span><span class="ss">&quot;Software&quot;</span><span class="p">),</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">deal</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Software</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="n">restriction</span><span class="p">,</span><span class="w"> </span><span class="n">including</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="n">limitation</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">rights</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="n">copy</span><span class="p">,</span><span class="w"> </span><span class="k">modify</span><span class="p">,</span><span class="w"> </span><span class="k">merge</span><span class="p">,</span><span class="w"> </span><span class="n">publish</span><span class="p">,</span><span class="w"> </span><span class="n">distribute</span><span class="p">,</span><span class="w"> </span><span class="n">sublicense</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="o">/</span><span class="ow">or</span><span class="w"> </span><span class="n">sell</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">copies</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Software</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">permit</span><span class="w"> </span><span class="n">persons</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">whom</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Software</span><span class="w"> </span><span class="k">is</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">furnished</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">so</span><span class="p">,</span><span class="w"> </span><span class="n">subject</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="nl">conditions</span><span class="p">:</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="n">copyright</span><span class="w"> </span><span class="n">notice</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">permission</span><span class="w"> </span><span class="n">notice</span><span class="w"> </span><span class="n">shall</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">included</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="ow">all</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">copies</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">substantial</span><span class="w"> </span><span class="n">portions</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Software</span><span class="p">.</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">SOFTWARE</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="n">PROVIDED</span><span class="w"> </span><span class="ss">&quot;AS IS&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">WITHOUT</span><span class="w"> </span><span class="n">WARRANTY</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="ow">ANY</span><span class="w"> </span><span class="n">KIND</span><span class="p">,</span><span class="w"> </span><span class="n">EXPRESS</span><span class="w"> </span><span class="ow">OR</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">IMPLIED</span><span class="p">,</span><span class="w"> </span><span class="n">INCLUDING</span><span class="w"> </span><span class="n">BUT</span><span class="w"> </span><span class="ow">NOT</span><span class="w"> </span><span class="n">LIMITED</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">WARRANTIES</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="n">MERCHANTABILITY</span><span class="p">,</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">FITNESS</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">PARTICULAR</span><span class="w"> </span><span class="n">PURPOSE</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="n">NONINFRINGEMENT</span><span class="p">.</span><span class="w"> </span><span class="ow">IN</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="n">EVENT</span><span class="w"> </span><span class="n">SHALL</span><span class="w"> </span><span class="n">THE</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">AUTHORS</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">COPYRIGHT</span><span class="w"> </span><span class="n">HOLDERS</span><span class="w"> </span><span class="n">BE</span><span class="w"> </span><span class="n">LIABLE</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="ow">ANY</span><span class="w"> </span><span class="n">CLAIM</span><span class="p">,</span><span class="w"> </span><span class="n">DAMAGES</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">OTHER</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">LIABILITY</span><span class="p">,</span><span class="w"> </span><span class="n">WHETHER</span><span class="w"> </span><span class="ow">IN</span><span class="w"> </span><span class="n">AN</span><span class="w"> </span><span class="k">ACTION</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="n">CONTRACT</span><span class="p">,</span><span class="w"> </span><span class="n">TORT</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">OTHERWISE</span><span class="p">,</span><span class="w"> </span><span class="n">ARISING</span><span class="w"> </span><span class="k">FROM</span><span class="p">,</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="k">OUT</span><span class="w"> </span><span class="k">OF</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="ow">IN</span><span class="w"> </span><span class="k">CONNECTION</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="n">SOFTWARE</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="k">USE</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">OTHER</span><span class="w"> </span><span class="n">DEALINGS</span><span class="w"> </span><span class="ow">IN</span><span class="w"> </span><span class="n">THE</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">SOFTWARE</span><span class="p">.</span><span class="w"></span>
+
+<span class="n">import</span><span class="w"> </span><span class="n">sys</span><span class="w"></span>
+
+<span class="n">import</span><span class="w"> </span><span class="n">traceback</span><span class="w"></span>
+
+<span class="k">from</span><span class="w"> </span><span class="p">.</span><span class="n">errors</span><span class="w"> </span><span class="n">import</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+
+<span class="k">from</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="n">import</span><span class="w"> </span><span class="n">choice</span><span class="p">,</span><span class="w"> </span><span class="n">choices</span><span class="w"></span>
+
+<span class="k">from</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">import</span><span class="w"> </span><span class="n">digits</span><span class="w"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nl">FindPil</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">found</span><span class="err">:</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
+
+<span class="n">ascii_lowercase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;abcdef&quot;</span><span class="w"></span>
+
+<span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;dataUri&quot;, &quot;flip&quot;, &quot;rotate&quot;, &quot;scale&quot;, &quot;radius&quot;, &quot;size&quot;, &quot;backgroundColor&quot;, &quot;translateX&quot;, &quot;translateY&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="n">styles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;adventurer&quot;, &quot;adventurer-neutral&quot;, &quot;avataaars&quot;, &quot;big-ears&quot;, &quot;big-ears-neutral&quot;,</span>
+
+<span class="n">          &quot;big-smile&quot;, &quot;bottts&quot;, &quot;croodles&quot;, &quot;croodles-neutral&quot;, &quot;identicon&quot;, &quot;initials&quot;,</span>
+
+<span class="n">          &quot;micah&quot;, &quot;miniavs&quot;, &quot;open-peeps&quot;, &quot;personas&quot;, &quot;pixel-art&quot;, &quot;pixel-art-neutral&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="n">styles_depricated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;female&quot;, &quot;gridy&quot;, &quot;human&quot;, &quot;jdenticon&quot;, &quot;male&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nl">DColor</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">html_code</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;#ffffff&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Colors used in this package. This uses HTML color codes!</span>
+
+<span class="ss">        :param html_code: the html color code to use as color</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">html_code</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;random&quot;, &quot;rnd&quot;</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">html_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">choices</span><span class="p">(</span><span class="n">ascii_lowercase</span><span class="o">+</span><span class="n">digits</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">html_code</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="ss">&quot;#&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">html_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;#&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">html_code</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">html_code</span><span class="p">)</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">[</span><span class="n">4, 7</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">IncorrectColor</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">html_code</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="nl">html_code</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">str</span><span class="p">(</span><span class="n">html_code</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;{self.html_code}&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__repr__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;{self.html_code}&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">random</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">html_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">choices</span><span class="p">(</span><span class="n">ascii_lowercase</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">digits</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">DColor</span><span class="p">(</span><span class="n">html_code</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">transparent</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nl">DStyle</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    All possible styles for the avatars. Visit https://avatars.dicebear.com/styles to see what they look like.\n</span>
+
+<span class="ss">    - Note: Only works with attributes!</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">all_styles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">adventurer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">adventurer_neutral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">avataaars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">big_ears</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">3</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">big_ears_neutral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">4</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">big_smile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">5</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">bottts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">6</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">croodles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">7</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">croodles_neutral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">8</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">identicon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">9</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">initials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">10</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">micah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">11</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">miniavs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">12</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">open_peeps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">13</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">personas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">14</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">pixel_art</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">15</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">pixel_art_neutral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">16</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">choice</span><span class="p">(</span><span class="n">styles</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Only use `.attribute` to use a style.&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">pass</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">from_str</span><span class="p">(</span><span class="nl">style_str</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Get an avatar style from a string&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">eval</span><span class="p">(</span><span class="ss">&quot;DStyle.{}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">style_str</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="ss">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;_&quot;</span><span class="p">)))</span><span class="w"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nl">DFormat</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    All possible image formats for saving or converting avatars.</span>
+
+<span class="ss">    - Note: Only works with attributes!</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">all_formats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;png&quot;, &quot;svg&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">png</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;png&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">svg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;svg&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Only use `.attribute` to use a format.&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">pass</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">from_str</span><span class="p">(</span><span class="nl">format_str</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Get an avatar format from a string&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">eval</span><span class="p">(</span><span class="ss">&quot;DFormat.{}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">format_str</span><span class="p">))</span><span class="w"></span>
+
+<span class="nl">default_options</span><span class="p">:</span><span class="w"> </span><span class="n">dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="n">options</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="k">False</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="k">False</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="n">3</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="n">4</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">             </span><span class="n">options</span><span class="o">[</span><span class="n">5</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="n">6</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">DColor</span><span class="p">(),</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="n">7</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="n">8</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="mi">0</span><span class="err">}</span><span class="w"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="n">DOptions</span><span class="p">(</span><span class="n">dict</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">empty</span><span class="p">:</span><span class="w"> </span><span class="n">dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nl">dataUri</span><span class="p">:</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">False</span><span class="p">,</span><span class="w"> </span><span class="nl">flip</span><span class="p">:</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">False</span><span class="p">,</span><span class="w"> </span><span class="nl">rotate</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">scale</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                 </span><span class="nl">radius</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">size</span><span class="err">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">backgroundColor</span><span class="p">:</span><span class="w"> </span><span class="n">DColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DColor</span><span class="p">(),</span><span class="w"> </span><span class="nl">translateX</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">translateY</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Go to https://github.com/jvherck/dicebear#base-options to see all info</span>
+
+<span class="ss">        :param kwargs: `fromdict` to use a custom dict instead of args (if you use this kwarg all other args will be neglected)</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nl">kwargs</span><span class="p">:</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">dataUri, flip, rotate, scale, radius, size, backgroundColor, translateX, translateY</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kwargs</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="ss">&quot;fromdict&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">{}</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">current</span><span class="err">:</span><span class="w"> </span><span class="n">dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;dataUri&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">dataUri</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;flip&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">flip</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;rotate&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">rotate</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;scale&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">scale</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;radius&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;size&quot;</span><span class="err">:</span><span class="w"> </span><span class="k">size</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                     </span><span class="ss">&quot;backgroundColor&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">backgroundColor</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;translateX&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">translateX</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;translateY&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">translateY</span><span class="err">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="nl">dic</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">current</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">default_options</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">current</span><span class="o">[</span><span class="n">item</span><span class="o">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">default_options</span><span class="o">[</span><span class="n">item</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">dic</span><span class="p">.</span><span class="k">update</span><span class="p">(</span><span class="err">{</span><span class="nl">item</span><span class="p">:</span><span class="w"> </span><span class="k">current</span><span class="o">[</span><span class="n">item</span><span class="o">]</span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="ss">&quot;size&quot;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">dic</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">dic</span><span class="o">[</span><span class="n">&quot;size&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">dic</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="ss">&quot;size&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">def</span><span class="w"> </span><span class="n">pilcheck</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">FindPil</span><span class="p">.</span><span class="k">found</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">True</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">log_error</span><span class="p">(</span><span class="n">PILError</span><span class="p">())</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">wrapper</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">ascii_lowercase</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">default_options</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">digits</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">options</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">styles</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">styles_depricated</span>
+</code></pre></div>
+
+<h2 id="functions">Functions</h2>
+<h3 id="pilcheck">pilcheck</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">pilcheck</span><span class="p">(</span>
+    <span class="n">func</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="nv">def</span> <span class="nv">pilcheck</span><span class="ss">(</span><span class="nv">func</span><span class="ss">)</span>:
+
+    <span class="nv">def</span> <span class="nv">wrapper</span><span class="ss">(</span><span class="o">*</span><span class="nv">args</span>, <span class="o">**</span><span class="nv">kwargs</span><span class="ss">)</span>:
+
+        <span class="k">if</span> <span class="nv">FindPil</span>.<span class="nv">found</span> <span class="nv">is</span> <span class="nv">True</span>:
+
+            <span class="k">return</span> <span class="nv">func</span><span class="ss">(</span><span class="o">*</span><span class="nv">args</span>, <span class="o">**</span><span class="nv">kwargs</span><span class="ss">)</span>
+
+        <span class="k">else</span>:
+
+            <span class="nv">log_error</span><span class="ss">(</span><span class="nv">PILError</span><span class="ss">())</span>
+
+    <span class="k">return</span> <span class="nv">wrapper</span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="dcolor">DColor</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">DColor</span><span class="p">(</span>
+    <span class="n">html_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;#ffffff&#39;</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nl">DColor</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="nl">html_code</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;#ffffff&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Colors used in this package. This uses HTML color codes!</span>
+
+<span class="ss">        :param html_code: the html color code to use as color</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">html_code</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;random&quot;, &quot;rnd&quot;</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">html_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">choices</span><span class="p">(</span><span class="n">ascii_lowercase</span><span class="o">+</span><span class="n">digits</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">html_code</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="ss">&quot;#&quot;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">html_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;#&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">html_code</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">html_code</span><span class="p">)</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">[</span><span class="n">4, 7</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">raise</span><span class="w"> </span><span class="n">IncorrectColor</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">html_code</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="nl">html_code</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">str</span><span class="p">(</span><span class="n">html_code</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;{self.html_code}&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__repr__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;{self.html_code}&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">random</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">html_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">choices</span><span class="p">(</span><span class="n">ascii_lowercase</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">digits</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">DColor</span><span class="p">(</span><span class="n">html_code</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">transparent</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="static-methods">Static methods</h4>
+<h4 id="random">random</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">random</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">random</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">html_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">choices</span><span class="p">(</span><span class="n">ascii_lowercase</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">digits</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">DColor</span><span class="p">(</span><span class="n">html_code</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h4 id="transparent">transparent</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">transparent</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">transparent</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="dformat">DFormat</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">DFormat</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nl">DFormat</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    All possible image formats for saving or converting avatars.</span>
+
+<span class="ss">    - Note: Only works with attributes!</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">all_formats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;png&quot;, &quot;svg&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">png</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;png&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">svg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;svg&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Only use `.attribute` to use a format.&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">pass</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">from_str</span><span class="p">(</span><span class="nl">format_str</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Get an avatar format from a string&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">eval</span><span class="p">(</span><span class="ss">&quot;DFormat.{}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">format_str</span><span class="p">))</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="class-variables">Class variables</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">all_formats</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="nb">list</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">png</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">svg</span>
+</code></pre></div>
+
+<h4 id="static-methods_1">Static methods</h4>
+<h4 id="from_str">from_str</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">from_str</span><span class="p">(</span>
+    <span class="n">format_str</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Get an avatar format from a string</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">from_str</span><span class="p">(</span><span class="nl">format_str</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Get an avatar format from a string&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">eval</span><span class="p">(</span><span class="ss">&quot;DFormat.{}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">format_str</span><span class="p">))</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="doptions">DOptions</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">DOptions</span><span class="p">(</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">dataUri</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">rotate</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">backgroundColor</span><span class="p">:</span> <span class="n">dicebear</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">DColor</span> <span class="o">=</span> <span class="c1">#ffffff,</span>
+    <span class="n">translateX</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">translateY</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="n">DOptions</span><span class="p">(</span><span class="n">dict</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">empty</span><span class="p">:</span><span class="w"> </span><span class="n">dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nl">dataUri</span><span class="p">:</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">False</span><span class="p">,</span><span class="w"> </span><span class="nl">flip</span><span class="p">:</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">False</span><span class="p">,</span><span class="w"> </span><span class="nl">rotate</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">scale</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                 </span><span class="nl">radius</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">size</span><span class="err">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">backgroundColor</span><span class="p">:</span><span class="w"> </span><span class="n">DColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DColor</span><span class="p">(),</span><span class="w"> </span><span class="nl">translateX</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">translateY</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">        Go to https://github.com/jvherck/dicebear#base-options to see all info</span>
+
+<span class="ss">        :param kwargs: `fromdict` to use a custom dict instead of args (if you use this kwarg all other args will be neglected)</span>
+
+<span class="ss">        &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nl">kwargs</span><span class="p">:</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">dataUri, flip, rotate, scale, radius, size, backgroundColor, translateX, translateY</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">dic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kwargs</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="ss">&quot;fromdict&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">{}</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">current</span><span class="err">:</span><span class="w"> </span><span class="n">dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;dataUri&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">dataUri</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;flip&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">flip</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;rotate&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">rotate</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;scale&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">scale</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;radius&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;size&quot;</span><span class="err">:</span><span class="w"> </span><span class="k">size</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                     </span><span class="ss">&quot;backgroundColor&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">backgroundColor</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;translateX&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">translateX</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;translateY&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">translateY</span><span class="err">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="nl">dic</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">current</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">default_options</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">current</span><span class="o">[</span><span class="n">item</span><span class="o">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">default_options</span><span class="o">[</span><span class="n">item</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">dic</span><span class="p">.</span><span class="k">update</span><span class="p">(</span><span class="err">{</span><span class="nl">item</span><span class="p">:</span><span class="w"> </span><span class="k">current</span><span class="o">[</span><span class="n">item</span><span class="o">]</span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="ss">&quot;size&quot;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">dic</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">dic</span><span class="o">[</span><span class="n">&quot;size&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">dic</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="ss">&quot;size&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="ancestors-in-mro">Ancestors (in MRO)</h4>
+<ul>
+<li>builtins.dict</li>
+</ul>
+<h4 id="class-variables_1">Class variables</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">empty</span>
+</code></pre></div>
+
+<h4 id="methods">Methods</h4>
+<h4 id="clear">clear</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">clear</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>D.clear() -&gt; None.  Remove all items from D.</p>
+<h4 id="copy">copy</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">copy</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>D.copy() -&gt; a shallow copy of D</p>
+<h4 id="fromkeys">fromkeys</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">fromkeys</span><span class="p">(</span>
+    <span class="n">iterable</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">/</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Create a new dictionary with keys from iterable and values set to value.</p>
+<h4 id="get">get</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">key</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">/</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Return the value for key if key is in the dictionary, else default.</p>
+<h4 id="items">items</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">items</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>D.items() -&gt; a set-like object providing a view on D's items</p>
+<h4 id="keys">keys</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">keys</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>D.keys() -&gt; a set-like object providing a view on D's keys</p>
+<h4 id="pop">pop</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">pop</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>D.pop(k[,d]) -&gt; v, remove specified key and return the corresponding value.</p>
+<p>If the key is not found, return the default if given; otherwise,
+raise a KeyError.</p>
+<h4 id="popitem">popitem</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">popitem</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="o">/</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Remove and return a (key, value) pair as a 2-tuple.</p>
+<p>Pairs are returned in LIFO (last-in, first-out) order.
+Raises KeyError if the dict is empty.</p>
+<h4 id="setdefault">setdefault</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">setdefault</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">key</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">/</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Insert key with a value of default if key is not in the dictionary.</p>
+<p>Return the value for key if key is in the dictionary, else default.</p>
+<h4 id="update">update</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>D.update([E, ]**F) -&gt; None.  Update D from dict/iterable E and F.</p>
+<p>If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]
+If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
+In either case, this is followed by: for k in F:  D[k] = F[k]</p>
+<h4 id="values">values</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">values</span><span class="p">(</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>D.values() -&gt; an object providing a view on D's values</p>
+<h3 id="dstyle">DStyle</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">DStyle</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nl">DStyle</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    All possible styles for the avatars. Visit https://avatars.dicebear.com/styles to see what they look like.\n</span>
+
+<span class="ss">    - Note: Only works with attributes!</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">all_styles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">adventurer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">adventurer_neutral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">avataaars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">big_ears</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">3</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">big_ears_neutral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">4</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">big_smile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">5</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">bottts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">6</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">croodles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">7</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">croodles_neutral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">8</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">identicon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">9</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">initials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">10</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">micah</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">11</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">miniavs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">12</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">open_peeps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">13</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">personas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">14</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">pixel_art</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">15</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">pixel_art_neutral</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">styles</span><span class="o">[</span><span class="n">16</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">choice</span><span class="p">(</span><span class="n">styles</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Only use `.attribute` to use a style.&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">pass</span><span class="w"></span>
+
+<span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">from_str</span><span class="p">(</span><span class="nl">style_str</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Get an avatar style from a string&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">eval</span><span class="p">(</span><span class="ss">&quot;DStyle.{}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">style_str</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="ss">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;_&quot;</span><span class="p">)))</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="class-variables_2">Class variables</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">adventurer</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">adventurer_neutral</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">all_styles</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">avataaars</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">big_ears</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">big_ears_neutral</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">big_smile</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">bottts</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">croodles</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">croodles_neutral</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">identicon</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">initials</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="nb">list</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">micah</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">miniavs</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">open_peeps</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">personas</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">pixel_art</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">pixel_art_neutral</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">random</span>
+</code></pre></div>
+
+<h4 id="static-methods_2">Static methods</h4>
+<h4 id="from_str_1">from_str</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">from_str</span><span class="p">(</span>
+    <span class="n">style_str</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Get an avatar style from a string</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nv">@staticmethod</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">from_str</span><span class="p">(</span><span class="nl">style_str</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Get an avatar style from a string&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">eval</span><span class="p">(</span><span class="ss">&quot;DStyle.{}&quot;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">style_str</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="ss">&quot;-&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;_&quot;</span><span class="p">)))</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="findpil">FindPil</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">FindPil</span><span class="p">(</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">FindPil:</span>
+
+    <span class="n">found:</span> <span class="n">bool</span> = <span class="nb">True</span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="class-variables_3">Class variables</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">found</span>
+</code></pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../" class="btn btn-neutral" title="Index"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

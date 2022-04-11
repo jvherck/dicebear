@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>dicebear_wrapper</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "README.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> dicebear_wrapper</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#useful-links">Useful links</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-install">How to install</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cli-usage">CLI Usage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#styles">Styles</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#base-options">Base Options</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#specific-style-options">Specific Style Options</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#formats">Formats</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#credits">Credits</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#licenses-and-privacy-policy">Licenses and privacy policy</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Reference</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="#">Dicebear</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="reference/dicebear/avatar/">Avatar</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="reference/dicebear/errors/">Errors</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="reference/dicebear/">Index</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="reference/dicebear/models/">Models</a>
+                </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">dicebear_wrapper</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/jvherck/dicebear/edit/main/README.md"> Edit on dicebear</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="dicebear-py-wrapper">DiceBear Py Wrapper</h1>
+<p><a href="https://pepy.tech/project/dicebear"><img alt="Downloads" src="https://static.pepy.tech/personalized-badge/dicebear?period=total&amp;units=international_system&amp;left_color=grey&amp;right_color=blue&amp;left_text=Downloads" /></a> <a href="https://pepy.tech/project/dicebear"><img alt="Downloads" src="https://static.pepy.tech/personalized-badge/dicebear?period=month&amp;units=international_system&amp;left_color=grey&amp;right_color=orange&amp;left_text=Downloads/Month" /></a> \
+<a href="https://pypi.org/project/dicebear/"><code>dicebear</code></a> is an API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program.
+\
+For an example go to <a href="https://github.com/jvherck/dicebear/tree/main/examples"><code>examples/dicebear.py</code></a>.</p>
+<hr />
+<h2 id="useful-links">Useful links</h2>
+<ul>
+<li>PyPI: https://pypi.org/project/dicebear/</li>
+<li>GitHub: https://github.com/jvherck/dicebear</li>
+<li>Dicebear: https://dicebear.com</li>
+<li>Dicebear CLI: https://github.com/jvherck/dicebear-cli</li>
+</ul>
+<hr />
+<h2 id="how-to-install">How to install</h2>
+<p>Run <code>pip install dicebear</code>\
+If that doesn't work try <code>py -m pip install dicebear</code></p>
+<hr />
+<h2 id="usage">Usage</h2>
+<p>Important note: <em>Pillow</em> is not a required dependency, it's only required when you want to be able to edit the avatar images (using <code>DAvatar.pillow()</code>). 
+When using a <code>PIL</code> function while it's not installed it will raise <code>dicebear.errors.PILError</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">dicebear</span> <span class="kn">import</span> <span class="n">DAvatar</span><span class="p">,</span> <span class="n">DStyle</span><span class="p">,</span> <span class="n">DOptions</span><span class="p">,</span> <span class="n">DColor</span>
+
+<span class="n">options</span> <span class="o">=</span> <span class="n">DOptions</span><span class="p">(</span>
+    <span class="n">backgroundColor</span><span class="o">=</span><span class="n">DColor</span><span class="p">(</span><span class="s2">&quot;#00ddd0&quot;</span><span class="p">),</span>
+    <span class="n">rotate</span><span class="o">=</span><span class="mi">90</span>
+<span class="p">)</span>
+
+<span class="n">av</span> <span class="o">=</span> <span class="n">DAvatar</span><span class="p">(</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">DStyle</span><span class="o">.</span><span class="n">pixel_art</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="s2">&quot;John Apple&quot;</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">options</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">av</span><span class="o">.</span><span class="n">url_svg</span><span class="p">)</span>
+
+<span class="n">av</span><span class="o">.</span><span class="n">edit</span><span class="p">(</span>
+    <span class="n">extra_options</span><span class="o">=</span><span class="n">DOptions</span><span class="p">(</span>
+        <span class="n">backgroundColor</span><span class="o">=</span><span class="n">DColor</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="c1"># This will keep the `rotate` option but override the `backgroundColor` option</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">av</span><span class="o">.</span><span class="n">url_png</span><span class="p">)</span>
+
+<span class="n">av</span><span class="o">.</span><span class="n">edit_specific</span><span class="p">(</span>
+    <span class="n">blank_options</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;face&quot;</span><span class="p">:</span> <span class="s2">&quot;variant04&quot;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1"># This edits the style specific options</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">av</span><span class="o">.</span><span class="n">url_png</span><span class="p">)</span>
+
+<span class="n">image</span><span class="p">:</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span> <span class="o">=</span> <span class="n">av</span><span class="o">.</span><span class="n">pillow</span><span class="p">()</span>
+<span class="c1"># converts the DAvatar into a Pillow Image object</span>
+</code></pre></div>
+
+<h2 id="cli-usage">CLI Usage</h2>
+<p>Since version 0.4.0 there's a CLI for DiceBear. It can quickly create one or more avatars at a time
+but it can't take options.</p>
+<p><strong>To use the CLI go to</strong> https://github.com/jvherck/dicebear-cli <strong>and use <code>pip install dicebear-cli</code> to install the CLI</strong></p>
+<hr />
+<h3 id="styles">Styles</h3>
+<p>All the possible avatar styles. \
+https://avatars.dicebear.com/styles</p>
+<ul>
+<li><code>adventurer</code></li>
+<li><code>adventurer-neutral</code></li>
+<li><code>avataaars</code></li>
+<li><code>big-ears</code></li>
+<li><code>big-ears-neutral</code></li>
+<li><code>big-smile</code></li>
+<li><code>bottts</code></li>
+<li><code>croodles</code></li>
+<li><code>croodles-neutral</code></li>
+<li><code>identicon</code></li>
+<li><code>initials</code></li>
+<li><code>micah</code></li>
+<li><code>miniavs</code></li>
+<li><code>open-peeps</code></li>
+<li><code>personas</code></li>
+<li><code>pixel-art</code></li>
+<li><code>pixel-art-neutral</code></li>
+</ul>
+<h3 id="base-options">Base Options</h3>
+<p>All the possible options for the avatar. These options work for all the styles.</p>
+<ul>
+<li><code>seed</code> (type: <code>str</code>) - the seed for the avatar generator, determine its basic looks</li>
+<li><code>dataUri</code> (type: <code>bool</code>) - whether to give the dataUri (default False)</li>
+<li><code>flip</code> (type: <code>bool</code>) - flips the image vertically (default False)</li>
+<li><code>rotate</code> (type: <code>int</code>) - rotates the avatar (default 0, min 0, max 360)</li>
+<li><code>scale</code> (type: <code>int</code>) - the scale of the avatar drawing itself (default 100, min 0, max 200)</li>
+<li><code>radius</code> (type: <code>int</code>) - the radius of the avatar (default 0, min 0, max 50)</li>
+<li><code>size</code> (type: <code>int</code>) - the size of the avatar (px) (default 256, min 1, max 256)</li>
+<li><code>backgroundColor</code> (type: <code>DColor( " #ffffff " )</code> ) - the background color of the avatar (default white)</li>
+<li><code>translateX</code> (type: <code>int</code>) - move the avatar horizontally (default 0, min -100, max 100)</li>
+<li><code>translateY</code> (type: <code>int</code>) - move the avatar vertically (default 0, min -100, max 100)</li>
+</ul>
+<h3 id="specific-style-options">Specific Style Options</h3>
+<p>Specific options to get a more detailed avatar. This is different for every style. \
+Click the style to see its options.</p>
+<ul>
+<li><a href="https://avatars.dicebear.com/styles/adventurer#style-options">adventurer</a></li>
+<li><a href="https://avatars.dicebear.com/styles/adventurer-neutral#style-options">adventurer-neutral</a></li>
+<li><a href="https://avatars.dicebear.com/styles/avataaars#style-options">avataaars</a></li>
+<li><a href="https://avatars.dicebear.com/styles/big-ears#style-options">big-ears</a></li>
+<li><a href="https://avatars.dicebear.com/styles/big-ears-neutral#style-options">big-ears-neutral</a></li>
+<li><a href="https://avatars.dicebear.com/styles/big-smile#style-options">big-smile</a></li>
+<li><a href="https://avatars.dicebear.com/styles/bottts#style-options">bottts</a></li>
+<li><a href="https://avatars.dicebear.com/styles/croodles#style-options">croodles</a></li>
+<li><a href="https://avatars.dicebear.com/styles/croodles-neutral#style-options">croodles-neutral</a></li>
+<li><a href="https://avatars.dicebear.com/styles/identicon#style-options">identicon</a></li>
+<li><a href="https://avatars.dicebear.com/styles/initials#style-options">initials</a></li>
+<li><a href="https://avatars.dicebear.com/styles/micah#style-options">micah</a></li>
+<li><a href="https://avatars.dicebear.com/styles/miniavs#style-options">miniavs</a></li>
+<li><a href="https://avatars.dicebear.com/styles/open-peeps#style-options">open-peeps</a></li>
+<li><a href="https://avatars.dicebear.com/styles/personas#style-options">personas</a></li>
+<li><a href="https://avatars.dicebear.com/styles/pixel-art#style-options">pixel-art</a></li>
+<li><a href="https://avatars.dicebear.com/styles/pixel-art-neutral#style-options">pixel-art-neutral</a></li>
+</ul>
+<h3 id="formats">Formats</h3>
+<p>These are the only supported formats. \
+If you have Pillow (PIL) installed you can convert <code>DAvatar</code> to a <code>PIL.Image.Image</code> object to get a 
+wider range of formats (Pillow doesn't support svg).</p>
+<ul>
+<li><code>DFormat.png</code></li>
+<li><code>DFormat.svg</code></li>
+</ul>
+<hr />
+<h2 id="credits">Credits</h2>
+<p>Special thanks to <a href="https://github.com/dicebear">DiceBear</a> 
+(<a href="https://github.com/FlorianKoerner">Florian Körner</a>) 
+for making this amazing API and to all artists that helped 
+making avatars!</p>
+<h2 id="licenses-and-privacy-policy">Licenses and privacy policy</h2>
+<ul>
+<li>Dicebear <strong>Licenses</strong>: https://avatars.dicebear.com/licenses</li>
+<li>Dicebear <strong>Privacy Policy</strong>: https://avatars.dicebear.com/legal/privacy-policy</li>
+<li>Dicebear Python API wrapper (this project): https://github.com/jvherck/dicebear/blob/main/LICENSE</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="reference/dicebear/avatar/" class="btn btn-neutral float-right" title="Avatar">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="reference/dicebear/avatar/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.2.4
+Build Date UTC : 2022-04-11 10:39:16.054352+00:00
+-->
