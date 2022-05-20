@@ -48,7 +48,7 @@ _url = "https://avatars.dicebear.com/api/{}/{}.png?"
 class DAvatar:
     default_options: dict = default_options
     all_options: list = options
-    def __init__(self, style: DStyle, seed: str = None, *, options: DOptions = None, specific_options: dict = None) -> None:
+    def __init__(self, style: DStyle = None, seed: str = None, *, options: DOptions = None, specific_options: dict = None) -> None:
         """
         Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
         Clickable links: https://github.com/jvherck/dicebear#styles , https://github.com/jvherck/dicebear#base-options , https://github.com/jvherck/dicebear#specific-style-options
@@ -58,6 +58,8 @@ class DAvatar:
         :param options: `class: DOptions` the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
         :param specific_options: `class: dict` specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
         """
+        if style is None:
+            style = DStyle.random
         if specific_options is None:
             specific_options = {}
         if options is None:
