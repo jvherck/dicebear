@@ -19,11 +19,10 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import modulefinder
-from typing import overload
 
 import requests as r
 from urllib.parse import quote
+from string import ascii_lowercase, digits
 
 import os
 import pathlib
@@ -60,12 +59,15 @@ class DAvatar:
         """
         if style is None:
             style = DStyle.random
-        if specific_options is None:
-            specific_options = {}
-        if options is None:
-            options = DOptions.empty
         if style not in styles:
             raise Error("Invalid Style", '"{}" is not a valid style! Use `DStyle.list` to see all available styles'.format(style))
+        if seed is None:
+            seed = "".join(choices(ascii_lowercase + digits, k=20))
+        if options is None:
+            options = DOptions.empty
+        if specific_options is None:
+            specific_options = {}
+
         self.__style: DStyle = style
         self.__seed: str = seed
         self.__options: DOptions = options
@@ -117,34 +119,32 @@ class DAvatar:
         :return: returns the bytes of this request in str format
         """
         return self.__text
+    @property
+    def bytes(self) -> bytes:
+        """
+        :return: returns the bytes of this request in bytes format
+        """
+        return bytes(self.__text)
 
     def __repr__(self):
-        self.__get_avatar_url()
+        # self.__get_avatar_url()
         return self.text
 
     def __str__(self) -> str:
-        self.__get_avatar_url()
+        # self.__get_avatar_url()
         return self.__url_png
 
     def __eq__(self, other):
         return self.__url_png == other.__url_png
     def __ne__(self, other):
         return self.__url_png != other.__url_png
-    def __len__(self):
-        return len(self.__options)
 
 
     def __get_avatar_url(self) -> None:
         _link = _url
         _options = []
-        for item in options:
-            if item == "size" and "size" in self.__options and self.__options["size"] == 0:
-                continue
-            elif item == "size" and "size" not in self.__options:
-                continue
-            elif item in self.__options and self.__options[item] == default_options[item]:
-                continue
-            elif item not in self.__options:
+        for item in self.__options:
+            if item not in all_options:
                 continue
             else:
                 _options.append(
@@ -306,6 +306,7 @@ class DAvatar:
         raw_img = i.open(self.__bytes).tobytes()
         img = i.frombytes("RGBA", (256, 256), raw_img)
         return img
+
 
     # @pilcheck
     # def transparent(self) -> i.Image:

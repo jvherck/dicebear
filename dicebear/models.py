@@ -31,7 +31,7 @@ class FindPil:
 
 ascii_lowercase = "abcdef"
 
-options = ["dataUri", "flip", "rotate", "scale", "radius", "size", "backgroundColor", "translateX", "translateY"]
+options = all_options = ["dataUri", "flip", "rotate", "scale", "radius", "size", "backgroundColor", "translateX", "translateY"]
 styles = ["adventurer", "adventurer-neutral", "avataaars", "big-ears", "big-ears-neutral",
           "big-smile", "bottts", "croodles", "croodles-neutral", "identicon", "initials",
           "micah", "miniavs", "open-peeps", "personas", "pixel-art", "pixel-art-neutral"]
@@ -128,7 +128,7 @@ class DOptions(dict):
     def __init__(self, *, dataUri: bool = False, flip: bool = False, rotate: int = 0, scale: int = 100,
                  radius: int = 0, size: int = 0, backgroundColor: DColor = DColor(), translateX: int = 0, translateY: int = 0, **kwargs):
         """
-        Go to https://github.com/jvherck/dicebear#base-options to see all info
+        Go to https://github.com/jvherck/dicebear#base-options to see all info (important for minimum and maximum values for each option!)
 
         :param kwargs: `fromdict` to use a custom dict instead of args (if you use this kwarg all other args will be neglected)
         """
@@ -136,13 +136,21 @@ class DOptions(dict):
         dic = kwargs.get("fromdict", {})
         current: dict = {"dataUri": dataUri, "flip": flip, "rotate": rotate, "scale": scale, "radius": radius, "size": size,
                      "backgroundColor": backgroundColor, "translateX": translateX, "translateY": translateY}
-        if not dic:
+        if dic:
+            for item in dic:
+                if item not in default_options.keys() or dic[item] == default_options[item]:
+                    dic.pop(item, None)
+        else: # if not dic
             for item in current:
                 if item in default_options and current[item] != default_options[item]:
                     dic.update({item: current[item]})
         if "size" in dic and dic["size"] == 0:
             dic.pop("size")
         super().__init__(dic)
+
+    @property
+    def _ver(self):
+        return type(self)
 
 
 
