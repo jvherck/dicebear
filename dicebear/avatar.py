@@ -45,6 +45,9 @@ _url = "https://avatars.dicebear.com/api/{}/{}.png?"
 
 
 class DAvatar:
+    """
+    Base class for the avatar generator.
+    """
     default_options: dict = default_options
     all_options: list = options
     def __init__(self, style: DStyle = None, seed: str = None, *, options: DOptions = None, specific_options: dict = None) -> None:
@@ -52,10 +55,14 @@ class DAvatar:
         Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
         Clickable links: https://github.com/jvherck/dicebear#styles , https://github.com/jvherck/dicebear#base-options , https://github.com/jvherck/dicebear#specific-style-options
 
-        :param style: the style of avatar you want to create; check the whole list at https://github.com/jvherck/dicebear#styles
+        :param style: class `dicebear.models.DStyle` :: the style of avatar you want to create; check the whole list at https://github.com/jvherck/dicebear#styles
+        :type style: dicebear.models.DStyle
         :param seed: the seed for the avatar; the avatar will be edited according to the seed.
-        :param options: `class: DOptions` the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
+        :style seed: str
+        :param options: class `DOptions` :: the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
+        :type options: dicebear.models.DOptions
         :param specific_options: `class: dict` specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
+        :type specific_options: dict
         """
         if style is None:
             style = DStyle.random
@@ -110,7 +117,7 @@ class DAvatar:
     @property
     def url_png(self) -> str:
         """
-        :return:  url to avatar (png, use `.url_svg` to convert to svg)
+        :return: url to avatar (png, use `.url_svg` to convert to svg)
         """
         return self.__url_png
     @property
@@ -199,11 +206,15 @@ class DAvatar:
         """
         Edit an already existing avatar.
 
-        :param style: edit the avatar's style (style of drawing)
-        :param seed: edit the avatar's seed (string to determine its looks)
-        :param extra_options: edit the avatar's options (old options stay, these get added) -- cannot be used at the same time with `blank_options` !
-        :param blank_options: reset old options and set these options as new ones (new options) -- cannot be used at the same with `extra_options` !
-        :return: returns the link to the avatar url (png)
+        :param style: class `DStyle` :: edit the avatar's style (style of drawing)
+        :type style: dicebear.models.DStyle
+        :param seed: class `str` :: edit the avatar's seed (string to determine its looks)
+        :type seed: str
+        :param extra_options: class `DOptions` :: edit the avatar's options (old options stay, these get added) -- cannot be used at the same time with `blank_options` !
+        :type extra_options: dicebear.models.DOptions
+        :param blank_options: class `DOptions` :: reset old options and set these options as new ones (new options) -- cannot be used at the same with `extra_options` !
+        :type blank_options: dicebear.models.DOptions
+        :return: class `str` :: returns the link to the avatar url (png)
         """
         if style:
             self.__style = style
@@ -221,9 +232,11 @@ class DAvatar:
         """
         Edit the specific options for an already existing avatar.
 
-        :param extra_options: edit the avatar's specific options (old options stay, these get added) -- cannot be used at the same time with `blank_options` !
-        :param blank_options: reset old specific options and set these options as new ones (new options) -- cannot be used at the same with `extra_options` !
-        :return: returns the link to the avatar url (png)
+        :param extra_options: class `DOptions` :: edit the avatar's specific options (old options stay, these get added) -- cannot be used at the same time with `blank_options` !
+        :type extra_options: dicebear.models.DOptions
+        :param blank_options: class `DOptions` :: reset old specific options and set these options as new ones (new options) -- cannot be used at the same with `extra_options` !
+        :type blank_options: dicebear.models.DOptions
+        :return: class `str` :: returns the link to the avatar url (png)
         """
         if extra_options:
             self.__specific.update(extra_options)
@@ -235,7 +248,7 @@ class DAvatar:
 
     def to_png(self) -> str:
         """
-        Turns the avatar from svg into png and returns the url.
+        Converts to png and returns the url.
 
         :return: class `str` :: link to png avatar
         """
@@ -244,7 +257,7 @@ class DAvatar:
 
     def to_svg(self) -> str:
         """
-        Turns the avatar from svg into png and returns the url.
+        Converts to svg and returns the url.
 
         :return: class `str` :: link to png avatar
         """
@@ -253,11 +266,14 @@ class DAvatar:
 
     def save(self, *, location: pathlib.Path = None, file_name: str = "dicebear_avatar", format: DFormat = DFormat.png) -> str:
         """
-        Save a file to your device.
+        Save the avatar to your device.
 
         :param location: class `pathlib.Path` :: the folder to save the file in. (default is None which saves it in the current directory `os.getcwd()`
+        :type location: pathlib.Path
         :param file_name: class `str` :: the name of the file to save. (default is "dicebear_avatar")
+        :type file_name: str
         :param format: class `DFormat` :: the format of the file. (default is "png")
+        :type format: dicebear.models.DFormat
         :return: class `str` :: the path when successful
         """
         if format not in DFormat.all_formats:
@@ -298,10 +314,10 @@ class DAvatar:
     @pilcheck
     def pillow(self) -> i.Image:
         """
-        Convert a DAvatar to a :py:class:`PIL.Image.Image` object.
+        Convert a :py:class:`DAvatar` to a :py:class:`PIL.Image.Image` object.
 
         :return: :py:class:`PIL.Image.Image`
-        :raise :py:class:`dicebear_cli.errors.PILError`:
+        :raise `dicebear.errors.PILError`:
         """
         raw_img = i.open(self.__bytes).tobytes()
         img = i.frombytes("RGBA", (256, 256), raw_img)

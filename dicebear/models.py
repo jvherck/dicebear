@@ -24,12 +24,13 @@ import traceback
 
 from .errors import *
 from random import choice, choices
-from string import digits
-
 class FindPil:
+    """Not important for you, just makes things easier for me on the back-end ;)"""
     found: bool = True
 
 ascii_lowercase = "abcdef"
+_incorrect_lowercase = "ghijklmnopqrstuvwxyz"
+digits = "0123456789"
 
 options = all_options = ["dataUri", "flip", "rotate", "scale", "radius", "size", "backgroundColor", "translateX", "translateY"]
 styles = ["adventurer", "adventurer-neutral", "avataaars", "big-ears", "big-ears-neutral",
@@ -39,17 +40,22 @@ styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
 
 
 class DColor:
+    """
+    Base class for DAvatar's background color.
+    """
     def __init__(self, html_code: str = "#ffffff"):
         """
         Colors used in this package. This uses HTML color codes!
 
-        :param html_code: the html color code to use as color
+        :param html_code: class `str` :: the html color code to use as color (default: #ffffff)
+        :type html_code: str
+        :raise dicebear.errors.IncorrectColor:
         """
         if html_code in ["random", "rnd"]:
             html_code = '#' + ''.join(choices(ascii_lowercase+digits, k=6))
         if not html_code.startswith("#"):
             html_code = "#" + html_code
-        if len(html_code) not in [4, 7]:
+        if len(html_code) not in [4, 7] or any(x in html_code for x in _incorrect_lowercase):
             raise IncorrectColor(str(html_code))
         self.html_code: str = str(html_code)
 
@@ -57,14 +63,20 @@ class DColor:
         return f"{self.html_code}"
     def __repr__(self):
         return f"{self.html_code}"
+    def __eq__(self, other):
+        return self.html_code == other.html_code
+    def __ne__(self, other):
+        return self.html_code != other.html_code
 
     @staticmethod
     def random():
+        """
+        Get a random html code.
+
+        :return: class `dicebear.models.DColor`
+        """
         html_code = '#' + ''.join(choices(ascii_lowercase + digits, k=6))
         return DColor(html_code)
-    @staticmethod
-    def transparent():
-        return
 
 
 class DStyle:
@@ -98,7 +110,12 @@ class DStyle:
 
     @staticmethod
     def from_str(style_str: str):
-        """Get an avatar style from a string"""
+        """
+        Get an avatar style from a string.
+
+        :param style_str: class `str` :: the string to convert to a DStyle
+        :type style_str: str
+        """
         return eval("DStyle.{}".format(style_str.replace("-", "_")))
 
 
@@ -116,7 +133,12 @@ class DFormat:
 
     @staticmethod
     def from_str(format_str: str):
-        """Get an avatar format from a string"""
+        """
+        Get an avatar format from a string
+
+        :param format_str: class `str` :: the string to convert to a DFormat
+        :type format_str: str
+        """
         return eval("DFormat.{}".format(format_str))
 
 
@@ -124,6 +146,9 @@ default_options: dict = {options[0]: False, options[1]: False, options[2]: 0, op
              options[5]: 0, options[6]: DColor(), options[7]: 0, options[8]: 0}
 
 class DOptions(dict):
+    """
+    The options class for :py:class:`dicebear.avatar.DAvatar`
+    """
     empty: dict = {}
     def __init__(self, *, dataUri: bool = False, flip: bool = False, rotate: int = 0, scale: int = 100,
                  radius: int = 0, size: int = 0, backgroundColor: DColor = DColor(), translateX: int = 0, translateY: int = 0, **kwargs):
@@ -155,6 +180,7 @@ class DOptions(dict):
 
 
 def pilcheck(func):
+    """Decorator to check if package Pillow is installed"""
     def wrapper(*args, **kwargs):
         if FindPil.found is True:
             return func(*args, **kwargs)

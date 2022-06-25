@@ -7,6 +7,7 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 ---
 
 ## Useful links
+* Docs: https://jvherck.github.io/dicebear
 * PyPI: https://pypi.org/project/dicebear/
 * GitHub: https://github.com/jvherck/dicebear
 * Dicebear: https://dicebear.com
@@ -23,8 +24,9 @@ If that doesn't work try `py -m pip install dicebear`
 ## Usage
 Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`). 
 When using a `PIL` function while it's not installed it will raise `dicebear.errors.PILError`.
-```python
+```py
 from dicebear import DAvatar, DStyle, DOptions, DColor
+from PIL import Image
 
 options = DOptions(
     backgroundColor=DColor("#00ddd0"),
@@ -57,12 +59,12 @@ av.edit_specific(
 
 print(av.url_png)
 
-image: PIL.Image.Image = av.pillow()
+image: Image.Image = av.pillow()
 # converts the DAvatar into a Pillow Image object
 ```
 
 ## CLI Usage
-Since version 0.4.0 there's a CLI for DiceBear. It can quickly create one or more avatars at a time
+Since version 0.4.0 there's a CLI for DiceBear. It can quickly create one or more avatars at a time,
 but it can't take options.
 
 __To use the CLI go to__ https://github.com/jvherck/dicebear-cli __and use `pip install dicebear-cli` to install the CLI__
@@ -140,11 +142,16 @@ wider range of formats (Pillow doesn't support svg).
 
 ---
 
+## Contributing
+This is currently not possible (since it's a fairly small project I doubt it will be possible in the future). However, you do can open an issue to report a bug
+or error, and I'll take a look at it.
+
+---
+
 ## Credits
 Special thanks to [DiceBear](https://github.com/dicebear) 
 ([Florian Körner](https://github.com/FlorianKoerner)) 
-for making this amazing API and to all artists that helped 
-making avatars!
+for making this amazing API and to all artists that made these awesome avatars!
 
 ## Licenses and privacy policy
 - Dicebear **Licenses**: https://avatars.dicebear.com/licenses
