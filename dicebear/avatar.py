@@ -65,7 +65,7 @@ class DAvatar:
         :type specific_options: dict
         """
         if style is None:
-            style = DStyle.random
+            style = DStyle.random()
         if style not in styles:
             raise Error("Invalid Style", '"{}" is not a valid style! Use `DStyle.list` to see all available styles'.format(style))
         if seed is None:
@@ -264,7 +264,7 @@ class DAvatar:
         self.__url_svg = self.__url_png.replace(".png", ".svg")
         return self.__url_svg
 
-    def save(self, *, location: pathlib.Path = None, file_name: str = "dicebear_avatar", format: DFormat = DFormat.png) -> str:
+    def save(self, *, location: pathlib.Path = None, file_name: str = "dicebear_avatar", file_format: DFormat = DFormat.png) -> str:
         """
         Save the avatar to your device.
 
@@ -272,25 +272,25 @@ class DAvatar:
         :type location: pathlib.Path
         :param file_name: class `str` :: the name of the file to save. (default is "dicebear_avatar")
         :type file_name: str
-        :param format: class `DFormat` :: the format of the file. (default is "png")
-        :type format: dicebear.models.DFormat
+        :param file_format: class `DFormat` :: the format of the file. (default is "png")
+        :type file_format: dicebear.models.DFormat
         :return: class `str` :: the path when successful
         """
-        if format not in DFormat.all_formats:
-            s = f'"{format}" is not a supported format!'
+        if file_format not in DFormat.all_formats:
+            s = f'"{file_format}" is not a supported format!'
             raise ImageError(s)
         if location is None:
             location = pathlib.Path(os.getcwd())
-        _location = os.path.join(location, "{}.{}".format(file_name, format))
+        _location = os.path.join(location, "{}.{}".format(file_name, file_format))
         _location = self.__uniquify(_location)
-        if format == DFormat.svg:
+        if file_format == DFormat.svg:
             svg_text = r.request('GET', self.to_svg()).text
         else:
             img = io.BytesIO(self.__response.content)
             # img = Image.open(io.BytesIO(self.__response.content))
         ret = -1
         try:
-            if format == DFormat.svg:
+            if file_format == DFormat.svg:
                 with open(_location, "w", encoding="UTF-8") as f:
                     f.write(svg_text)
                 f.close()

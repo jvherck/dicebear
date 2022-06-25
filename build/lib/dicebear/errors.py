@@ -23,54 +23,75 @@ from typing import Union
 import logging
 
 class IncorrectColor(Exception):
+    """Incorrect color"""
     def __init__(self, wrong_color: str = None):
         super().__init__('Incorrect color given: "{}" is not an html hex code! (example: #ffffff)'.format(wrong_color))
 
 
 class InvalidOption(Exception):
+    """Invalid option"""
     def __init__(self, wrong_option: str = None):
         super().__init__('Invalid option given: "{}" is not an existing option! (use `Avatar.options` to get all possible options)'.format(
             wrong_option))
 
 
 class Error(Exception):
+    """General error"""
     def __init__(self, error_type: str = "", message: str = ""):
         super().__init__('{}{}'.format(error_type + (': ' if error_type else ''), message))
 
 
 class HTTPError(Error):
+    """HTTP error"""
     def __init__(self, dic: dict):
         super().__init__(message=str(dic))
 
 
 
 class ImageError(Exception):
+    """General image error"""
     def __init__(self, message: str = None):
         super().__init__(message)
 
 
 class ImageValueError(ImageError):
+    """Image value error"""
     def __init__(self, file_name: str = None):
         super().__init__('The output format could not be determined from the file name ("{}")'.format(file_name))
 
 
 class ImageOSError(ImageError):
+    """Image OS error"""
     def __init__(self, message: str = None):
         super().__init__('The file could not be written. The file may have been created, and may contain partial data. ("{}")'.format(message))
 
 
-
 class PILError(ImageError):
+    """Pillow error"""
     def __init__(self, message: str = "To use this function you need to install Pillow."):
         super().__init__('Module "PIL (=Pillow)" is not found! {}'.format(message))
 
 
-def log_error(exception: Exception | str):
-    _exc = exception
-    logger = logging.getLogger()
-    logger.setLevel(logging.ERROR)
-    handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter(f"%(levelname)s: {_exc.__module__}: %(message)s"))
-    handler.setLevel(logging.ERROR)
-    logger.addHandler(handler)
-    logger.error(_exc)
+
+_error_logger = logging.getLogger()
+_error_handler = logging.StreamHandler()
+_error_logger.setLevel(logging.ERROR)
+_error_handler.setLevel(logging.ERROR)
+_error_logger.addHandler(_error_handler)
+
+def log_error(exception: Union[Exception, str], raise_error: bool = False) -> None:
+    """
+    Log an error.
+
+    :param exception: class `Exception` | `str` :: the exception or string to log as error
+    :type exception: Union[Exception, str]
+    :param raise_error: class `bool` :: whether to raise this exception or not (default: False)
+    :type raise_error: bool
+    :return:
+    """
+    if raise_error is False:
+        _error_handler.setFormatter(logging.Formatter(f"%(levelname)s: {exception.__class__.__name__}: %(message)s"))
+        _error_logger.error(exception)
+        return
+    raise Exception(str(exception)) if type(exception) == str else exception
+

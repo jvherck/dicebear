@@ -102,11 +102,17 @@ class DStyle:
     personas = styles[14]
     pixel_art = styles[15]
     pixel_art_neutral = styles[16]
-    random = choice(styles)
 
     def __init__(self):
         """Only use `.attribute` to use a style."""
         pass
+
+    @staticmethod
+    def random():
+        """
+        Get a random style.
+        """
+        return choice(styles)
 
     @staticmethod
     def from_str(style_str: str):
@@ -150,6 +156,7 @@ class DOptions(dict):
     The options class for :py:class:`dicebear.avatar.DAvatar`
     """
     empty: dict = {}
+    default_options = default = default_options
     def __init__(self, *, dataUri: bool = False, flip: bool = False, rotate: int = 0, scale: int = 100,
                  radius: int = 0, size: int = 0, backgroundColor: DColor = DColor(), translateX: int = 0, translateY: int = 0, **kwargs):
         """
