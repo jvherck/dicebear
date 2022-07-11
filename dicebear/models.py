@@ -28,9 +28,9 @@ class FindPil:
     """Not important for you, just makes things easier for me on the back-end ;)"""
     found: bool = True
 
-ascii_lowercase = "abcdef"
+_ascii_lowercase = "abcdef"
 _incorrect_lowercase = "ghijklmnopqrstuvwxyz"
-digits = "0123456789"
+_digits = "0123456789"
 
 options = all_options = ["dataUri", "flip", "rotate", "scale", "radius", "size", "backgroundColor", "translateX", "translateY"]
 styles = ["adventurer", "adventurer-neutral", "avataaars", "big-ears", "big-ears-neutral",
@@ -41,7 +41,7 @@ styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
 
 class DColor:
     """
-    Base class for DAvatar's background color.
+    Base class for DAvatar's colors.
     """
     def __init__(self, html_code: str = "#ffffff"):
         """
@@ -52,7 +52,7 @@ class DColor:
         :raise dicebear.errors.IncorrectColor:
         """
         if html_code in ["random", "rnd"]:
-            html_code = '#' + ''.join(choices(ascii_lowercase+digits, k=6))
+            html_code = '#' + ''.join(choices(_ascii_lowercase+_digits, k=6))
         if not html_code.startswith("#"):
             html_code = "#" + html_code
         if len(html_code) not in [4, 7] or any(x in html_code for x in _incorrect_lowercase):
@@ -75,8 +75,7 @@ class DColor:
 
         :return: class `dicebear.models.DColor`
         """
-        html_code = '#' + ''.join(choices(ascii_lowercase + digits, k=6))
-        return DColor(html_code)
+        return DColor('#' + ''.join(choices(_ascii_lowercase + _digits, k=6)))
 
 
 class DStyle:

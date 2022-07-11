@@ -111,27 +111,27 @@ class DAvatar:
     @property
     def url_svg(self) -> str:
         """
-        :return: url to avatar (svg, use `.to_png()` to convert to png)
+        :return: url to svg avatar
         """
         return self.__url_svg
     @property
     def url_png(self) -> str:
         """
-        :return: url to avatar (png, use `.url_svg` to convert to svg)
+        :return: url to png avatar
         """
         return self.__url_png
     @property
     def text(self) -> str:
         """
-        :return: returns the bytes of this request in str format
+        :return: returns the bytes of the avatar in str format
         """
         return self.__text
     @property
     def bytes(self) -> bytes:
         """
-        :return: returns the bytes of this request in bytes format
+        :return: returns the bytes of the avatar in bytes format
         """
-        return bytes(self.__text)
+        return self.__content
 
     def __repr__(self):
         # self.__get_avatar_url()
@@ -145,6 +145,14 @@ class DAvatar:
         return self.__url_png == other.__url_png
     def __ne__(self, other):
         return self.__url_png != other.__url_png
+    def __le__(self, other):
+        return self.bytes <= other.bytes
+    def __lt__(self, other):
+        return self.bytes < other.bytes
+    def __ge__(self, other):
+        return self.bytes >= other.bytes
+    def __gt__(self, other):
+        return self.bytes > other.bytes
 
 
     def __get_avatar_url(self) -> None:
@@ -186,7 +194,7 @@ class DAvatar:
             raise HTTPError(status)
 
         self.__url_png = req.url
-        self.__url_svg = self.to_svg()
+        self.__url_svg = self._to_svg()
         self.__text = req.text
         self.__content = req.content
         self.__response: r.Response = req
@@ -246,7 +254,7 @@ class DAvatar:
         self.__get_avatar_url()
         return self.__url_png
 
-    def to_png(self) -> str:
+    def _to_png(self) -> str:
         """
         Converts to png and returns the url.
 
@@ -255,7 +263,7 @@ class DAvatar:
         self.__url_png = self.__url_svg.replace(".svg", ".png")
         return self.__url_png
 
-    def to_svg(self) -> str:
+    def _to_svg(self) -> str:
         """
         Converts to svg and returns the url.
 
@@ -264,7 +272,13 @@ class DAvatar:
         self.__url_svg = self.__url_png.replace(".png", ".svg")
         return self.__url_svg
 
-    def save(self, *, location: pathlib.Path = None, file_name: str = "dicebear_avatar", file_format: DFormat = DFormat.png) -> str:
+    def save(self, *,
+             location: pathlib.Path = None,
+             file_name: str = "dicebear_avatar",
+             file_format: DFormat = DFormat.png,
+             overwrite: bool = False,
+             open_after_save: bool = False
+             ) -> str:
         """
         Save the avatar to your device.
 
@@ -274,6 +288,8 @@ class DAvatar:
         :type file_name: str
         :param file_format: class `DFormat` :: the format of the file. (default is "png")
         :type file_format: dicebear.models.DFormat
+        :param overwrite: class `bool` ::  whether to overwrite an already existing file if it has the same file name and extension
+        :type overwrite: bool
         :return: class `str` :: the path when successful
         """
         if file_format not in DFormat.all_formats:
@@ -282,9 +298,9 @@ class DAvatar:
         if location is None:
             location = pathlib.Path(os.getcwd())
         _location = os.path.join(location, "{}.{}".format(file_name, file_format))
-        _location = self.__uniquify(_location)
+        _location = self.__uniquify(_location) if overwrite is False else _location
         if file_format == DFormat.svg:
-            svg_text = r.request('GET', self.to_svg()).text
+            svg_text = r.request('GET', self.__url_svg).text
         else:
             img = io.BytesIO(self.__response.content)
             # img = Image.open(io.BytesIO(self.__response.content))
@@ -308,7 +324,10 @@ class DAvatar:
         else:
             ret = _location
 
-        return ret
+        if open_after_save:
+            os.startfile(ret, "open")
+        else:
+            return ret
 
 
     @pilcheck
@@ -324,10 +343,20 @@ class DAvatar:
         return img
 
 
-    # @pilcheck
-    # def transparent(self) -> i.Image:
-    #     req = r.request("GET", self.url_svg)
-    #     _svg = req.text.replace('<rect fill="#000000" width="762" height="762" x="0" y="0"/>', '')
-    #     self.__bytes = io.BytesIO(bytes(_svg, "UTF-8"))
-    #     img = self.pillow()
-    #     return img
+    def view(self, *, use_pil: bool = True) -> None:
+        """
+        Open and view the avatar on your device.
+
+        :param use_pil: class `bool` :: whether to use Pillow module to open the avatar image
+        :type use_pil: bool
+        :return: :py:class:`NoneType`
+        :raise `dicebear.errors.PILError`:
+        """
+        if use_pil:
+            self.__view_pil()
+        else:
+            os.startfile(self.url_png, "open")
+
+    @pilcheck
+    def __view_pil(self) -> None:
+        self.pillow().show()

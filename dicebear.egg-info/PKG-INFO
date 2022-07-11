@@ -1,17 +1,29 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 0.4.17
+Version: 1.0.1
 Summary: A python API wrapper for DiceBear's avatar generating API.
 Home-page: https://github.com/jvherck/dicebear
 Author: jvherck
 Author-email: <jvh.discord@gmail.com>
+Maintainer: jvherck
+Maintainer-email: <jvh.discord@gmail.com>
 License: MIT License
-Keywords: python,dicebear,avatar,generating,API,wrapper,image,png,svg,cli
+Project-URL: Documentation, https://jvherck.github.io/dicebear
+Project-URL: Source, https://github.com/jvherck/dicebear
+Project-URL: Tracker, https://github.com/jvherck/dicebear/issues
+Keywords: python,dicebear,avatar,avatars,generating,generation,generator,API,wrapper,image,images,picture,pictures,png,svg,cli,adventurer,adventurer-neutral,avataaars,big-ears,big-ears-neutral,big-smile,bottts,croodles,croodles-neutral,identicon,initials,micah,miniavs,open-peeps,personas,pixel-art,pixel-art-neutral
 Platform: UNKNOWN
-Classifier: Development Status :: 4 - Beta
+Classifier: Development Status :: 5 - Production/Stable
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Other Audience
+Classifier: Natural Language :: English
 Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
 Classifier: Operating System :: Unix
 Classifier: Operating System :: MacOS
 Classifier: Operating System :: Microsoft :: Windows
@@ -19,6 +31,9 @@ Classifier: License :: OSI Approved :: MIT License
 Classifier: Topic :: Artistic Software
 Classifier: Topic :: Games/Entertainment
 Classifier: Topic :: Multimedia :: Graphics
+Classifier: Topic :: Other/Nonlisted Topic
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 License-File: LICENSE
 

@@ -35,6 +35,7 @@ class InvalidOption(Exception):
             wrong_option))
 
 
+
 class Error(Exception):
     """General error"""
     def __init__(self, error_type: str = "", message: str = ""):
