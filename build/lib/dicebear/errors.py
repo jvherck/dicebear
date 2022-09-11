@@ -94,5 +94,5 @@ def log_error(exception: Union[Exception, str], raise_error: bool = False) -> No
         _error_handler.setFormatter(logging.Formatter(f"%(levelname)s: {exception.__class__.__name__}: %(message)s"))
         _error_logger.error(exception)
         return
-    raise Exception(str(exception)) if type(exception) == str else exception
+    raise Exception(exception) if type(exception) == str else exception
 

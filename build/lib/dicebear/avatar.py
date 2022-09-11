@@ -31,14 +31,16 @@ from ast import literal_eval
 
 from .errors import *
 from .models import *
+from .models import _FindPil
 
 try:
     from PIL import Image as i
 except Exception:
     class i:
         class Image:
-            pass
-    FindPil.found = False
+            def show(self):
+                pass
+    _FindPil.found = False
 
 
 _url = "https://avatars.dicebear.com/api/{}/{}.png?"
@@ -57,11 +59,11 @@ class DAvatar:
 
         :param style: class `dicebear.models.DStyle` :: the style of avatar you want to create; check the whole list at https://github.com/jvherck/dicebear#styles
         :type style: dicebear.models.DStyle
-        :param seed: the seed for the avatar; the avatar will be edited according to the seed.
-        :style seed: str
+        :param seed: class `str` :: the seed for the avatar; the avatar will be edited according to the seed
+        :type seed: str
         :param options: class `DOptions` :: the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
         :type options: dicebear.models.DOptions
-        :param specific_options: `class: dict` specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
+        :param specific_options: `class: dict` :: specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
         :type specific_options: dict
         """
         if style is None:
@@ -184,7 +186,7 @@ class DAvatar:
             _link += "&" + "&".join(_specoptions)
         _link.replace("False", "false").replace("True", "true")
         _link = _link.format(quote(str(self.__style)), quote(self.__seed) if self.__seed is not None else "")
-        req = r.request('GET', _link)
+        req = r.get(_link)
         status = ""
         try:
             status = literal_eval(req.text)
@@ -197,7 +199,7 @@ class DAvatar:
         self.__url_svg = self._to_svg()
         self.__text = req.text
         self.__content = req.content
-        self.__response: r.Response = req
+        # self.__response: r.Response = req
         self.__bytes = io.BytesIO(req.content)
 
     @staticmethod
@@ -224,15 +226,10 @@ class DAvatar:
         :type blank_options: dicebear.models.DOptions
         :return: class `str` :: returns the link to the avatar url (png)
         """
-        if style:
-            self.__style = style
-        if seed:
-            self.__seed = seed
-        if extra_options:
-            self.__options.update(extra_options)
-        elif blank_options:
-            self.__options = blank_options
-
+        if style: self.__style = style
+        if seed: self.__seed = seed
+        if extra_options: self.__options.update(extra_options)
+        elif blank_options: self.__options = blank_options
         self.__get_avatar_url()
         return self.__url_png
 
@@ -246,11 +243,8 @@ class DAvatar:
         :type blank_options: dicebear.models.DOptions
         :return: class `str` :: returns the link to the avatar url (png)
         """
-        if extra_options:
-            self.__specific.update(extra_options)
-        elif blank_options:
-            self.__specific = blank_options
-
+        if extra_options: self.__specific.update(extra_options)
+        elif blank_options: self.__specific = blank_options
         self.__get_avatar_url()
         return self.__url_png
 
@@ -290,6 +284,8 @@ class DAvatar:
         :type file_format: dicebear.models.DFormat
         :param overwrite: class `bool` ::  whether to overwrite an already existing file if it has the same file name and extension
         :type overwrite: bool
+        :param open_after_save: class `bool` ::  whether to open the file after saving it to your device
+        :type open_after_save: bool
         :return: class `str` :: the path when successful
         """
         if file_format not in DFormat.all_formats:
@@ -302,7 +298,7 @@ class DAvatar:
         if file_format == DFormat.svg:
             svg_text = r.request('GET', self.__url_svg).text
         else:
-            img = io.BytesIO(self.__response.content)
+            img = io.BytesIO(self.__content)
             # img = Image.open(io.BytesIO(self.__response.content))
         ret = -1
         try:
@@ -325,9 +321,8 @@ class DAvatar:
             ret = _location
 
         if open_after_save:
-            os.startfile(ret, "open")
-        else:
-            return ret
+            self.view()
+        return ret
 
 
     @pilcheck
@@ -339,7 +334,7 @@ class DAvatar:
         :raise `dicebear.errors.PILError`:
         """
         raw_img = i.open(self.__bytes).tobytes()
-        img = i.frombytes("RGBA", (256, 256), raw_img)
+        img: i.Image = i.frombytes("RGBA", (256, 256), raw_img)
         return img
 
 
@@ -352,10 +347,12 @@ class DAvatar:
         :return: :py:class:`NoneType`
         :raise `dicebear.errors.PILError`:
         """
-        if use_pil:
+        if use_pil and _FindPil.found is True:
             self.__view_pil()
         else:
             os.startfile(self.url_png, "open")
+
+    open = view
 
     @pilcheck
     def __view_pil(self) -> None:

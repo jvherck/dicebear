@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 1.0.1
+Version: 1.0.2
 Summary: A python API wrapper for DiceBear's avatar generating API.
 Home-page: https://github.com/jvherck/dicebear
 Author: jvherck
@@ -12,7 +12,6 @@ Project-URL: Documentation, https://jvherck.github.io/dicebear
 Project-URL: Source, https://github.com/jvherck/dicebear
 Project-URL: Tracker, https://github.com/jvherck/dicebear/issues
 Keywords: python,dicebear,avatar,avatars,generating,generation,generator,API,wrapper,image,images,picture,pictures,png,svg,cli,adventurer,adventurer-neutral,avataaars,big-ears,big-ears-neutral,big-smile,bottts,croodles,croodles-neutral,identicon,initials,micah,miniavs,open-peeps,personas,pixel-art,pixel-art-neutral
-Platform: UNKNOWN
 Classifier: Development Status :: 5 - Production/Stable
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Other Audience
@@ -197,4 +196,3 @@ making avatars!
 - Dicebear **Licenses**: https://avatars.dicebear.com/licenses
 - Dicebear **Privacy Policy**: https://avatars.dicebear.com/legal/privacy-policy
 - Dicebear Python API wrapper (this project): https://github.com/jvherck/dicebear/blob/main/LICENSE
-
