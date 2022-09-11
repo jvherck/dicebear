@@ -24,4 +24,4 @@ from .errors import *
 from .models import *
 from .avatar import *
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
