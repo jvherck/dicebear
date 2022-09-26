@@ -196,7 +196,7 @@ class DAvatar:
             raise HTTPError(status)
 
         self.__url_png = req.url
-        self.__url_svg = self._to_svg()
+        self.__url_svg = self.__to_svg()
         self.__text = req.text
         self.__content = req.content
         # self.__response: r.Response = req
@@ -233,9 +233,9 @@ class DAvatar:
         self.__get_avatar_url()
         return self.__url_png
 
-    def edit_specific(self, *, extra_options: dict = None, blank_options: dict = None) -> str:
+    def customise(self, *, extra_options: dict = None, blank_options: dict = None) -> str:
         """
-        Edit the specific options for an already existing avatar.
+        Customise the specific options for an already existing avatar.
 
         :param extra_options: class `DOptions` :: edit the avatar's specific options (old options stay, these get added) -- cannot be used at the same time with `blank_options` !
         :type extra_options: dicebear.models.DOptions
@@ -248,7 +248,9 @@ class DAvatar:
         self.__get_avatar_url()
         return self.__url_png
 
-    def _to_png(self) -> str:
+    customize = edit_specific = customise
+
+    def __to_png(self) -> str:
         """
         Converts to png and returns the url.
 
@@ -257,7 +259,7 @@ class DAvatar:
         self.__url_png = self.__url_svg.replace(".svg", ".png")
         return self.__url_png
 
-    def _to_svg(self) -> str:
+    def __to_svg(self) -> str:
         """
         Converts to svg and returns the url.
 
