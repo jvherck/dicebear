@@ -29,8 +29,8 @@ import pathlib
 import io
 from ast import literal_eval
 
-from .errors import *
 from .models import *
+from .errors import *
 from .models import _FindPil
 
 try:
@@ -43,7 +43,7 @@ except Exception:
     _FindPil.found = False
 
 
-_url = "https://avatars.dicebear.com/api/{}/{}.png?"
+_x = "https://avatars.dicebear.com/api/{}/{}.png?"
 
 
 class DAvatar:
@@ -52,7 +52,7 @@ class DAvatar:
     """
     default_options: dict = default_options
     all_options: list = options
-    def __init__(self, style: DStyle = None, seed: str = None, *, options: DOptions = None, specific_options: dict = None) -> None:
+    def __init__(self, style: DStyle = None, seed: str = None, *, options: DOptions = None, custom: dict = None) -> None:
         """
         Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
         Clickable links: https://github.com/jvherck/dicebear#styles , https://github.com/jvherck/dicebear#base-options , https://github.com/jvherck/dicebear#specific-style-options
@@ -63,8 +63,8 @@ class DAvatar:
         :type seed: str
         :param options: class `DOptions` :: the options for the avatar; check the whole list at https://github.com/jvherck/dicebear#base-options
         :type options: dicebear.models.DOptions
-        :param specific_options: `class: dict` :: specific options for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
-        :type specific_options: dict
+        :param custom: `class: dict` :: customisations for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
+        :type custom: dict
         """
         if style is None:
             style = DStyle.random()
@@ -74,19 +74,19 @@ class DAvatar:
             seed = "".join(choices(ascii_lowercase + digits, k=20))
         if options is None:
             options = DOptions.empty
-        if specific_options is None:
-            specific_options = {}
+        if custom is None:
+            custom = {}
 
         self.__style: DStyle = style
         self.__seed: str = seed
         self.__options: DOptions = options
-        self.__specific: dict = specific_options
-        self.__url_svg: str = None
-        self.__text: str = None
-        self.__url_png: str = None
-        self.__content: bytes = None
-        self.__bytes: io.BytesIO = None
-        self.__get_avatar_url()
+        self.__specific: dict = custom
+        self.__url_svg: str
+        self.__text: str
+        self.__url_png: str
+        self.__content: bytes
+        self.__bytes: io.BytesIO
+        self.__update()
 
     @property
     def style(self) -> DStyle:
@@ -110,6 +110,18 @@ class DAvatar:
             if self.__options[key] != DAvatar.default_options[key]:
                 _option_list.update({key: self.__options[key]})
         return DOptions(fromdict=_option_list)
+    @property
+    def customisations(self) -> dict:
+        """
+        :return: the customisations of the avatar
+        """
+        return self.__specific
+    @property
+    def customizations(self) -> dict:
+        """
+        :return: the customizations of the avatar
+        """
+        return self.__specific
     @property
     def url_svg(self) -> str:
         """
@@ -136,58 +148,34 @@ class DAvatar:
         return self.__content
 
     def __repr__(self):
-        # self.__get_avatar_url()
         return self.text
-
-    def __str__(self) -> str:
-        # self.__get_avatar_url()
+    def __str__(self):
         return self.__url_png
-
     def __eq__(self, other):
         return self.__url_png == other.__url_png
     def __ne__(self, other):
         return self.__url_png != other.__url_png
     def __le__(self, other):
-        return self.bytes <= other.bytes
+        return self.options["size"] <= other.options["size"]
     def __lt__(self, other):
-        return self.bytes < other.bytes
+        return self.options["size"] < other.options["size"]
     def __ge__(self, other):
-        return self.bytes >= other.bytes
+        return self.options["size"] >= other.options["size"]
     def __gt__(self, other):
-        return self.bytes > other.bytes
+        return self.options["size"] > other.options["size"]
 
 
-    def __get_avatar_url(self) -> None:
-        _link = _url
-        _options = []
+    def __update(self) -> None:
+        _link = _x
+        _options, _specoptions, status = [], [], ""
         for item in self.__options:
-            if item not in all_options:
-                continue
-            else:
-                _options.append(
-                    "{}={}".format(
-                        quote(item),
-                        str(self.__options[item]).lower() if type(self.__options[item]) == bool else quote(str(self.__options[item]))
-                    )
-                )
-        _specoptions = []
+            if item in all_options:
+                _options.append("{}={}".format(quote(item), quote(str(self.__options[item]).replace("False", "false").replace("True", "true"))))
         for item in self.__specific:
-            _specoptions.append(
-                "{}={}".format(
-                    quote(item),
-                    str(self.__specific[item]).lower() if type(self.__specific[item]) == bool else quote(
-                        str(self.__specific[item]))
-                )
-            )
-        _link += "&".join(_options)
-        if len(_options) == 0 and len(_specoptions) > 0:
-            _link += "&".join(_specoptions)
-        else:
-            _link += "&" + "&".join(_specoptions)
-        _link.replace("False", "false").replace("True", "true")
+            _specoptions.append("{}={}".format(quote(item), quote(str(self.__specific[item]).replace("False", "false").replace("True", "true"))))
+        _link += "&".join(_options) + "&" + "&".join(_specoptions)
         _link = _link.format(quote(str(self.__style)), quote(self.__seed) if self.__seed is not None else "")
         req = r.get(_link)
-        status = ""
         try:
             status = literal_eval(req.text)
         except ValueError:
@@ -197,9 +185,7 @@ class DAvatar:
 
         self.__url_png = req.url
         self.__url_svg = self.__to_svg()
-        self.__text = req.text
-        self.__content = req.content
-        # self.__response: r.Response = req
+        self.__text, self.__content = req.text, req.content
         self.__bytes = io.BytesIO(req.content)
 
     @staticmethod
@@ -230,7 +216,7 @@ class DAvatar:
         if seed: self.__seed = seed
         if extra_options: self.__options.update(extra_options)
         elif blank_options: self.__options = blank_options
-        self.__get_avatar_url()
+        self.__update()
         return self.__url_png
 
     def customise(self, *, extra_options: dict = None, blank_options: dict = None) -> str:
@@ -245,7 +231,7 @@ class DAvatar:
         """
         if extra_options: self.__specific.update(extra_options)
         elif blank_options: self.__specific = blank_options
-        self.__get_avatar_url()
+        self.__update()
         return self.__url_png
 
     customize = edit_specific = customise
@@ -269,7 +255,7 @@ class DAvatar:
         return self.__url_svg
 
     def save(self, *,
-             location: pathlib.Path = None,
+             location: Union[pathlib.Path, str] = None,
              file_name: str = "dicebear_avatar",
              file_format: DFormat = DFormat.png,
              overwrite: bool = False,
@@ -278,7 +264,7 @@ class DAvatar:
         """
         Save the avatar to your device.
 
-        :param location: class `pathlib.Path` :: the folder to save the file in. (default is None which saves it in the current directory `os.getcwd()`
+        :param location: class `pathlib.Path` :: the folder to save the file in. (default is `None` which saves it in the current directory `os.getcwd()`)
         :type location: pathlib.Path
         :param file_name: class `str` :: the name of the file to save. (default is "dicebear_avatar")
         :type file_name: str
@@ -297,31 +283,25 @@ class DAvatar:
             location = pathlib.Path(os.getcwd())
         _location = os.path.join(location, "{}.{}".format(file_name, file_format))
         _location = self.__uniquify(_location) if overwrite is False else _location
-        if file_format == DFormat.svg:
-            svg_text = r.request('GET', self.__url_svg).text
-        else:
-            img = io.BytesIO(self.__content)
-            # img = Image.open(io.BytesIO(self.__response.content))
         ret = -1
         try:
             if file_format == DFormat.svg:
+                svg_text = r.get(self.__url_svg).text
                 with open(_location, "w", encoding="UTF-8") as f:
                     f.write(svg_text)
                 f.close()
             else:
                 with open(_location, "wb") as f:
-                    f.write(img.read())
+                    f.write(self.__bytes.read())
                 f.close()
-                # img.save(_location, format)
         except ValueError:
-            raise ImageValueError()
-        except OSError:
-            raise ImageOSError()
+            raise ImageValueError(_location)
+        except OSError as e:
+            raise ImageOSError(str(e))
         except Exception as e:
             raise e
         else:
             ret = _location
-
         if open_after_save:
             self.view()
         return ret
@@ -351,6 +331,8 @@ class DAvatar:
         """
         if use_pil and _FindPil.found is True:
             self.__view_pil()
+        elif use_pil and _FindPil.found is False:
+            log_error(ModuleNotFoundError("Module `Pillow` is not found or installed"), True)
         else:
             os.startfile(self.url_png, "open")
 

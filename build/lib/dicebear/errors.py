@@ -88,7 +88,6 @@ def log_error(exception: Union[Exception, str], raise_error: bool = False) -> No
     :type exception: Union[Exception, str]
     :param raise_error: class `bool` :: whether to raise this exception or not (default: False)
     :type raise_error: bool
-    :return:
     """
     if raise_error is False:
         _error_handler.setFormatter(logging.Formatter(f"%(levelname)s: {exception.__class__.__name__}: %(message)s"))
