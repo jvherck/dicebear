@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 1.1.1
+Version: 1.2.0
 Summary: A python API wrapper for DiceBear's avatar generating API.
 Home-page: https://github.com/jvherck/dicebear
 Author: jvherck
@@ -63,42 +63,56 @@ If that doesn't work try `py -m pip install dicebear`
 Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`). 
 When using a `PIL` function while it's not installed it will raise `dicebear.errors.PILError`.
 ```py
-from dicebear import DAvatar, DStyle, DOptions, DColor
-from PIL import Image
+import PIL.Image
+from dicebear import DAvatar, DStyle, DOptions, DColor, bulk_create
 
+
+# Creating options
 options = DOptions(
     backgroundColor=DColor("#00ddd0"),
     rotate=90
 )
 
+
+# Making a DAvatar object
 av = DAvatar(
     style=DStyle.pixel_art,
     seed="John Apple",
     options=options
 )
+print(av.url_svg) # Prints the svg url
 
-print(av.url_svg)
 
+# Editing the DAvatar object
 av.edit(
-    extra_options=DOptions(
-        backgroundColor=DColor("#000000")
-    )
+    extra_options=DOptions(backgroundColor=DColor("#000000"))
 )
-# This will keep the `rotate` option but override the `backgroundColor` option
+# Using `extra_options` keep the `rotate` option but override the `backgroundColor` option
 
-print(av.url_png)
+print(av.url_png) # Prints the png url
 
-av.edit_specific(
+
+# Editing the style specific customisations
+av.customise(
     blank_options={
         "face": "variant04"
     }
 )
-# This edits the style specific options
+# Using `blank_options` will delete your previous customisations for this DAvatar and generate new ones
 
-print(av.url_png)
+print(av.url_png) # Prints the png url
 
-image: Image.Image = av.pillow()
-# converts the DAvatar into a Pillow Image object
+
+# Converting the DAvatar object into a PIL.Image.Image object
+av_img: PIL.Image.Image = av.pillow()
+
+
+# Opening and viewing the DAvatar image
+av.open(use_pil=True) # or av.view()
+
+
+# Creating multiple random avatars of the same style at once
+avatars: list = bulk_create(style=DStyle.random(), amount=10)
 ```
 
 ## CLI Usage
