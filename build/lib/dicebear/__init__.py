@@ -23,5 +23,6 @@
 from .errors import *
 from .models import *
 from .avatar import *
+from .utility import *
 
-__version__ = "1.2.0"
+__version__ = "1.2.2"

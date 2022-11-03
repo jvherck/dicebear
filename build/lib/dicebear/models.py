@@ -19,8 +19,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import sys
-import traceback
 
 from .errors import *
 from random import choice, choices
@@ -64,13 +62,10 @@ class DColor:
 
     def __str__(self):
         return f"{self.html_code}"
-
     def __repr__(self):
         return f"{self.html_code}"
-
     def __eq__(self, other):
         return self.html_code == other.html_code
-
     def __ne__(self, other):
         return self.html_code != other.html_code
 
@@ -107,18 +102,15 @@ class DStyle:
     personas = styles[14]
     pixel_art = styles[15]
     pixel_art_neutral = styles[16]
-
     def __init__(self):
         """Only use `.attribute` to use a style."""
         pass
-
     @staticmethod
     def random():
         """
         Get a random style.
         """
         return choice(styles)
-
     @staticmethod
     def from_str(style_str: str):
         """
@@ -138,11 +130,9 @@ class DFormat:
     list = all_formats = ["png", "svg"]
     png = "png"
     svg = "svg"
-
     def __init__(self):
         """Only use `.attribute` to use a format."""
         pass
-
     @staticmethod
     def from_str(format_str: str):
         """
@@ -164,7 +154,6 @@ class DOptions(dict):
     """
     empty: dict = {}
     default_options = default = default_options
-
     def __init__(self, *, dataUri: bool = False, flip: bool = False, rotate: int = 0, scale: int = 100,
                  radius: int = 0, size: int = 0, backgroundColor: DColor = DColor(), translateX: int = 0,
                  translateY: int = 0, **kwargs):
@@ -197,11 +186,7 @@ class DOptions(dict):
 
 def pilcheck(func):
     """Decorator to check if package Pillow is installed"""
-
     def wrapper(*args, **kwargs):
-        if _FindPil.found is True:
-            return func(*args, **kwargs)
-        else:
-            log_error(PILError())
-
+        if _FindPil.found is True: return func(*args, **kwargs)
+        else: log_error(PILError())
     return wrapper

@@ -6,6 +6,7 @@ dicebear/__init__.py
 dicebear/avatar.py
 dicebear/errors.py
 dicebear/models.py
+dicebear/utility.py
 dicebear.egg-info/PKG-INFO
 dicebear.egg-info/SOURCES.txt
 dicebear.egg-info/dependency_links.txt

@@ -19,7 +19,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import typing
 
 import requests as r
 from urllib.parse import quote
@@ -164,6 +163,8 @@ class DAvatar:
         return self.options["size"] >= other.options["size"]
     def __gt__(self, other):
         return self.options["size"] > other.options["size"]
+    def __dict__(self):
+        return {"style": self.style, "seed": self.seed, "options": self.options, "custom": self.customisations}
 
 
     def __update(self) -> None:
@@ -185,7 +186,7 @@ class DAvatar:
             raise HTTPError(status)
 
         self.__url_png = req.url
-        self.__url_svg = self.__to_svg()
+        self.__url_svg = req.url.replace(".png", ".svg")
         self.__text, self.__content = req.text, req.content
         self.__bytes = io.BytesIO(req.content)
 
@@ -237,24 +238,6 @@ class DAvatar:
 
     customize = edit_specific = customise
 
-    def __to_png(self) -> str:
-        """
-        Converts to png and returns the url.
-
-        :return: class `str` :: link to png avatar
-        """
-        self.__url_png = self.__url_svg.replace(".svg", ".png")
-        return self.__url_png
-
-    def __to_svg(self) -> str:
-        """
-        Converts to svg and returns the url.
-
-        :return: class `str` :: link to png avatar
-        """
-        self.__url_svg = self.__url_png.replace(".png", ".svg")
-        return self.__url_svg
-
     def save(self, *,
              location: Union[pathlib.Path, str] = None,
              file_name: str = "dicebear_avatar",
@@ -275,13 +258,12 @@ class DAvatar:
         :type overwrite: bool
         :param open_after_save: class `bool` ::  whether to open the file after saving it to your device
         :type open_after_save: bool
-        :return: class `str` :: the path when successful
+        :return: class `str` :: the path of the saved image if saved successfully
         """
         if file_format not in DFormat.all_formats:
             s = f'"{file_format}" is not a supported format!'
             raise ImageError(s)
-        if location is None:
-            location = pathlib.Path(os.getcwd())
+        if location is None: location = pathlib.Path(os.getcwd())
         _location = os.path.join(location, "{}.{}".format(file_name, file_format))
         _location = self.__uniquify(_location) if overwrite is False else _location
         ret = -1
@@ -342,29 +324,3 @@ class DAvatar:
     @pilcheck
     def __view_pil(self) -> None:
         self.pillow().show()
-
-
-
-def bulk_create(style: DStyle = DStyle.random(), amount: typing.Annotated[int, "Min: 1, Max: 1000"] = 2, *, options: DOptions = None, custom: dict = None) -> typing.List[DAvatar]:
-    """
-    Creates a list of :py:class:`DAvatar` objects. Easy way to make multiple of the same style (but different randomly generated seeds) at once.
-
-    :param style: class `DStyle` :: the style to apply to all avatars
-    :type style: dicebear.DStyle
-    :param amount: class `int` :: the amount of DAvatars to create. Default: 2, Min: 1, Max: 1000
-    :type amount: int
-    :param options: class `DOptions` :: options for the avatar
-    :type options: dicebear.DOptions
-    :param custom: class `dict` :: customisations for the specified style
-    :type custom: dict
-    :return: list[DAvatar] :: a list with DAvatar objects
-    """
-    if amount > 1000 or amount < 1: raise ValueError("argument `amount` must be between 1 and 1000")
-    if style is None: style = DStyle.random()
-    if custom is None: custom = {}
-    if options is None: options = DOptions.empty
-    result = []
-    for _ in range(amount):
-        result.append(DAvatar(style, "".join(choices(ascii_lowercase + digits, k=20)), options=options, custom=custom))
-    return result
-
