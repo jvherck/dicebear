@@ -141,8 +141,7 @@ class DFormat:
         :param format_str: class `str` :: the string to convert to a DFormat
         :type format_str: str
         """
-        return eval("DFormat.{}".format(format_str))
-
+        return eval("DFormat.{}".format(format_str.replace("DFormat.", "")))
 
 default_options: dict = {options[0]: False, options[1]: False, options[2]: 0, options[3]: 100, options[4]: 0,
                          options[5]: 0, options[6]: DColor(), options[7]: 0, options[8]: 0}

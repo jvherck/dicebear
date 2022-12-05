@@ -41,7 +41,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['requests', 'urllib3'],
+    install_requires=['requests', 'urllib'],
     python_requires='>=3.7',
     keywords=['python', 'dicebear', 'avatar', 'avatars', 'generating', 'generation', 'generator', 'API', 'wrapper', 'image', 'images', 'picture', 'pictures', 'png', 'svg', 'cli',
               'adventurer', 'adventurer-neutral', 'avataaars', 'big-ears', 'big-ears-neutral', 'big-smile', 'bottts', 'croodles', 'croodles-neutral', 'identicon', 'initials',

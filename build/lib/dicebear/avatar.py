@@ -116,12 +116,7 @@ class DAvatar:
         :return: the customisations of the avatar
         """
         return self.__specific
-    @property
-    def customizations(self) -> dict:
-        """
-        :return: the customizations of the avatar
-        """
-        return self.__specific
+    customizations = customs = customisations
     @property
     def url_svg(self) -> str:
         """
@@ -165,6 +160,9 @@ class DAvatar:
         return self.options["size"] > other.options["size"]
     def __dict__(self):
         return {"style": self.style, "seed": self.seed, "options": self.options, "custom": self.customisations}
+    def __contains__(self, item):
+        return item in self.options or item in self.customisations
+
 
 
     def __update(self) -> None:
@@ -176,7 +174,7 @@ class DAvatar:
         for item in self.__specific:
             _specoptions.append("{}={}".format(quote(item), quote(str(self.__specific[item]).replace("False", "false").replace("True", "true"))))
         _link += "&".join(_options) + "&" + "&".join(_specoptions)
-        _link = _link.format(quote(str(self.__style)), quote(self.__seed) if self.__seed is not None else "")
+        _link = _link.format(quote(str(self.__style)), quote(self.__seed))
         req = r.get(_link)
         try:
             status = literal_eval(req.text)
@@ -277,16 +275,11 @@ class DAvatar:
                 with open(_location, "wb") as f:
                     f.write(self.__bytes.read())
                 f.close()
-        except ValueError:
-            raise ImageValueError(_location)
-        except OSError as e:
-            raise ImageOSError(str(e))
-        except Exception as e:
-            raise e
-        else:
-            ret = _location
-        if open_after_save:
-            self.view()
+        except ValueError: raise ImageValueError(_location)
+        except OSError as e: raise ImageOSError(str(e))
+        except Exception as e: raise e
+        else: ret = _location
+        if open_after_save: self.view()
         return ret
 
 

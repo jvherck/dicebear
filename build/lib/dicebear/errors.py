@@ -58,7 +58,7 @@ class ImageError(Exception):
 class ImageValueError(ImageError):
     """Image value error"""
     def __init__(self, file_name: str = None):
-        super().__init__('The output format could not be determined from the file name ("{}")'.format(file_name))
+        super().__init__('The output format could not be determined ("{}")'.format(file_name))
 
 
 class ImageOSError(ImageError):

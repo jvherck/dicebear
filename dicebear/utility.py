@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from . import DStyle, DOptions, DAvatar
+from . import DFormat, DStyle, DOptions, DAvatar
 from string import ascii_lowercase, digits
 from random import choices
 import typing
 
 
-def bulk_create(style: DStyle = DStyle.random(), amount: typing.Annotated[int, "Min: 1, Max: 1000"] = 2, *, options: DOptions = None, custom: dict = None) -> typing.List[DAvatar]:
+def bulk_create(style: DStyle = DStyle.random(), amount: typing.Annotated[int, "Min: 1, Max: 1000"] = 2, *, format: DFormat = DFormat.png, options: DOptions = None, custom: dict = None) -> typing.List[DAvatar]:
     """
     Creates a list of :py:class:`DAvatar` objects. Easy way to make multiple of the same style (but different randomly generated seeds) at once.
 
@@ -34,6 +34,8 @@ def bulk_create(style: DStyle = DStyle.random(), amount: typing.Annotated[int, "
     :type style: dicebear.DStyle
     :param amount: class `int` :: the amount of DAvatars to create. Default: 2, Min: 1, Max: 1000
     :type amount: int
+    :param format: class `DFormat` :: the format for the generated avatars
+    :type format: dicebear.DFormat
     :param options: class `DOptions` :: options for the avatar
     :type options: dicebear.DOptions
     :param custom: class `dict` :: customisations for the specified style
@@ -46,5 +48,6 @@ def bulk_create(style: DStyle = DStyle.random(), amount: typing.Annotated[int, "
     if options is None: options = DOptions.empty
     result = []
     for _ in range(amount):
-        result.append(DAvatar(style, "".join(choices(ascii_lowercase + digits, k=20)), options=options, custom=custom))
+        av = DAvatar(style, "".join(choices(ascii_lowercase + digits, k=20)), options=options, custom=custom)
+        result.append(av.url_svg if format == DFormat.svg else DFormat.png)
     return result
