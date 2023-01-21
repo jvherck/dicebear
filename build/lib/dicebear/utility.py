@@ -26,6 +26,10 @@ from random import choices
 import typing
 
 
+def create_avatar(style: DStyle, seed: str, options: typing.Union[DOptions, None], customisations: typing.Union[dict, None]) -> DAvatar:
+    return DAvatar(style, seed, options=options, custom=customisations)
+
+
 def bulk_create(style: DStyle = DStyle.random(), amount: typing.Annotated[int, "Min: 1, Max: 1000"] = 2, *, format: DFormat = DFormat.png, options: DOptions = None, custom: dict = None) -> typing.List[DAvatar]:
     """
     Creates a list of :py:class:`DAvatar` objects. Easy way to make multiple of the same style (but different randomly generated seeds) at once.

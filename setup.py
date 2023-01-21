@@ -25,8 +25,6 @@ from dicebear import __version__
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-DESCRIPTION = "A python API wrapper for DiceBear's avatar generating API."
-
 setup(
     name="dicebear",
     version=__version__,
@@ -34,18 +32,21 @@ setup(
     author="jvherck",
     author_email="<jvh.discord@gmail.com>",
     maintainer="jvherck",
-    maintainer_email="<jvh.discord@gmail.com>",
-    url="https://github.com/jvherck/dicebear",
+    maintainer_email="<contact@janvh.tk>",
+    url="https://dicebear.janvh.tk",
     project_urls={"Documentation": "https://jvherck.github.io/dicebear", "Source": "https://github.com/jvherck/dicebear", "Tracker": "https://github.com/jvherck/dicebear/issues"},
-    description=DESCRIPTION,
+    description="A python wrapper for DiceBear's avatar generating API.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(),
     install_requires=['requests', 'urllib3'],
     python_requires='>=3.7',
-    keywords=['python', 'dicebear', 'avatar', 'avatars', 'generating', 'generation', 'generator', 'API', 'wrapper', 'image', 'images', 'picture', 'pictures', 'png', 'svg', 'cli',
-              'adventurer', 'adventurer-neutral', 'avataaars', 'big-ears', 'big-ears-neutral', 'big-smile', 'bottts', 'croodles', 'croodles-neutral', 'identicon', 'initials',
-              'micah', 'miniavs', 'open-peeps', 'personas', 'pixel-art', 'pixel-art-neutral'],
+    keywords=['python', 'dicebear', 'avatar', 'avatars', 'generating', 'generation', 'generator', 'API', 'wrapper',
+              'image', 'images', 'picture', 'pictures', 'png', 'jpg', 'svg', 'json', 'cli', 'pillow', 'pil', 'requests',
+              'adventurer', 'adventurer-neutral', 'avataaars', 'avataaars-neutral', 'big-ears', 'big-ears-neutral',
+              'big-smile', 'bottts', 'bottts-neutral', 'croodles', 'croodles-neutral', 'fun-emoji', 'icons',
+              'identicon', 'initials', 'lorelei', 'lorelei-neutral', 'micah', 'miniavs', 'open-peeps', 'personas',
+              'pixel-art', 'pixel-art-neutral'],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
