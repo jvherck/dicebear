@@ -174,7 +174,7 @@ class DAvatar:
         _link = _link.format(quote(str(self.__style)), quote(self.__seed))
         req = r.get(_link)
         try: status = literal_eval(req.text)
-        except ValueError: pass
+        except (ValueError, SyntaxError): pass
         if type(status) == dict and "statusCode" in status: raise HTTPError(status)
 
         self.__url_svg = req.url
@@ -270,7 +270,7 @@ class DAvatar:
         except ValueError: raise ImageValueError(_location)
         except OSError as e: raise ImageOSError(str(e))
         except Exception as e: raise e
-        if open_after_save: self.view()
+        if open_after_save: self.view(use_pil=False)
         return ret
 
 
@@ -301,7 +301,7 @@ class DAvatar:
         if use_pil and _FindPil.found is True: self.__view_pil()
         elif use_pil and _FindPil.found is False:
             log_error(ModuleNotFoundError("Module `Pillow` is not found or installed"), True)
-        else: os.startfile(self.url_svg, "open")
+        else: os.startfile(self.__getattribute__("url_"+str(format)), "open")
 
     open = view
 

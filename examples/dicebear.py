@@ -4,7 +4,7 @@ from dicebear import DAvatar, DStyle, DOptions, DColor, bulk_create
 
 # Creating options
 options = DOptions(
-    backgroundColor=DColor("#00ddd0"),
+    backgroundColor=DColor("00ddd0"),
     rotate=90
 )
 
@@ -20,7 +20,7 @@ print(av.url_svg) # Prints the svg url
 
 # Editing the DAvatar object
 av.edit(
-    extra_options=DOptions(backgroundColor=DColor("#000000"))
+    extra_options=DOptions(backgroundColor=DColor("000000"))
 )
 # Using `extra_options` keep the `rotate` option but override the `backgroundColor` option
 
@@ -35,7 +35,7 @@ av.customise(
 )
 # Using `blank_options` will delete your previous customisations for this DAvatar and generate new ones
 
-print(av.url_png) # Prints the png url
+print(av.url_jpg) # Prints the jpg url
 
 
 # Converting the DAvatar object into a PIL.Image.Image object
