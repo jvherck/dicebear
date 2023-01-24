@@ -29,7 +29,7 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 
 
 ## How to install  
-Run `pip install dicebear`\  
+Run `pip install dicebear` \
 If that doesn't work try `py -m pip install dicebear`  
 
 
@@ -37,7 +37,7 @@ If that doesn't work try `py -m pip install dicebear`
 
 
 ## Usage  
-Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`).   
+Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`).
 When using a `PIL` function while it's not installed it will raise `dicebear.errors.PILError`.  
 ```py  
 import PIL.Image  
@@ -85,7 +85,7 @@ avatars: list = bulk_create(style=DStyle.random(), amount=10)
 
 
 ## CLI Usage  
-Since version 0.4.0 there's a CLI for DiceBear. It can quickly create one or more avatars at a time  
+Since version 0.4.0 there's a CLI for DiceBear. It can quickly create one or more avatars at a time
 but it can't take options.  
 
 __To use the CLI go to__ https://github.com/jvherck/dicebear-cli __and use `pip install dicebear-cli` to install the CLI__  
@@ -99,7 +99,7 @@ Customise your avatars with these possibilities.
 
 
 ### Styles  
-All the possible avatar styles. \  
+All the possible avatar styles. \
 https://dicebear.com/styles  
   
 * `adventurer`  
@@ -144,7 +144,7 @@ All the possible options for the avatar. These options work for all the styles.
 
 
 ### Specific Style Options   
-Specific options to get a more detailed avatar. This is different for every style. \  
+Specific options to get a more detailed avatar. This is different for every style. \
 Click the style to see its options.  
 
 * [adventurer](https://dicebear.com/styles/adventurer#options)  
@@ -173,8 +173,8 @@ Click the style to see its options.
 
 
 ### Formats   
-These are the only supported formats. \  
-If you have Pillow (PIL) installed you can convert `DAvatar` to a `PIL.Image.Image` object to get a   
+These are the only supported formats. \
+If you have Pillow (PIL) installed you can convert `DAvatar` to a `PIL.Image.Image` object to get a
 wider range of formats (Pillow doesn't support svg).  
   
 * `DFormat.svg` (default)  
