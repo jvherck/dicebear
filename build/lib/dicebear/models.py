@@ -51,18 +51,23 @@ class DColor:
 
         :param html_code: class `str` :: the html color code to use as color (default: transparent)
         :type html_code: str
-        :raise dicebear.errors.IncorrectColor:
+        :raise dicebear.errors.IncorrectColor: if the given html_code is an invalid hex color
         """
+        if type(html_code) == DColor: html_code = html_code.html_code
         if html_code in ["random", "rnd"]: html_code = ''.join(choices(_ascii_lowercase + _digits, k=6))
-        if html_code.startswith("#"): html_code.replace("#", "")
+        if html_code.startswith("#"): html_code = html_code.replace("#", "")
         if (len(html_code) != 6 or any(x in html_code for x in _incorrect_lowercase)) and html_code != "transparent":
             raise IncorrectColor(str(html_code))
         self.html_code: str = str(html_code)
 
     def __str__(self): return f"{self.html_code}"
     def __repr__(self): return f"{self.html_code}"
-    def __eq__(self, other): return self.html_code == other.html_code
-    def __ne__(self, other): return self.html_code != other.html_code
+    def __eq__(self, other):
+        if type(other) == str: return self.html_code == other
+        return self.html_code == other.html_code
+    def __ne__(self, other):
+        if type(other) == str: return self.html_code != other
+        return self.html_code != other.html_code
 
     @staticmethod
     def random():
@@ -157,7 +162,7 @@ class DOptions(dict):
     empty: dict = {}
     default_options = default = default_options
     def __init__(self, *, flip: bool = False, rotate: int = 0, scale: int = 100, radius: int = 0, size: int = 0,
-                 backgroundColor: DColor = DColor(), backgroundType: str = "solid", backgroundRotation: int = 0,
+                 backgroundColor: Union[DColor, str] = DColor(), backgroundType: str = "solid", backgroundRotation: int = 0,
                  translateX: int = 0, translateY: int = 0, **kwargs):
         """
         Go to https://github.com/jvherck/dicebear#base-options to see all info (important for minimum and maximum values for each option!)
@@ -166,7 +171,7 @@ class DOptions(dict):
         """
         dic = kwargs.get("fromdict", {})
         current: dict = {"flip": flip, "rotate": rotate, "scale": scale, "radius": radius, "size": size,
-                         "backgroundColor": backgroundColor, "backgroundType": backgroundType, "backgroundRotation": backgroundRotation,
+                         "backgroundColor": DColor(backgroundColor), "backgroundType": backgroundType, "backgroundRotation": backgroundRotation,
                          "translateX": translateX, "translateY": translateY}
         if dic:
             for item in dic:
