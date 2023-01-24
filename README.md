@@ -1,5 +1,3 @@
-<iframe src="https://dicebear.janvh.tk/#introduction" id="docs-intro" title="Dicebear Documentation" width="500px" height="650px" scrolling="no" style="cursor:not-allowed;"></iframe>  
-  
 # DiceBear Py Wrapper  
 [![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads)](https://pepy.tech/project/dicebear) [![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=month&units=international_system&left_color=grey&right_color=orange&left_text=Downloads/Month)](https://pepy.tech/project/dicebear) \  
 [`dicebear`](https://pypi.org/project/dicebear/) is an API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program.  
