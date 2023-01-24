@@ -1,28 +1,41 @@
+# DiceBear Py Wrapper  
+![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads)
+![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=month&units=international_system&left_color=grey&right_color=orange&left_text=Downloads/Month)
+![PyPI](https://img.shields.io/pypi/v/dicebear)
+![GitHub issues](https://img.shields.io/github/issues/jvherck/dicebear)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dicebear)
+![GitHub](https://img.shields.io/github/license/jvherck/dicebear)
+![Maintenance](https://img.shields.io/maintenance/yes/2024)
+![PyPI - Status](https://img.shields.io/pypi/status/dicebear)
+
 Always keep an eye on https://dicebear.janvh.tk for updates and warnings about this packages!
 
-# DiceBear Py Wrapper  
-[![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads)](https://pepy.tech/project/dicebear) [![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=month&units=international_system&left_color=grey&right_color=orange&left_text=Downloads/Month)](https://pepy.tech/project/dicebear) \  
-[`dicebear`](https://pypi.org/project/dicebear/) is an API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program.  
-\  
-For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebear/tree/main/examples).  
-  
----  
-  
+[`dicebear`](https://pypi.org/project/dicebear/) is an API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program. \
+For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebear/tree/main/examples).
+
+
+---
+
+
 ## Useful links  
 * Docs: https://jvherck.github.io/dicebear  
 * PyPI: https://pypi.org/project/dicebear/  
 * GitHub: https://github.com/jvherck/dicebear  
 * Dicebear: https://dicebear.com/  
 - Dicebear CLI: https://github.com/jvherck/dicebear-cli  
-  
----  
-  
+
+
+---
+
+
 ## How to install  
 Run `pip install dicebear`\  
 If that doesn't work try `py -m pip install dicebear`  
-  
----  
-  
+
+
+---
+
+
 ## Usage  
 Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`).   
 When using a `PIL` function while it's not installed it will raise `dicebear.errors.PILError`.  
@@ -69,18 +82,22 @@ av.open(use_pil=True) # or av.view()
 # Creating multiple random avatars of the same style at once  
 avatars: list = bulk_create(style=DStyle.random(), amount=10)  
 ```  
-  
+
+
 ## CLI Usage  
 Since version 0.4.0 there's a CLI for DiceBear. It can quickly create one or more avatars at a time  
 but it can't take options.  
-  
+
 __To use the CLI go to__ https://github.com/jvherck/dicebear-cli __and use `pip install dicebear-cli` to install the CLI__  
-  
----  
-  
+
+
+---
+
+
 ## Customisation  
 Customise your avatars with these possibilities.  
-  
+
+
 ### Styles  
 All the possible avatar styles. \  
 https://dicebear.com/styles  
@@ -108,10 +125,11 @@ https://dicebear.com/styles
 * `personas`  
 * `pixel-art`  
 * `pixel-art-neutral`  
-  
+
+
 ### Base Options  
 All the possible options for the avatar. These options work for all the styles.  
-  
+
 * `seed` (type: `str`) - the seed for the avatar generator, determine its basic looks  
 * `flip` (type: `bool`) - flips the image vertically (default False)  
 * `rotate` (type: `int`) - rotates the avatar (default 0, min 0, max 360)  
@@ -123,11 +141,12 @@ All the possible options for the avatar. These options work for all the styles.
 * `backgroundRotation` (type: `int` ) - rotate the background if backgroundType is set to `gradientLinear` (default 0)  
 * `translateX` (type: `int`) - move the avatar horizontally (default 0, min -100, max 100)  
 * `translateY` (type: `int`) - move the avatar vertically (default 0, min -100, max 100)  
-  
+
+
 ### Specific Style Options   
 Specific options to get a more detailed avatar. This is different for every style. \  
 Click the style to see its options.  
-  
+
 * [adventurer](https://dicebear.com/styles/adventurer#options)  
 * [adventurer-neutral](https://dicebear.com/styles/adventurer-neutral#options)  
 * [avataaars](https://dicebear.com/styles/avataaars#options)  
@@ -151,7 +170,8 @@ Click the style to see its options.
 * [personas](https://dicebear.com/styles/personas#options)  
 * [pixel-art](https://dicebear.com/styles/pixel-art#options)  
 * [pixel-art-neutral](https://dicebear.com/styles/pixel-art-neutral#options)  
-  
+
+
 ### Formats   
 These are the only supported formats. \  
 If you have Pillow (PIL) installed you can convert `DAvatar` to a `PIL.Image.Image` object to get a   
@@ -161,13 +181,16 @@ wider range of formats (Pillow doesn't support svg).
 * `DFormat.png`  
 * `DFormat.jpg`  
 * `DFormat.json`  
-  
----  
-  
+
+
+---
+
+
 ## Credits  
 Special thanks to [DiceBear](https://github.com/dicebear) ([Florian Körner](https://github.com/FlorianKoerner)) for making this amazing API and to [all artists](https://dicebear.com/licenses) that helped   
 making avatars!  
-  
+
+
 ## Licenses and privacy policy  
 - Dicebear **Licenses**: https://dicebear.com/licenses  
 - Dicebear **Privacy Policy**: https://dicebear.com/legal/privacy-policy  
