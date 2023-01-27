@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2022 jvherck (https://jvherck.github.io/dicebear/)
+# Copyright (c) 2023 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,6 +19,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import typing
 
 import requests as r
 from urllib.parse import quote
@@ -138,7 +139,7 @@ class DAvatar:
     @property
     def text(self) -> str:
         """
-        :return: returns the bytes of the avatar in str format
+        :return: returns the avatar's request's full text/file in str format
         """
         return self.__text
     @property
@@ -170,13 +171,12 @@ class DAvatar:
                 _options.append("{}={}".format(quote(item), quote(str(self.__options[item]).replace("False", "false").replace("True", "true"))))
         for item in self.__specific:
             _specoptions.append("{}={}".format(quote(item), quote(str(self.__specific[item]).replace("False", "false").replace("True", "true"))))
-        _link += "&".join(_options) + "&" + "&".join(_specoptions)
+        _link += "&".join(_options+_specoptions)
         _link = _link.format(quote(str(self.__style)), quote(self.__seed))
         req = r.get(_link)
         try: status = literal_eval(req.text)
         except (ValueError, SyntaxError): pass
         if type(status) == dict and "statusCode" in status: raise HTTPError(status)
-
         self.__url_svg = req.url
         self.__text, self.__content = req.text, req.content
         self.__bytes = io.BytesIO(req.content)
@@ -227,7 +227,7 @@ class DAvatar:
         self.__update()
         return self.__url_svg
 
-    customize = edit_specific = customise
+    customize: callable = customise
 
     def save(self, *,
              location: Union[pathlib.Path, str] = None,
@@ -303,7 +303,7 @@ class DAvatar:
             log_error(ModuleNotFoundError("Module `Pillow` is not found or installed"), True)
         else: os.startfile(self.__getattribute__("url_"+str(format)), "open")
 
-    open = view
+    open: callable = view
 
     @pilcheck
     def __view_pil(self) -> None: self.pillow().show()

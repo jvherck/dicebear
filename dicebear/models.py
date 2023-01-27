@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2022 jvherck (https://jvherck.github.io/dicebear/)
+# Copyright (c) 2023 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,9 +19,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import typing
+from random import choice, choices
 
 from .errors import *
-from random import choice, choices
+
 
 class _FindPil:
     """Not important for you, just makes things easier for me on the back-end ;)"""
@@ -45,20 +47,24 @@ class DColor:
     Base class for DAvatar's colors.
     """
 
-    def __init__(self, html_code: str = "transparent"):
+    def __init__(self, html_code: Union[str, typing.List[str]] = "transparent"):
         """
         Colors used in this package. This uses HTML/hex color codes!
 
-        :param html_code: class `str` :: the html color code to use as color (default: transparent)
+        :param html_code: class `str` :: the html color code to use as color. This can be a list of strings if `backgroundType` has been set to "gradientLinear". (default: transparent)
         :type html_code: str
         :raise dicebear.errors.IncorrectColor: if the given html_code is an invalid hex color
         """
-        if type(html_code) == DColor: html_code = html_code.html_code
-        if html_code in ["random", "rnd"]: html_code = ''.join(choices(_ascii_lowercase + _digits, k=6))
-        if html_code.startswith("#"): html_code = html_code.replace("#", "")
-        if (len(html_code) != 6 or any(x in html_code for x in _incorrect_lowercase)) and html_code != "transparent":
-            raise IncorrectColor(str(html_code))
-        self.html_code: str = str(html_code)
+        code_list: list = None
+        hex_list: list = []
+        if type(html_code) == str: code_list = html_code.replace(" ", "").split(",")
+        elif type(html_code) == list and all(type(x) == str for x in html_code): code_list = html_code
+        for code in code_list:
+            if code.startswith("#"): code = code.replace("#", "")
+            if (len(code) != 6 or any(x in code for x in _incorrect_lowercase)) and code != "transparent":
+                raise IncorrectColor(str(code))
+            hex_list.append(code)
+        self.html_code: str = ",".join(hex_list)
 
     def __str__(self): return f"{self.html_code}"
     def __repr__(self): return f"{self.html_code}"
@@ -76,7 +82,7 @@ class DColor:
 
         :return: class `dicebear.models.DColor`
         """
-        return DColor('#' + ''.join(choices(_ascii_lowercase + _digits, k=6)))
+        return DColor(''.join(choices(_ascii_lowercase + _digits, k=6)))
 
 
 class DStyle:
@@ -162,7 +168,7 @@ class DOptions(dict):
     empty: dict = {}
     default_options = default = default_options
     def __init__(self, *, flip: bool = False, rotate: int = 0, scale: int = 100, radius: int = 0, size: int = 0,
-                 backgroundColor: Union[DColor, str] = DColor(), backgroundType: str = "solid", backgroundRotation: int = 0,
+                 backgroundColor: Union[DColor, str, typing.List[str], typing.List[DColor]] = DColor(), backgroundType: str = "solid", backgroundRotation: int = 0,
                  translateX: int = 0, translateY: int = 0, **kwargs):
         """
         Go to https://github.com/jvherck/dicebear#base-options to see all info (important for minimum and maximum values for each option!)

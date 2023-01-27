@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2022 jvherck (https://jvherck.github.io/dicebear/)
+# Copyright (c) 2023 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -25,4 +25,4 @@ from .models import *
 from .avatar import *
 from .utility import *
 
-__version__ = "2.2.2"
+__version__ = "2.2.3"

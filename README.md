@@ -136,7 +136,8 @@ All the possible options for the avatar. These options work for all the styles.
 * `scale` (type: `int`) - the scale of the avatar drawing itself (default 100, min 0, max 200)  
 * `radius` (type: `int`) - the radius of the avatar (default 0, min 0, max 50)  
 * `size` (type: `int`) - the size of the avatar (px) (default 256, min 1, max 256)  
-* `backgroundColor` (type: `DColor("transparent")` ) - the background color of the avatar (default transparent)  
+* `backgroundColor` (type: `DColor("transparent")` ) - the background color of the avatar. this can be a list of strings
+if you have *backgroundType* set to "gradientLinear". (default transparent)  
 * `backgroundType` (type: `str` ) - set the background to either `gradientLinear` or `solid` (default solid)  
 * `backgroundRotation` (type: `int` ) - rotate the background if backgroundType is set to `gradientLinear` (default 0)  
 * `translateX` (type: `int`) - move the avatar horizontally (default 0, min -100, max 100)  
