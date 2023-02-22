@@ -34,11 +34,11 @@ _incorrect_lowercase = "ghijklmnopqrstuvwxyz"
 _digits = "0123456789"
 
 options = all_options = ["flip", "rotate", "scale", "radius", "size", "backgroundColor", "backgroundType",
-                         "backgroundRotation", "translateX", "translateY"]
+                         "backgroundRotation", "translateX", "translateY", "randomizeIds"]
 styles = ["adventurer", "adventurer-neutral", "avataaars", "avataaars-neutral", "big-ears", "big-ears-neutral",
           "big-smile", "bottts", "bottts-neutral", "croodles", "croodles-neutral", "fun-emoji", "icons",
           "identicon", "initials", "lorelei", "lorelei-neutral", "micah", "miniavs", "open-peeps", "personas",
-          "pixel-art", "pixel-art-neutral"]
+          "pixel-art", "pixel-art-neutral", "shapes", "thumbs"]
 # styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
 
 
@@ -114,6 +114,8 @@ class DStyle:
     personas = styles[20]
     pixel_art = styles[21]
     pixel_art_neutral = styles[22]
+    shapes = styles[23]
+    thumbs = styles[24]
     def __init__(self):
         """Only use `.attribute` to use a style."""
         pass
@@ -159,7 +161,8 @@ class DFormat:
 
 
 default_options: dict = {options[0]: False, options[1]: 0, options[2]: 100, options[3]: 0, options[4]: 0,
-                         options[5]: DColor(), options[6]: "solid", options[7]: 0, options[8]: 0, options[9]: 0}
+                         options[5]: DColor(), options[6]: "solid", options[7]: 0, options[8]: 0, options[9]: 0,
+                         options[10]: False}
 
 class DOptions(dict):
     """
@@ -169,7 +172,7 @@ class DOptions(dict):
     default_options = default = default_options
     def __init__(self, *, flip: bool = False, rotate: int = 0, scale: int = 100, radius: int = 0, size: int = 0,
                  backgroundColor: Union[DColor, str, typing.List[str], typing.List[DColor]] = DColor(), backgroundType: str = "solid", backgroundRotation: int = 0,
-                 translateX: int = 0, translateY: int = 0, **kwargs):
+                 translateX: int = 0, translateY: int = 0, randomizeIds: bool = False, **kwargs):
         """
         Go to https://github.com/jvherck/dicebear#base-options to see all info (important for minimum and maximum values for each option!)
 
@@ -178,7 +181,7 @@ class DOptions(dict):
         dic = kwargs.get("fromdict", {})
         current: dict = {"flip": flip, "rotate": rotate, "scale": scale, "radius": radius, "size": size,
                          "backgroundColor": DColor(backgroundColor), "backgroundType": backgroundType, "backgroundRotation": backgroundRotation,
-                         "translateX": translateX, "translateY": translateY}
+                         "translateX": translateX, "translateY": translateY, "randomizeIds": randomizeIds}
         if dic:
             for item in dic:
                 if item not in default_options.keys() or dic[item] == default_options[item]: dic.pop(item, None)

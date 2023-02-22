@@ -81,21 +81,25 @@ av.open(use_pil=True) # or av.view()
   
 # Creating multiple random avatars of the same style at once  
 avatars: list = bulk_create(style=DStyle.random(), amount=10)  
-```  
-
-
-## CLI Usage  
-Since version 0.4.0 there's a CLI for DiceBear. It can quickly create one or more avatars at a time
-but it can't take options.  
-
-__To use the CLI go to__ https://github.com/jvherck/dicebear-cli __and use `pip install dicebear-cli` to install the CLI__  
+```
 
 
 ---
 
 
-## Customisation  
-Customise your avatars with these possibilities.  
+## CLI Usage  
+Dicebear has a CLI package that uses Python to generate avatars quickly.
+You can't customize each avatar, to do that you'll need to use the Python module.
+
+To use the CLI run `pip install dicebear-cli` in a terminal. 
+Documentation can be found here: https://github.com/jvherck/dicebear-cli.
+
+
+---
+
+
+## Customization
+Customize your avatars with these possibilities.  
 
 
 ### Styles  
@@ -124,7 +128,9 @@ https://dicebear.com/styles
 * `open-peeps`  
 * `personas`  
 * `pixel-art`  
-* `pixel-art-neutral`  
+* `pixel-art-neutral`
+* `shapes`
+* `thumbs`
 
 
 ### Base Options  
@@ -142,6 +148,8 @@ if you have *backgroundType* set to "gradientLinear". (default transparent)
 * `backgroundRotation` (type: `int` ) - rotate the background if backgroundType is set to `gradientLinear` (default 0)  
 * `translateX` (type: `int`) - move the avatar horizontally (default 0, min -100, max 100)  
 * `translateY` (type: `int`) - move the avatar vertically (default 0, min -100, max 100)  
+* `randomizeIds` (type: `bool`) - randomize the IDs in the generated SVG/XML, can be useful if the avatars are included 
+directly in HTML and you want to avoid ID conflicts (default false)  
 
 
 ### Specific Style Options   
@@ -171,6 +179,8 @@ Click the style to see its options.
 * [personas](https://dicebear.com/styles/personas#options)  
 * [pixel-art](https://dicebear.com/styles/pixel-art#options)  
 * [pixel-art-neutral](https://dicebear.com/styles/pixel-art-neutral#options)  
+* [shapes](https://dicebear.com/styles/shapes#options)  
+* [thumbs](https://dicebear.com/styles/thumbs#options)  
 
 
 ### Formats   
@@ -188,8 +198,8 @@ wider range of formats (Pillow doesn't support svg).
 
 
 ## Credits  
-Special thanks to [DiceBear](https://github.com/dicebear) ([Florian Körner](https://github.com/FlorianKoerner)) for making this amazing API and to [all artists](https://dicebear.com/licenses) that helped   
-making avatars!  
+Special thanks to [DiceBear](https://github.com/dicebear) ([Florian Körner](https://github.com/FlorianKoerner)) for 
+making this amazing API and to [all artists](https://dicebear.com/licenses) that helped making avatars!  
 
 
 ## Licenses and privacy policy  

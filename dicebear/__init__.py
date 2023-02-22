@@ -25,4 +25,4 @@ from .models import *
 from .avatar import *
 from .utility import *
 
-__version__ = "2.2.3"
+__version__ = "2.3.0"

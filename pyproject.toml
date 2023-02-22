@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.portray]
 modules = ["dicebear"]
-output_dir = "docs"
+output_dir = "_docs"
 
 [tool.portray.repository]
 repo_url = "https://github.com/jvherck/dicebear"
