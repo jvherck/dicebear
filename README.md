@@ -205,4 +205,4 @@ making this amazing API and to [all artists](https://dicebear.com/licenses) that
 ## Licenses and privacy policy  
 - Dicebear **Licenses**: https://dicebear.com/licenses  
 - Dicebear **Privacy Policy**: https://dicebear.com/legal/privacy-policy  
-- Dicebear Python API wrapper (this project): https://github.com/jvherck/dicebear/blob/main/LICENSE
+- Dicebear Python API wrapper (this project): https://dicebear.janvh.tk/license

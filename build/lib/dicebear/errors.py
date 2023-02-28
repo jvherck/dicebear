@@ -22,6 +22,18 @@
 from typing import Union
 import logging
 
+__all__ = (
+    'IncorrectColor',
+    'InvalidOption',
+    'Error',
+    'HTTPError',
+    'ImageError',
+    'ImageValueError',
+    'ImageOSError',
+    'PILError',
+    'log_error',
+)
+
 class IncorrectColor(Exception):
     """Incorrect color"""
     def __init__(self, wrong_color: str = None):

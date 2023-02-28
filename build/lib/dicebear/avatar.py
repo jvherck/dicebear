@@ -22,17 +22,20 @@
 import typing
 
 import requests as r
-from urllib.parse import quote
-from string import ascii_lowercase, digits
-
 import os
 import pathlib
 import io
+from urllib.parse import quote
+from string import ascii_lowercase, digits
 from ast import literal_eval
+from typing import Union
+from random import choices
 
 from .models import *
 from .errors import *
-from .models import _FindPil
+from .models import _FindPil, pilcheck
+
+__all__ = ('DAvatar',)
 
 try:
     from PIL import Image as i
@@ -43,7 +46,7 @@ except Exception:
     _FindPil.found = False
 
 
-_x = "https://api.dicebear.com/5.1/{}/svg?seed={}&"
+_x = "https://api.dicebear.com/5.3/{}/svg?seed={}&"
 
 
 class DAvatar:
@@ -54,8 +57,7 @@ class DAvatar:
     all_options: list = options
     def __init__(self, style: DStyle = None, seed: str = None, *, options: DOptions = None, custom: dict = None) -> None:
         """
-        Create an avatar using this class, use `.url_svg` to get the svg url or `.url_png` to get the png url.
-        Clickable links: https://github.com/jvherck/dicebear#styles , https://github.com/jvherck/dicebear#base-options , https://github.com/jvherck/dicebear#specific-style-options
+        Create a new avatar object.
 
         :param style: class `dicebear.models.DStyle` :: the style of avatar you want to create; check the whole list at https://github.com/jvherck/dicebear#styles
         :type style: dicebear.models.DStyle
@@ -159,7 +161,11 @@ class DAvatar:
     def __ge__(self, other): return self.options["size"] >= other.options["size"]
     def __gt__(self, other): return self.options["size"] > other.options["size"]
     def __dict__(self): return {"style": self.style, "seed": self.seed, "options": self.options, "custom": self.customisations}
-    def __contains__(self, item): return item in self.options or item in self.customisations
+    def __contains__(self, key: str):
+        """
+        Returns `True` if the specified key is found in either DAvatar.options.keys() or DAvatar.customisations.keys(), else returns `False`
+        """
+        return key in self.options.keys() or key in self.customisations.keys()
 
 
 

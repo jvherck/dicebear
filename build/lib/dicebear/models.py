@@ -19,10 +19,21 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import typing
+from typing import Union, List
 from random import choice, choices
 
 from .errors import *
+
+__all__ = (
+    'DColor',
+    'DStyle',
+    'DFormat',
+    'DOptions',
+    'options',
+    'all_options',
+    'styles',
+    'default_options',
+)
 
 
 class _FindPil:
@@ -47,7 +58,7 @@ class DColor:
     Base class for DAvatar's colors.
     """
 
-    def __init__(self, html_code: Union[str, typing.List[str]] = "transparent"):
+    def __init__(self, html_code: Union[str, List[str]] = "transparent"):
         """
         Colors used in this package. This uses HTML/hex color codes!
 
@@ -171,7 +182,7 @@ class DOptions(dict):
     empty: dict = {}
     default_options = default = default_options
     def __init__(self, *, flip: bool = False, rotate: int = 0, scale: int = 100, radius: int = 0, size: int = 0,
-                 backgroundColor: Union[DColor, str, typing.List[str], typing.List[DColor]] = DColor(), backgroundType: str = "solid", backgroundRotation: int = 0,
+                 backgroundColor: Union[DColor, str, List[str], List[DColor]] = DColor(), backgroundType: str = "solid", backgroundRotation: int = 0,
                  translateX: int = 0, translateY: int = 0, randomizeIds: bool = False, **kwargs):
         """
         Go to https://github.com/jvherck/dicebear#base-options to see all info (important for minimum and maximum values for each option!)

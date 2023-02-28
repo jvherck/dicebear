@@ -20,17 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from . import DFormat, DStyle, DOptions, DAvatar
+from . import DStyle, DOptions, DAvatar
 from string import ascii_lowercase, digits
 from random import choices
-import typing
+from typing import Union, List, Annotated
+
+__all__ = (
+    'create_avatar',
+    'bulk_create',
+)
 
 
 def create_avatar(
         style: DStyle,
         seed: str,
-        options: typing.Union[DOptions, None] = None,
-        customisations: typing.Union[dict, None] = None
+        options: Union[DOptions, None] = None,
+        customisations: Union[dict, None] = None
 ) -> DAvatar:
     """
     Creates a DAvatar object and returns it.
@@ -46,11 +51,11 @@ def create_avatar(
 
 def bulk_create(
         style: DStyle = DStyle.random(),
-        amount: typing.Annotated[int, "Min: 1, Max: 50"] = 2,
+        amount: Annotated[int, "Min: 1, Max: 50"] = 2,
         *,
         options: DOptions = None,
         custom: dict = None
-) -> typing.List[DAvatar]:
+) -> List[DAvatar]:
     """
     Creates a list of :py:class:`DAvatar` objects. Easy way to make multiple of the same style (but different randomly generated seeds) at once.
 

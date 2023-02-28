@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 2.3.0
+Version: 2.3.1
 Summary: A python wrapper for DiceBear's avatar generating API.
 Home-page: https://dicebear.janvh.tk
 Author: jvherck
-Author-email: <contact@janvh.be>
+Author-email: contact@janvh.be
 Maintainer: jvherck
-Maintainer-email: <contact@janvh.be>
+Maintainer-email: contact@janvh.be
 License: MIT License
 Project-URL: Documentation, https://jvherck.github.io/dicebear
 Project-URL: Source, https://github.com/jvherck/dicebear
@@ -243,4 +243,4 @@ making this amazing API and to [all artists](https://dicebear.com/licenses) that
 ## Licenses and privacy policy  
 - Dicebear **Licenses**: https://dicebear.com/licenses  
 - Dicebear **Privacy Policy**: https://dicebear.com/legal/privacy-policy  
-- Dicebear Python API wrapper (this project): https://github.com/jvherck/dicebear/blob/main/LICENSE
+- Dicebear Python API wrapper (this project): https://dicebear.janvh.tk/license

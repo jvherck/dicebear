@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from .avatar import *
 from .errors import *
 from .models import *
-from .avatar import *
 from .utility import *
 
-__version__ = "2.3.0"
+__version__ = "2.3.1"
