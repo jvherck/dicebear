@@ -32,10 +32,10 @@ __all__ = (
 
 
 def create_avatar(
-        style: DStyle,
-        seed: str,
-        options: Union[DOptions, None] = None,
-        customisations: Union[dict, None] = None
+    style: DStyle,
+    seed: str,
+    options: Union[DOptions, None] = None,
+    customisations: Union[dict, None] = None
 ) -> DAvatar:
     """
     Creates a DAvatar object and returns it.
@@ -50,11 +50,11 @@ def create_avatar(
 
 
 def bulk_create(
-        style: DStyle = DStyle.random(),
-        amount: Annotated[int, "Min: 1, Max: 50"] = 2,
-        *,
-        options: DOptions = None,
-        custom: dict = None
+    style: DStyle = DStyle.random(),
+    amount: Annotated[int, "Min: 1, Max: 50"] = 2,
+    *,
+    options: DOptions = None,
+    custom: dict = None
 ) -> List[DAvatar]:
     """
     Creates a list of :py:class:`DAvatar` objects. Easy way to make multiple of the same style (but different randomly generated seeds) at once.

@@ -43,8 +43,9 @@ except Exception:
     class i:
         class Image:
             def show(self): pass
-    _FindPil.found = False
 
+
+    _FindPil.found = False
 
 _x = "https://api.dicebear.com/5.3/{}/svg?seed={}&"
 
@@ -55,7 +56,14 @@ class DAvatar:
     """
     default_options: dict = default_options
     all_options: list = options
-    def __init__(self, style: DStyle = None, seed: str = None, *, options: DOptions = None, custom: dict = None) -> None:
+
+    def __init__(self,
+                 style: Union[str, DStyle] = None,
+                 seed: str = None,
+                 *,
+                 options: DOptions = None,
+                 custom: dict = None
+                 ) -> None:
         """
         Create a new avatar object.
 
@@ -91,12 +99,14 @@ class DAvatar:
         :return: the style of the avatar
         """
         return self.__style
+
     @property
     def seed(self) -> str:
         """
         :return: the seed of the avatar
         """
         return self.__seed
+
     @property
     def options(self) -> DOptions:
         """
@@ -107,43 +117,51 @@ class DAvatar:
             if self.__options[key] != DAvatar.default_options[key]:
                 _option_list.update({key: self.__options[key]})
         return DOptions(fromdict=_option_list)
+
     @property
     def customisations(self) -> dict:
         """
         :return: the customisations of the avatar
         """
         return self.__specific
+
     customizations = customs = customisations
+
     @property
     def url_svg(self) -> str:
         """
         :return: url to svg avatar
         """
         return self.__url_svg
+
     @property
     def url_png(self) -> str:
         """
         :return: url to png avatar
         """
         return self.__url_svg.replace("/svg?", "/png?")
+
     @property
     def url_jpg(self) -> str:
         """
         :return: url to jpg avatar
         """
         return self.__url_svg.replace("/svg?", "/jpg?")
+
     @property
     def url_json(self) -> str:
         """
         :return: url to json data of avatar
         """
         return self.__url_svg.replace("/svg?", "/json?")
+
     @property
     def text(self) -> str:
         """
         :return: returns the avatar's request's full text/file in str format
         """
         return self.__text
+
     @property
     def bytes(self) -> bytes:
         """
@@ -151,37 +169,59 @@ class DAvatar:
         """
         return self.__content
 
-    def __repr__(self):
-        return f"DAvatar(style=DStyle.{self.style}, seed=\"{self.seed}\", *, options={self.options}, custom={self.customizations})"
+    def __repr__(self): return f"DAvatar(style=DStyle.{self.style}, seed=\"{self.seed}\", *, options={self.options}, custom={self.customizations})"
     def __str__(self): return self.__url_svg
-    def __eq__(self, other): return self.__url_svg == other.__url_svg
-    def __ne__(self, other): return self.__url_svg != other.__url_svg
-    def __le__(self, other): return self.options["size"] <= other.options["size"]
-    def __lt__(self, other): return self.options["size"] < other.options["size"]
-    def __ge__(self, other): return self.options["size"] >= other.options["size"]
-    def __gt__(self, other): return self.options["size"] > other.options["size"]
-    def __dict__(self): return {"style": self.style, "seed": self.seed, "options": self.options, "custom": self.customisations}
+    def __eq__(self, other):
+        if type(other) == DAvatar: return self.__url_svg == other.__url_svg
+        return self.__url_svg == other
+    def __ne__(self, other):
+        if type(other) == DAvatar: return self.__url_svg != other.__url_svg
+        return self.__url_svg != other
+    def __le__(self, other):
+        if type(other) == DAvatar: return self.options["size"] <= other.options["size"]
+        elif type(other) == dict: return self.options["size"] <= other["size"]
+        return self.options["size"] <= other
+    def __lt__(self, other):
+        if type(other) == DAvatar: return self.options["size"] < other.options["size"]
+        elif type(other) == dict: return self.options["size"] < other["size"]
+        return self.options["size"] < other
+    def __ge__(self, other):
+        if type(other) == DAvatar: return self.options["size"] >= other.options["size"]
+        elif type(other) == dict: return self.options["size"] >= other["size"]
+        return self.options["size"] >= other
+    def __gt__(self, other):
+        if type(other) == DAvatar: return self.options["size"] > other.options["size"]
+        elif type(other) == dict: return self.options["size"] > other["size"]
+        return self.options["size"] > other
+    def __dict__(self):
+        return {"style": self.style, "seed": self.seed, "options": self.options, "custom": self.customisations}
     def __contains__(self, key: str):
         """
         Returns `True` if the specified key is found in either DAvatar.options.keys() or DAvatar.customisations.keys(), else returns `False`
         """
         return key in self.options.keys() or key in self.customisations.keys()
 
-
-
     def __update(self) -> None:
         _link = _x
         _options, _specoptions, status = [], [], ""
         for item in self.__options:
             if item in all_options:
-                _options.append("{}={}".format(quote(item), quote(str(self.__options[item]).replace("False", "false").replace("True", "true"))))
+                _options.append(
+                    "{}={}".format(
+                        quote(item),
+                        str(self.__options[item]).replace("False", "false").replace("True", "true")))
         for item in self.__specific:
-            _specoptions.append("{}={}".format(quote(item), quote(str(self.__specific[item]).replace("False", "false").replace("True", "true"))))
-        _link += "&".join(_options+_specoptions)
+            _specoptions.append(
+                "{}={}".format(
+                    quote(item),
+                    str(self.__specific[item]).replace("False", "false").replace("True", "true")))
+        _link += "&".join(_options + _specoptions)
         _link = _link.format(quote(str(self.__style)), quote(self.__seed))
         req = r.get(_link)
-        try: status = literal_eval(req.text)
-        except (ValueError, SyntaxError): pass
+        try:
+            status = literal_eval(req.text)
+        except (ValueError, SyntaxError):
+            pass
         if type(status) == dict and "statusCode" in status: raise HTTPError(status)
         self.__url_svg = req.url
         self.__text, self.__content = req.text, req.content
@@ -196,8 +236,13 @@ class DAvatar:
             counter += 1
         return path
 
-
-    def edit(self, *, style: DStyle = None, seed: str = None, extra_options: DOptions = None, blank_options: DOptions = None) -> str:
+    def edit(self,
+             *,
+             style: DStyle = None,
+             seed: str = None,
+             extra_options: DOptions = None,
+             blank_options: DOptions = None
+             ) -> str:
         """
         Edit an already existing avatar.
 
@@ -213,12 +258,18 @@ class DAvatar:
         """
         if style: self.__style = style
         if seed: self.__seed = seed
-        if extra_options: self.__options.update(extra_options)
-        elif blank_options: self.__options = blank_options
+        if extra_options:
+            self.__options.update(extra_options)
+        elif blank_options:
+            self.__options = blank_options
         self.__update()
         return self.__url_svg
 
-    def customise(self, *, extra_options: dict = None, blank_options: dict = None) -> str:
+    def customise(self,
+                  *,
+                  extra_options: dict = None,
+                  blank_options: dict = None
+                  ) -> str:
         """
         Customise the specific options for an already existing avatar.
 
@@ -228,14 +279,17 @@ class DAvatar:
         :type blank_options: dicebear.models.DOptions
         :return: class `str` :: returns the link to the avatar url (svg)
         """
-        if extra_options: self.__specific.update(extra_options)
-        elif blank_options: self.__specific = blank_options
+        if extra_options:
+            self.__specific.update(extra_options)
+        elif blank_options:
+            self.__specific = blank_options
         self.__update()
         return self.__url_svg
 
     customize: callable = customise
 
-    def save(self, *,
+    def save(self,
+             *,
              location: Union[pathlib.Path, str] = None,
              file_name: str = "dicebear_avatar",
              file_format: DFormat = DFormat.svg,
@@ -270,15 +324,18 @@ class DAvatar:
                     f.write(r.get(self.url_json).text if file_format == DFormat.json else self.__text)
                 f.close()
             else:
-                with open(_location, "wb") as f: f.write(self.__bytes.read())
+                with open(_location, "wb") as f:
+                    f.write(self.__bytes.read())
                 f.close()
             ret = _location
-        except ValueError: raise ImageValueError(_location)
-        except OSError as e: raise ImageOSError(str(e))
-        except Exception as e: raise e
+        except ValueError:
+            raise ImageValueError(_location)
+        except OSError as e:
+            raise ImageOSError(str(e))
+        except Exception as e:
+            raise e
         if open_after_save: self.view(use_pil=False)
         return ret
-
 
     @pilcheck
     def pillow(self) -> i.Image:
@@ -292,8 +349,11 @@ class DAvatar:
         img: i.Image = i.frombytes("RGBA", (256, 256), raw_img)
         return img
 
-
-    def view(self, *, format: DFormat = DFormat.svg, use_pil: bool = True) -> None:
+    def view(self,
+             *,
+             format: DFormat = DFormat.svg,
+             use_pil: bool = True
+             ) -> None:
         """
         Open and view the avatar on your device.
 
@@ -304,12 +364,15 @@ class DAvatar:
         :return: :py:class:`NoneType`
         :raise `dicebear.errors.PILError`:
         """
-        if use_pil and _FindPil.found is True: self.__view_pil()
+        if use_pil and _FindPil.found is True:
+            self.__view_pil()
         elif use_pil and _FindPil.found is False:
             log_error(ModuleNotFoundError("Module `Pillow` is not found or installed"), True)
-        else: os.startfile(self.__getattribute__("url_"+str(format)), "open")
+        else:
+            os.startfile(self.__getattribute__("url_" + str(format)), "open")
 
     open: callable = view
 
     @pilcheck
-    def __view_pil(self) -> None: self.pillow().show()
+    def __view_pil(self) -> None:
+        self.pillow().show()

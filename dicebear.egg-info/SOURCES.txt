@@ -12,3 +12,5 @@ dicebear.egg-info/SOURCES.txt
 dicebear.egg-info/dependency_links.txt
 dicebear.egg-info/requires.txt
 dicebear.egg-info/top_level.txt
+tests/__init__.py
+tests/test_main.py
