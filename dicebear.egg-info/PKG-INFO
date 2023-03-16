@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 2.5.0
+Version: 2.5.1
 Summary: A python wrapper for DiceBear's avatar generating API.
 Home-page: https://dicebear.janvh.tk
 Author: jvherck
@@ -67,7 +67,7 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 
 
 ## Changelog
-Find the changelog here: https://github.com/jvherck/dicebear/blob/main/README.md
+Find the changelog here: https://github.com/jvherck/dicebear/blob/main/CHANGELOG.md
 
 
 ---
