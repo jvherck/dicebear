@@ -25,6 +25,7 @@ import requests as r
 import os
 import pathlib
 import io
+import re as regex
 from urllib.parse import quote
 from string import ascii_lowercase, digits
 from ast import literal_eval
@@ -47,7 +48,7 @@ except Exception:
 
     _FindPil.found = False
 
-_x = "https://api.dicebear.com/5.3/{}/svg?seed={}&"
+_x = "https://api.dicebear.com/5.3/{}/svg?seed={}&"  # style, format, seed
 
 
 class DAvatar:
@@ -88,9 +89,6 @@ class DAvatar:
         self.__options: DOptions = options
         self.__specific: dict = custom
         self.__url_svg: str
-        self.__text: str
-        self.__content: bytes
-        self.__bytes: io.BytesIO
         self.__update()
 
     @property
@@ -155,51 +153,86 @@ class DAvatar:
         """
         return self.__url_svg.replace("/svg?", "/json?")
 
-    @property
-    def text(self) -> str:
+    def text(self, format: DFormat = DFormat.svg) -> str:
         """
+        :param format: class `dicebear.models.DFormat` :: which format to use
         :return: returns the avatar's request's full text/file in str format
         """
-        return self.__text
+        req = r.get(regex.sub(r'\/(svg|png|jpg|json)\?', f'/{format}?', self.__url_svg))
+        self.__checkLinkError(req.text)
+        return req.text
 
-    @property
-    def bytes(self) -> bytes:
+    def bytes(self, format: DFormat = DFormat.png) -> io.BytesIO:
         """
-        :return: returns the bytes of the avatar in bytes format
+        :param format: class `dicebear.models.DFormat` :: which format to use
+        :return: returns the bytes of the avatar in `io.BytesIO` format
         """
-        return self.__content
+        req = r.get(regex.sub(r'\/(svg|png|jpg|json)\?', f'/{format}?', self.__url_svg))
+        self.__checkLinkError(req.text)
+        return io.BytesIO(req.content)
 
-    def __repr__(self): return f"DAvatar(style=DStyle.{self.style}, seed=\"{self.seed}\", *, options={self.options}, custom={self.customizations})"
-    def __str__(self): return self.__url_svg
+    def __repr__(self):
+        return f"DAvatar(style=DStyle.{self.style}, seed=\"{self.seed}\", *, options={self.options}, custom={self.customizations})"
+
+    def __str__(self):
+        return self.__url_svg
+
     def __eq__(self, other):
         if type(other) == DAvatar: return self.__url_svg == other.__url_svg
         return self.__url_svg == other
+
     def __ne__(self, other):
         if type(other) == DAvatar: return self.__url_svg != other.__url_svg
         return self.__url_svg != other
+
     def __le__(self, other):
-        if type(other) == DAvatar: return self.options["size"] <= other.options["size"]
-        elif type(other) == dict: return self.options["size"] <= other["size"]
+        if type(other) == DAvatar:
+            return self.options["size"] <= other.options["size"]
+        elif type(other) == dict:
+            return self.options["size"] <= other["size"]
         return self.options["size"] <= other
+
     def __lt__(self, other):
-        if type(other) == DAvatar: return self.options["size"] < other.options["size"]
-        elif type(other) == dict: return self.options["size"] < other["size"]
+        if type(other) == DAvatar:
+            return self.options["size"] < other.options["size"]
+        elif type(other) == dict:
+            return self.options["size"] < other["size"]
         return self.options["size"] < other
+
     def __ge__(self, other):
-        if type(other) == DAvatar: return self.options["size"] >= other.options["size"]
-        elif type(other) == dict: return self.options["size"] >= other["size"]
+        if type(other) == DAvatar:
+            return self.options["size"] >= other.options["size"]
+        elif type(other) == dict:
+            return self.options["size"] >= other["size"]
         return self.options["size"] >= other
+
     def __gt__(self, other):
-        if type(other) == DAvatar: return self.options["size"] > other.options["size"]
-        elif type(other) == dict: return self.options["size"] > other["size"]
+        if type(other) == DAvatar:
+            return self.options["size"] > other.options["size"]
+        elif type(other) == dict:
+            return self.options["size"] > other["size"]
         return self.options["size"] > other
+
     def __dict__(self):
         return {"style": self.style, "seed": self.seed, "options": self.options, "custom": self.customisations}
+
     def __contains__(self, key: str):
         """
         Returns `True` if the specified key is found in either DAvatar.options.keys() or DAvatar.customisations.keys(), else returns `False`
         """
         return key in self.options.keys() or key in self.customisations.keys()
+
+    @staticmethod
+    def __checkLinkError(text: str) -> None:
+        """
+        :param text: requests.Response.text
+        """
+        status = ""
+        try:
+            status = literal_eval(text)
+        except (ValueError, SyntaxError):
+            pass
+        if type(status) == dict and "statusCode" in status: raise HTTPError(status)
 
     def __update(self) -> None:
         _link = _x
@@ -218,14 +251,8 @@ class DAvatar:
         _link += "&".join(_options + _specoptions)
         _link = _link.format(quote(str(self.__style)), quote(self.__seed))
         req = r.get(_link)
-        try:
-            status = literal_eval(req.text)
-        except (ValueError, SyntaxError):
-            pass
-        if type(status) == dict and "statusCode" in status: raise HTTPError(status)
+        self.__checkLinkError(req.text)
         self.__url_svg = req.url
-        self.__text, self.__content = req.text, req.content
-        self.__bytes = io.BytesIO(req.content)
 
     @staticmethod
     def __uniquify(path) -> str:
@@ -321,11 +348,11 @@ class DAvatar:
         try:
             if file_format in [DFormat.svg, DFormat.json]:
                 with open(_location, "w", encoding="UTF-8") as f:
-                    f.write(r.get(self.url_json).text if file_format == DFormat.json else self.__text)
+                    f.write(self.text(DFormat.json if file_format == DFormat.json else DFormat.svg))
                 f.close()
             else:
                 with open(_location, "wb") as f:
-                    f.write(self.__bytes.read())
+                    f.write(self.bytes(DFormat.jpg if file_format == DFormat.jpg else DFormat.png).read())
                 f.close()
             ret = _location
         except ValueError:
@@ -345,7 +372,7 @@ class DAvatar:
         :return: :py:class:`PIL.Image.Image`
         :raise `dicebear.errors.PILError`:
         """
-        raw_img = i.open(self.__bytes).tobytes()
+        raw_img = i.open(self.bytes(DFormat.png)).tobytes()
         img: i.Image = i.frombytes("RGBA", (256, 256), raw_img)
         return img
 
@@ -375,4 +402,4 @@ class DAvatar:
 
     @pilcheck
     def __view_pil(self) -> None:
-        self.pillow().show()
+        self.pillow().show("Dicebear Avatar")

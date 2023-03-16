@@ -38,6 +38,16 @@ av.customise(
 print(av.url_jpg) # Prints the jpg url
 
 
+# Saving an avatar to your device
+av.save(
+    location=None, # Passing `None` will save it in the current working directory
+    file_name="dicebear_avatar",
+    file_format=DFormat.svg,
+    overwrite=True,
+    open_after_save=False
+)
+
+
 # Converting the DAvatar object into a PIL.Image.Image object
 av_img: PIL.Image.Image = av.pillow()
 
