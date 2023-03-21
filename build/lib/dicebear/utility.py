@@ -20,22 +20,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from . import DStyle, DOptions, DAvatar
 from string import ascii_lowercase, digits
 from random import choices
 from typing import Union, List, Annotated
+
+from .avatar import DAvatar
+from .models import DStyle, DOptions, _statsIncrease
 
 __all__ = (
     'create_avatar',
     'bulk_create',
 )
+__filename__ = "utility.py"
 
 
 def create_avatar(
     style: DStyle,
     seed: str,
     options: Union[DOptions, None] = None,
-    customisations: Union[dict, None] = None
+    customisations: Union[dict, None] = None,
+    *,
+    test: bool = False
 ) -> DAvatar:
     """
     Creates a DAvatar object and returns it.
@@ -44,8 +49,11 @@ def create_avatar(
     :param seed: class `str` :: the seed for the avatar; the avatar will be edited according to the seed
     :param options: class `DOptions` :: the options for the avatar
     :param customisations: class `dict` :: customisations for the specified avatar style
+    :param test: class `bool` :: to indicate if you are currently testing or not
+    :type test: bool
     :return: DAvatar object
     """
+    _statsIncrease(__filename__, "/", ".create_avatar()", test)
     return DAvatar(style, seed, options=options, custom=customisations)
 
 
@@ -54,7 +62,8 @@ def bulk_create(
     amount: Annotated[int, "Min: 1, Max: 50"] = 2,
     *,
     options: DOptions = None,
-    custom: dict = None
+    custom: dict = None,
+    test: bool = False
 ) -> List[DAvatar]:
     """
     Creates a list of :py:class:`DAvatar` objects. Easy way to make multiple of the same style (but different randomly generated seeds) at once.
@@ -67,9 +76,12 @@ def bulk_create(
     :type options: dicebear.models.DOptions
     :param custom: class `dict` :: customisations for the specified style
     :type custom: dict
+    :param test: class `bool` :: to indicate if you are currently testing or not
+    :type test: bool
     :return: list[DAvatar] :: a list with DAvatar objects
     """
     if amount >= 50 or amount < 1: raise ValueError("argument `amount` must be between 1 and 50")
+    _statsIncrease(__filename__, "/", ".bulk_create()", test)
     if style is None: style = DStyle.random()
     if custom is None: custom = {}
     if options is None: options = DOptions.empty

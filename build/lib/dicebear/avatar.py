@@ -34,9 +34,10 @@ from random import choices
 
 from .models import *
 from .errors import *
-from .models import _FindPil, pilcheck
+from .models import _FindPil, _pilcheck, _statsIncrease
 
 __all__ = ('DAvatar',)
+__filename__ = "avatar.py"
 
 try:
     from PIL import Image as i
@@ -63,7 +64,8 @@ class DAvatar:
                  seed: str = None,
                  *,
                  options: DOptions = None,
-                 custom: dict = None
+                 custom: dict = None,
+                 test: bool = False
                  ) -> None:
         """
         Create a new avatar object.
@@ -76,6 +78,8 @@ class DAvatar:
         :type options: dicebear.models.DOptions
         :param custom: `class: dict` :: customisations for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
         :type custom: dict
+        :param test: class `bool` :: to indicate if you are currently testing or not
+        :type test: bool
         """
         if style is None: style = DStyle.random()
         if style not in styles:
@@ -88,14 +92,17 @@ class DAvatar:
         self.__seed: str = seed
         self.__options: DOptions = options
         self.__specific: dict = custom
+        self.__testing: bool = test
         self.__url_svg: str
         self.__update()
+        _statsIncrease(__filename__, self.__class__.__name__, ".__init__()", self.__testing)
 
     @property
     def style(self) -> DStyle:
         """
         :return: the style of the avatar
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".style", self.__testing)
         return self.__style
 
     @property
@@ -103,6 +110,7 @@ class DAvatar:
         """
         :return: the seed of the avatar
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".seed", self.__testing)
         return self.__seed
 
     @property
@@ -110,6 +118,7 @@ class DAvatar:
         """
         :return: the options of the avatar
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".options", self.__testing)
         _option_list = {}
         for key in self.__options:
             if self.__options[key] != DAvatar.default_options[key]:
@@ -121,6 +130,7 @@ class DAvatar:
         """
         :return: the customisations of the avatar
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".customisations", self.__testing)
         return self.__specific
 
     customizations = customs = customisations
@@ -130,6 +140,7 @@ class DAvatar:
         """
         :return: url to svg avatar
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".url_svg", self.__testing)
         return self.__url_svg
 
     @property
@@ -137,6 +148,7 @@ class DAvatar:
         """
         :return: url to png avatar
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".url_png", self.__testing)
         return self.__url_svg.replace("/svg?", "/png?")
 
     @property
@@ -144,6 +156,7 @@ class DAvatar:
         """
         :return: url to jpg avatar
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".url_jpg", self.__testing)
         return self.__url_svg.replace("/svg?", "/jpg?")
 
     @property
@@ -151,6 +164,7 @@ class DAvatar:
         """
         :return: url to json data of avatar
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".url_json", self.__testing)
         return self.__url_svg.replace("/svg?", "/json?")
 
     def text(self, format: DFormat = DFormat.svg) -> str:
@@ -158,6 +172,7 @@ class DAvatar:
         :param format: class `dicebear.models.DFormat` :: which format to use
         :return: returns the avatar's request's full text/file in str format
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".text()", self.__testing)
         req = r.get(regex.sub(r'\/(svg|png|jpg|json)\?', f'/{format}?', self.__url_svg))
         self.__checkLinkError(req.text)
         return req.text
@@ -167,6 +182,7 @@ class DAvatar:
         :param format: class `dicebear.models.DFormat` :: which format to use
         :return: returns the bytes of the avatar in `io.BytesIO` format
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".bytes()", self.__testing)
         req = r.get(regex.sub(r'\/(svg|png|jpg|json)\?', f'/{format}?', self.__url_svg))
         self.__checkLinkError(req.text)
         return io.BytesIO(req.content)
@@ -283,6 +299,7 @@ class DAvatar:
         :type blank_options: dicebear.models.DOptions
         :return: class `str` :: returns the link to the avatar url (svg)
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".edit()", self.__testing)
         if style: self.__style = style
         if seed: self.__seed = seed
         if extra_options:
@@ -306,6 +323,7 @@ class DAvatar:
         :type blank_options: dicebear.models.DOptions
         :return: class `str` :: returns the link to the avatar url (svg)
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".customise()", self.__testing)
         if extra_options:
             self.__specific.update(extra_options)
         elif blank_options:
@@ -338,6 +356,7 @@ class DAvatar:
         :type open_after_save: bool
         :return: class `str` :: the path of the saved image if saved successfully
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".save()", self.__testing)
         if file_format not in DFormat.all_formats:
             s = f'"{file_format}" is not a supported format!'
             raise ImageError(s)
@@ -364,7 +383,7 @@ class DAvatar:
         if open_after_save: self.view(use_pil=False)
         return ret
 
-    @pilcheck
+    @_pilcheck
     def pillow(self) -> i.Image:
         """
         Convert a :py:class:`DAvatar` to a :py:class:`PIL.Image.Image` object.
@@ -372,6 +391,7 @@ class DAvatar:
         :return: :py:class:`PIL.Image.Image`
         :raise `dicebear.errors.PILError`:
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".pillow()", self.__testing)
         raw_img = i.open(self.bytes(DFormat.png)).tobytes()
         img: i.Image = i.frombytes("RGBA", (256, 256), raw_img)
         return img
@@ -391,6 +411,7 @@ class DAvatar:
         :return: :py:class:`NoneType`
         :raise `dicebear.errors.PILError`:
         """
+        _statsIncrease(__filename__, self.__class__.__name__, ".view()", self.__testing)
         if use_pil and _FindPil.found is True:
             self.__view_pil()
         elif use_pil and _FindPil.found is False:
@@ -400,6 +421,6 @@ class DAvatar:
 
     open: callable = view
 
-    @pilcheck
+    @_pilcheck
     def __view_pil(self) -> None:
         self.pillow().show("Dicebear Avatar")

@@ -19,8 +19,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import signal
 from typing import Union, List
 from random import choice, choices
+from requests import post
+from contextlib import contextmanager
 
 from .errors import *
 
@@ -206,7 +209,18 @@ class DOptions(dict):
     def _ver(self): return type(self)
 
 
-def pilcheck(func):
+
+
+
+def _statsIncrease(_file: str, _class: str, _function: str, _test: bool = False) -> None:
+    """
+    Pings an API to update this package's usage stats. This will be used to analyse Dicebear's usage and improve your overall experience.
+    """
+    __body = {"file": _file, "class": _class, "function": _function, "test": str(_test).lower()}
+    __headers = {"User-Agent": "pipedream/1", "Content-Type": "application/json", "-Key": "acbd2023"}
+    post("https://eo1p6rm1ydzj8yl.m.pipedream.net/runs", json=__body, headers=__headers, timeout=10)
+
+def _pilcheck(func):
     """Decorator to check if package Pillow is installed"""
     def wrapper(*args, **kwargs):
         if _FindPil.found is True: return func(*args, **kwargs)

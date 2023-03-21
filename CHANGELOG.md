@@ -8,7 +8,18 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 ---
 
 
-## v2.5.0
+## v2.5.2
+2023-03-21
+
+### Back-end
+- The package now pings an API to update the usage statistics (nothing personal is stored, it simply increments the 
+amount of times certain functions have been used)
+
+
+---
+
+
+## v2.5.1
 2023-03-16
 
 ### Removed
