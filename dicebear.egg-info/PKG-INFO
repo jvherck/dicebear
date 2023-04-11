@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 2.5.2
+Version: 2.6.1
 Summary: A python wrapper for DiceBear's avatar generating API.
 Home-page: https://dicebear.janvh.tk
 Author: jvherck
@@ -11,7 +11,7 @@ License: MIT License
 Project-URL: Documentation, https://jvherck.github.io/dicebear
 Project-URL: Source, https://github.com/jvherck/dicebear
 Project-URL: Tracker, https://github.com/jvherck/dicebear/issues
-Keywords: python,dicebear,avatar,avatars,generating,generation,generator,API,wrapper,image,images,picture,pictures,png,jpg,svg,json,cli,pillow,pil,requests,adventurer,adventurer-neutral,avataaars,avataaars-neutral,big-ears,big-ears-neutral,big-smile,bottts,bottts-neutral,croodles,croodles-neutral,fun-emoji,icons,identicon,initials,lorelei,lorelei-neutral,micah,miniavs,open-peeps,personas,pixel-art,pixel-art-neutral,shapes,thumbs
+Keywords: python,dicebear,avatar,avatars,generating,generation,generator,API,wrapper,image,images,picture,pictures,png,jpg,svg,json,cli,pillow,pil,requests,adventurer,adventurer-neutral,avataaars,avataaars-neutral,big-ears,big-ears-neutral,big-smile,bottts,bottts-neutral,croodles,croodles-neutral,fun-emoji,icons,identicon,initials,lorelei,lorelei-neutral,micah,miniavs,notionists,notionists-neutral,open-peeps,personas,pixel-art,pixel-art-neutral,shapes,thumbs
 Classifier: Development Status :: 5 - Production/Stable
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Other Audience
@@ -189,6 +189,8 @@ https://dicebear.com/styles
 * `lorelei-neutral`  
 * `micah`  
 * `miniavs`  
+* `notionists`
+* `notionists-neutral`
 * `open-peeps`  
 * `personas`  
 * `pixel-art`  
@@ -239,6 +241,8 @@ Click the style to see its options.
 * [lorelei-neutral](https://dicebear.com/styles/lorelei-neutral#options)  
 * [micah](https://dicebear.com/styles/micah#options)  
 * [miniavs](https://dicebear.com/styles/miniavs#options)  
+* [notionists](https://dicebear.com/styles/notionists#options)  
+* [notionists-neutral](https://dicebear.com/styles/notionists-neutral#options)  
 * [open-peeps](https://dicebear.com/styles/open-peeps#options)  
 * [personas](https://dicebear.com/styles/personas#options)  
 * [pixel-art](https://dicebear.com/styles/pixel-art#options)  

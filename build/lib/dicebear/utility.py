@@ -21,26 +21,27 @@
 # SOFTWARE.
 
 from string import ascii_lowercase, digits
-from random import choices
+from random import choices, choice, randint
 from typing import Union, List, Annotated
 
 from .avatar import DAvatar
-from .models import DStyle, DOptions, _statsIncrease
+from .models import DStyle, DOptions, DColor, _statsIncrease
 
 __all__ = (
     'create_avatar',
+    'create_random',
     'bulk_create',
 )
 __filename__ = "utility.py"
 
 
 def create_avatar(
-    style: DStyle,
-    seed: str,
-    options: Union[DOptions, None] = None,
-    customisations: Union[dict, None] = None,
-    *,
-    test: bool = False
+        style: DStyle,
+        seed: str,
+        options: Union[DOptions, None] = None,
+        customisations: Union[dict, None] = None,
+        *,
+        test: bool = False
 ) -> DAvatar:
     """
     Creates a DAvatar object and returns it.
@@ -57,13 +58,39 @@ def create_avatar(
     return DAvatar(style, seed, options=options, custom=customisations)
 
 
+def create_random(
+        randomOptions: bool = False,
+        *,
+        test: bool = False
+) -> DAvatar:
+    """
+    Creates a random DAvatar object and returns it.
+
+    :param randomOptions: class `bool` :: whether to use random (background) options for this avatar or not
+    :type randomOptions: bool
+    :param test: class `bool` :: to indicate if you are currently testing or not
+    :type test: bool
+    :return: DAvatar object
+    """
+    _statsIncrease(__filename__, "/", ".create_random()", test)
+    if randomOptions:
+        _type = choice(["solid", "gradientLinear"])
+        _color = [DColor.random()]
+        if _type == "gradientLinear": _color.append(DColor.random())
+        options = DOptions(flip=choice([True, False]), backgroundColor=DColor([str(x) for x in _color]),
+                           backgroundType=_type, backgroundRotation=randint(0, 360))
+    else:
+        options = None
+    return DAvatar(DStyle.random(), "".join(choices(ascii_lowercase + digits, k=20)), options=options)
+
+
 def bulk_create(
-    style: DStyle = DStyle.random(),
-    amount: Annotated[int, "Min: 1, Max: 50"] = 2,
-    *,
-    options: DOptions = None,
-    custom: dict = None,
-    test: bool = False
+        style: DStyle = DStyle.random(),
+        amount: Annotated[int, "Min: 1, Max: 50"] = 2,
+        *,
+        options: DOptions = None,
+        custom: dict = None,
+        test: bool = False
 ) -> List[DAvatar]:
     """
     Creates a list of :py:class:`DAvatar` objects. Easy way to make multiple of the same style (but different randomly generated seeds) at once.

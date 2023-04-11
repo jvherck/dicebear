@@ -105,6 +105,11 @@ class TUtil(unittest.TestCase):
             avatar._x.format(quote(style), quote(seed)) + "rotate=90&face=face04"
         )
 
+    def testRandom(self):
+        av = utility.create_random(True)
+        _url_svg = av.url_svg
+        self.assertEqual(av.url_svg, _url_svg)
+
     def testMulti(self):
         style = models.DStyle.thumbs
         options = models.DOptions(rotate=90)

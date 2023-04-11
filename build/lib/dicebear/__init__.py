@@ -25,4 +25,4 @@ from .errors import *
 from .models import *
 from .utility import *
 
-__version__ = "2.5.2"
+__version__ = "2.6.1"

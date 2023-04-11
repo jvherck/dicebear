@@ -8,6 +8,20 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 ---
 
 
+## v2.6.1
+2023-04-11
+
+### Added
+- New style `notionists`
+- New style `notionists-neutral`
+
+### Back-end
+- Upgrade to Dicebear new API version 6.0
+
+
+---
+
+
 ## v2.5.2
 2023-03-21
 

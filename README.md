@@ -151,6 +151,8 @@ https://dicebear.com/styles
 * `lorelei-neutral`  
 * `micah`  
 * `miniavs`  
+* `notionists`
+* `notionists-neutral`
 * `open-peeps`  
 * `personas`  
 * `pixel-art`  
@@ -201,6 +203,8 @@ Click the style to see its options.
 * [lorelei-neutral](https://dicebear.com/styles/lorelei-neutral#options)  
 * [micah](https://dicebear.com/styles/micah#options)  
 * [miniavs](https://dicebear.com/styles/miniavs#options)  
+* [notionists](https://dicebear.com/styles/notionists#options)  
+* [notionists-neutral](https://dicebear.com/styles/notionists-neutral#options)  
 * [open-peeps](https://dicebear.com/styles/open-peeps#options)  
 * [personas](https://dicebear.com/styles/personas#options)  
 * [pixel-art](https://dicebear.com/styles/pixel-art#options)  

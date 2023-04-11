@@ -49,7 +49,7 @@ except Exception:
 
     _FindPil.found = False
 
-_x = "https://api.dicebear.com/5.3/{}/svg?seed={}&"  # style, format, seed
+_x = "https://api.dicebear.com/6.x/{}/svg?seed={}&"  # style, format, seed
 
 
 class DAvatar:
