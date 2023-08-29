@@ -8,12 +8,26 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 ---
 
 
+## v2.7.0
+2023-08-29
+
+### Added
+- New style [`rings`](https://dicebear.janvh.tk/start/customization#styles)
+- New function [`DStyle.get_schema(style: str)`](https://dicebear.janvh.tk/reference/models#def-get_schema) to get the schema (all properties) of the given avatar style
+
+### Back-end
+- Upgrade to Dicebear new API version 7.0
+
+
+---
+
+
 ## v2.6.1
 2023-04-11
 
 ### Added
-- New style `notionists`
-- New style `notionists-neutral`
+- New style [`notionists`](https://dicebear.janvh.tk/start/customization#styles)
+- New style [`notionists-neutral`](https://dicebear.janvh.tk/start/customization#styles)
 
 ### Back-end
 - Upgrade to Dicebear new API version 6.0

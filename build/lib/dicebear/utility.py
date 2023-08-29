@@ -57,9 +57,10 @@ def create_avatar(
     _statsIncrease(__filename__, "/", ".create_avatar()", test)
     return DAvatar(style, seed, options=options, custom=customisations)
 
-
+# TODO: add randomCustomisations
 def create_random(
         randomOptions: bool = False,
+        # randomCustomisations: bool = False,
         *,
         test: bool = False
 ) -> DAvatar:
@@ -73,14 +74,14 @@ def create_random(
     :return: DAvatar object
     """
     _statsIncrease(__filename__, "/", ".create_random()", test)
+    options = None
+    # customs = None
     if randomOptions:
         _type = choice(["solid", "gradientLinear"])
         _color = [DColor.random()]
         if _type == "gradientLinear": _color.append(DColor.random())
         options = DOptions(flip=choice([True, False]), backgroundColor=DColor([str(x) for x in _color]),
                            backgroundType=_type, backgroundRotation=randint(0, 360))
-    else:
-        options = None
     return DAvatar(DStyle.random(), "".join(choices(ascii_lowercase + digits, k=20)), options=options)
 
 

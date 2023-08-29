@@ -20,11 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import signal
 from typing import Union, List
 from random import choice, choices
-from requests import post
-from contextlib import contextmanager
+from requests import post, get
 
 from .errors import *
 
@@ -47,13 +45,14 @@ class _FindPil:
 _ascii_lowercase = "abcdef"
 _incorrect_lowercase = "ghijklmnopqrstuvwxyz"
 _digits = "0123456789"
+_y = "https://api.dicebear.com/7.x/{}/schema.json"
 
 options = all_options = ["flip", "rotate", "scale", "radius", "size", "backgroundColor", "backgroundType",
                          "backgroundRotation", "translateX", "translateY", "randomizeIds"]
 styles = ["adventurer", "adventurer-neutral", "avataaars", "avataaars-neutral", "big-ears", "big-ears-neutral",
           "big-smile", "bottts", "bottts-neutral", "croodles", "croodles-neutral", "fun-emoji", "icons",
           "identicon", "initials", "lorelei", "lorelei-neutral", "micah", "miniavs", "open-peeps", "personas",
-          "pixel-art", "pixel-art-neutral", "shapes", "thumbs"]
+          "pixel-art", "pixel-art-neutral", "rings", "shapes", "thumbs"]
 # styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
 
 
@@ -66,7 +65,7 @@ class DColor:
         """
         Colors used in this package. This uses HTML/hex color codes!
 
-        :param html_code: class `str` :: the html color code to use as color. This can be a list of strings if `backgroundType` has been set to "gradientLinear". (default: transparent)
+        :param html_code: :py:class:`str` :: the html color code to use as color. This can be a list of strings if `backgroundType` has been set to "gradientLinear". (default: transparent)
         :type html_code: str
         :raise dicebear.errors.IncorrectColor: if the given html_code is an invalid hex color
         """
@@ -95,14 +94,14 @@ class DColor:
         """
         Get a random html code.
 
-        :return: class `dicebear.models.DColor`
+        :return: :py:class:`dicebear.models.DColor`
         """
         return DColor(''.join(choices(_ascii_lowercase + _digits, k=6)))
 
 
 class DStyle:
     """
-    All possible styles for the avatars. Visit https://avatars.dicebear.com/styles to see what they look like.\n
+    All possible styles for the avatars. Visit https://dicebear.com/styles to see what they look like.\n
     - Note: Only works with attributes!
     """
     list = all_styles = styles
@@ -129,23 +128,47 @@ class DStyle:
     personas = styles[20]
     pixel_art = styles[21]
     pixel_art_neutral = styles[22]
-    shapes = styles[23]
-    thumbs = styles[24]
+    rings = styles[23]
+    shapes = styles[24]
+    thumbs = styles[25]
+
     def __init__(self):
         """Only use `.attribute` to use a style."""
-        pass
+        raise NotImplementedError("DStyle should not be initialized.")
+
+    @staticmethod
+    def get_schema(style: str) -> dict:
+        """
+        Returns a dict with the JSON schema (all properties) of the given avatar style.
+
+        :param style: :py:class:`str` :: the avatar style to get the JSON schema of
+        :type style: str
+        :return: :py:class:`dict`
+        """
+        if style not in styles:
+            raise ValueError(f'"{style}" is not a valid avatar style.')
+        try:
+            dictionary = get(_y.format(style)).json()
+        except Exception as e:
+            raise HTTPError({"exception": str(type(e)), "error": str(e)})
+        else:
+            return dictionary
+
     @staticmethod
     def random():
         """
         Get a random style.
+
+        :return: a random style
         """
         return choice(styles)
+
     @staticmethod
     def from_str(style_str: str):
         """
         Get an avatar style from a string.
 
-        :param style_str: class `str` :: the string to convert to a DStyle
+        :param style_str: :py:class:`str` :: the string to convert to a DStyle
         :type style_str: str
         """
         return eval("DStyle.{}".format(style_str.replace("-", "_")))
@@ -161,15 +184,17 @@ class DFormat:
     png = "png"
     jpg = "jpg"
     json = "json"
+
     def __init__(self):
         """Only use `.attribute` to use a format."""
-        pass
+        raise NotImplementedError("DFormat should not be initialized.")
+
     @staticmethod
     def from_str(format_str: str):
         """
         Get an avatar format from a string
 
-        :param format_str: class `str` :: the string to convert to a DFormat
+        :param format_str: :py:class:`str` :: the string to convert to a DFormat
         :type format_str: str
         """
         return eval("DFormat.{}".format(format_str.replace("DFormat.", "")))

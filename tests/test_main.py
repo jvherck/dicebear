@@ -54,6 +54,17 @@ class TStyle(unittest.TestCase):
         self.assertEqual(avataaars, "avataaars")
         self.assertRaises(AttributeError, models.DStyle.from_str, style_str="something-wrong")
         self.assertIn(models.DStyle.random(), models.styles)
+        schema = models.DStyle.get_schema(models.DStyle.rings)
+        self.assertEqual("object", schema["type"])
+        self.assertIn("properties", schema)
+        self.assertIn("seed", schema["properties"])
+        self.assertIn("type", schema["properties"]["seed"])
+        self.assertEqual("string", schema["properties"]["seed"]["type"])
+        self.assertIn("ringOne", schema["properties"])
+        self.assertIn("ringTwo", schema["properties"])
+        self.assertIn("ringThree", schema["properties"])
+        self.assertIn("ringFour", schema["properties"])
+        self.assertIn("ringFive", schema["properties"])
 
 
 class TAvatar(unittest.TestCase):
@@ -98,11 +109,11 @@ class TUtil(unittest.TestCase):
         style = models.DStyle.random()
         seed = "John Apple"
         options = models.DOptions(rotate=90)
-        custom = {"face": "face04"}
+        custom = {"scale": "52"}
         av = utility.create_avatar(style, seed, options, custom)
         self.assertEqual(
             av,
-            avatar._x.format(quote(style), quote(seed)) + "rotate=90&face=face04"
+            avatar._x.format(quote(style), quote(seed)) + "rotate=90&scale=52"
         )
 
     def testRandom(self):

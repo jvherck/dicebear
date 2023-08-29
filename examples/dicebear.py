@@ -1,5 +1,5 @@
 import PIL.Image
-from dicebear import DAvatar, DStyle, DOptions, DColor, bulk_create
+from dicebear import DAvatar, DStyle, DOptions, DColor, DFormat, bulk_create
 
 
 # Creating options

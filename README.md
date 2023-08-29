@@ -48,7 +48,7 @@ Important note: *Pillow* is not a required dependency, it's only required when y
 When using a `PIL` function while it's not installed it will raise `dicebear.errors.PILError`.  
 ```py  
 import PIL.Image
-from dicebear import DAvatar, DStyle, DOptions, DColor, bulk_create
+from dicebear import DAvatar, DStyle, DOptions, DColor, DFormat, bulk_create
 
 
 # Creating options
@@ -157,6 +157,7 @@ https://dicebear.com/styles
 * `personas`  
 * `pixel-art`  
 * `pixel-art-neutral`
+* `rings`
 * `shapes`
 * `thumbs`
 
@@ -209,6 +210,7 @@ Click the style to see its options.
 * [personas](https://dicebear.com/styles/personas#options)  
 * [pixel-art](https://dicebear.com/styles/pixel-art#options)  
 * [pixel-art-neutral](https://dicebear.com/styles/pixel-art-neutral#options)  
+* [rings](https://www.dicebear.com/styles/rings#options)
 * [shapes](https://dicebear.com/styles/shapes#options)  
 * [thumbs](https://dicebear.com/styles/thumbs#options)  
 
