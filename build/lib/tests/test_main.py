@@ -88,6 +88,14 @@ class TAvatar(unittest.TestCase):
             style=style, seed=seed, options=options
         )
 
+    def test3(self):
+        style = "bottts"
+        seed = "John Apple"
+        options = models.DOptions(flip=True, rotate=90, backgroundType="gradientLinear")
+        av = avatar.DAvatar(style, seed, options=options)
+        self.assertIn("properties", av.schema)
+        self.assertIn("rotate", av.schema["properties"])
+
     def testAdv(self):
         style = "bottts"
         seed = "John Apple"

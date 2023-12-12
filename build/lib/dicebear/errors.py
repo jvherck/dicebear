@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 from typing import Union
+
 import logging
 
 __all__ = (
@@ -33,6 +34,7 @@ __all__ = (
     'PILError',
     'log_error',
 )
+__filename__ = "errors.py"
 
 class IncorrectColor(Exception):
     """Incorrect color"""

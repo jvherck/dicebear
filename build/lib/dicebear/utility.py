@@ -39,9 +39,7 @@ def create_avatar(
         style: DStyle,
         seed: str,
         options: Union[DOptions, None] = None,
-        customisations: Union[dict, None] = None,
-        *,
-        test: bool = False
+        customisations: Union[dict, None] = None
 ) -> DAvatar:
     """
     Creates a DAvatar object and returns it.
@@ -50,32 +48,23 @@ def create_avatar(
     :param seed: class `str` :: the seed for the avatar; the avatar will be edited according to the seed
     :param options: class `DOptions` :: the options for the avatar
     :param customisations: class `dict` :: customisations for the specified avatar style
-    :param test: class `bool` :: to indicate if you are currently testing or not
-    :type test: bool
     :return: DAvatar object
     """
-    _statsIncrease(__filename__, "/", ".create_avatar()", test)
+    _statsIncrease(__filename__, "/", ".create_avatar()")
     return DAvatar(style, seed, options=options, custom=customisations)
 
-# TODO: add randomCustomisations
 def create_random(
-        randomOptions: bool = False,
-        # randomCustomisations: bool = False,
-        *,
-        test: bool = False
+        randomOptions: bool = False
 ) -> DAvatar:
     """
     Creates a random DAvatar object and returns it.
 
     :param randomOptions: class `bool` :: whether to use random (background) options for this avatar or not
     :type randomOptions: bool
-    :param test: class `bool` :: to indicate if you are currently testing or not
-    :type test: bool
     :return: DAvatar object
     """
-    _statsIncrease(__filename__, "/", ".create_random()", test)
+    _statsIncrease(__filename__, "/", ".create_random()")
     options = None
-    # customs = None
     if randomOptions:
         _type = choice(["solid", "gradientLinear"])
         _color = [DColor.random()]
@@ -91,7 +80,6 @@ def bulk_create(
         *,
         options: DOptions = None,
         custom: dict = None,
-        test: bool = False
 ) -> List[DAvatar]:
     """
     Creates a list of :py:class:`DAvatar` objects. Easy way to make multiple of the same style (but different randomly generated seeds) at once.
@@ -104,12 +92,10 @@ def bulk_create(
     :type options: dicebear.models.DOptions
     :param custom: class `dict` :: customisations for the specified style
     :type custom: dict
-    :param test: class `bool` :: to indicate if you are currently testing or not
-    :type test: bool
     :return: list[DAvatar] :: a list with DAvatar objects
     """
     if amount >= 50 or amount < 1: raise ValueError("argument `amount` must be between 1 and 50")
-    _statsIncrease(__filename__, "/", ".bulk_create()", test)
+    _statsIncrease(__filename__, "/", ".bulk_create()")
     if style is None: style = DStyle.random()
     if custom is None: custom = {}
     if options is None: options = DOptions.empty

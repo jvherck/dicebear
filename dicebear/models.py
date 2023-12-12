@@ -36,6 +36,7 @@ __all__ = (
     'styles',
     'default_options',
 )
+__filename__ = "models.py"
 
 
 class _FindPil:
@@ -90,7 +91,7 @@ class DColor:
         return self.html_code != other
 
     @staticmethod
-    def random():
+    def random() -> "DColor":
         """
         Get a random html code.
 
@@ -155,7 +156,7 @@ class DStyle:
             return dictionary
 
     @staticmethod
-    def random():
+    def random() -> str:
         """
         Get a random style.
 
@@ -163,15 +164,15 @@ class DStyle:
         """
         return choice(styles)
 
-    @staticmethod
-    def from_str(style_str: str):
+    @classmethod
+    def from_str(cls, style_str: str) -> str:
         """
         Get an avatar style from a string.
 
         :param style_str: :py:class:`str` :: the string to convert to a DStyle
         :type style_str: str
         """
-        return eval("DStyle.{}".format(style_str.replace("-", "_")))
+        return getattr(cls, style_str.replace("-", "_"))
 
 
 class DFormat:
@@ -189,15 +190,15 @@ class DFormat:
         """Only use `.attribute` to use a format."""
         raise NotImplementedError("DFormat should not be initialized.")
 
-    @staticmethod
-    def from_str(format_str: str):
+    @classmethod
+    def from_str(cls, format_str: str) -> str:
         """
         Get an avatar format from a string
 
         :param format_str: :py:class:`str` :: the string to convert to a DFormat
         :type format_str: str
         """
-        return eval("DFormat.{}".format(format_str.replace("DFormat.", "")))
+        return getattr(cls, format_str.replace("DFormat.", ""))
 
 
 default_options: dict = {options[0]: False, options[1]: 0, options[2]: 100, options[3]: 0, options[4]: 0,
@@ -238,7 +239,7 @@ class DOptions(dict):
 
 
 
-def _statsIncrease(_file: str, _class: str, _function: str, _test: bool = False) -> None:
+def _statsIncrease(_file: str, _class: str, _function: str, *, _test: bool = False) -> None:
     """
     Pings an API to update this package's usage stats. This will be used to analyse Dicebear's usage and improve your overall experience.
     """

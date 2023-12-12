@@ -8,6 +8,20 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 ---
 
 
+## v2.7.1
+2023-12-12
+
+### Added
+- New attribute [`schema`](https://dicebear.janvh.tk/reference/avatar#properties) for [`DAvatar`](https://dicebear.janvh.tk/reference/avatar#class-davatar) class
+
+### Back-end
+- Removed `test` parameter on all functions
+- Improved type hinting and imports
+
+
+---
+
+
 ## v2.7.0
 2023-08-29
 
