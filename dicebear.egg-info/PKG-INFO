@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 2.7.1
+Version: 2.7.2
 Summary: A python wrapper for DiceBear's avatar generating API.
 Home-page: https://dicebear.janvh.tk
 Author: jvherck
@@ -23,6 +23,7 @@ Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
 Classifier: Operating System :: Unix
 Classifier: Operating System :: MacOS
 Classifier: Operating System :: Microsoft :: Windows
