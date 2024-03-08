@@ -52,8 +52,9 @@ options = all_options = ["flip", "rotate", "scale", "radius", "size", "backgroun
                          "backgroundRotation", "translateX", "translateY", "randomizeIds"]
 styles = ["adventurer", "adventurer-neutral", "avataaars", "avataaars-neutral", "big-ears", "big-ears-neutral",
           "big-smile", "bottts", "bottts-neutral", "croodles", "croodles-neutral", "fun-emoji", "icons",
-          "identicon", "initials", "lorelei", "lorelei-neutral", "micah", "miniavs", "open-peeps", "personas",
-          "pixel-art", "pixel-art-neutral", "rings", "shapes", "thumbs"]
+          "identicon", "initials", "lorelei", "lorelei-neutral", "micah", "miniavs", "notionists-neutral",
+          "notionists-neutral", "open-peeps", "personas", "pixel-art", "pixel-art-neutral", "rings", "shapes",
+          "thumbs"]
 # styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
 
 
@@ -125,13 +126,15 @@ class DStyle:
     lorelei_neutral = styles[16]
     micah = styles[17]
     miniavs = styles[18]
-    open_peeps = styles[19]
-    personas = styles[20]
-    pixel_art = styles[21]
-    pixel_art_neutral = styles[22]
-    rings = styles[23]
-    shapes = styles[24]
-    thumbs = styles[25]
+    notionists = styles[19]
+    notionists-neutral = styles[20]
+    open_peeps = styles[21]
+    personas = styles[22]
+    pixel_art = styles[23]
+    pixel_art_neutral = styles[24]
+    rings = styles[25]
+    shapes = styles[26]
+    thumbs = styles[27]
 
     def __init__(self):
         """Only use `.attribute` to use a style."""
