@@ -127,7 +127,7 @@ class DStyle:
     micah = styles[17]
     miniavs = styles[18]
     notionists = styles[19]
-    notionists-neutral = styles[20]
+    notionists_neutral = styles[20]
     open_peeps = styles[21]
     personas = styles[22]
     pixel_art = styles[23]
