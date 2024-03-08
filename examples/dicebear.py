@@ -1,5 +1,10 @@
 import PIL.Image
 from dicebear import DAvatar, DStyle, DOptions, DColor, DFormat, bulk_create
+import os
+
+
+# Enable usage statistics
+os.environ['ENABLE_PYTHON_DICEBEAR_USAGE_STATS'] = 'true'
 
 
 # Creating options
