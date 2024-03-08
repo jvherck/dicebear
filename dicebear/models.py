@@ -52,7 +52,7 @@ options = all_options = ["flip", "rotate", "scale", "radius", "size", "backgroun
                          "backgroundRotation", "translateX", "translateY", "randomizeIds"]
 styles = ["adventurer", "adventurer-neutral", "avataaars", "avataaars-neutral", "big-ears", "big-ears-neutral",
           "big-smile", "bottts", "bottts-neutral", "croodles", "croodles-neutral", "fun-emoji", "icons",
-          "identicon", "initials", "lorelei", "lorelei-neutral", "micah", "miniavs", "notionists-neutral",
+          "identicon", "initials", "lorelei", "lorelei-neutral", "micah", "miniavs", "notionists",
           "notionists-neutral", "open-peeps", "personas", "pixel-art", "pixel-art-neutral", "rings", "shapes",
           "thumbs"]
 # styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
