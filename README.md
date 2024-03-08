@@ -46,9 +46,16 @@ If that doesn't work try `py -m pip install dicebear`
 ## Usage  
 Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`).
 When using a `PIL` function while it's not installed it will raise `dicebear.errors.PILError`.  
+
+When the environment variable `ENABLE_PYTHON_DICEBEAR_USAGE_STATS` is set, an API will be pinged on most function calls to update this package's usage stats. This will be used to analyse Dicebear's usage and improve your overall experience, but may have performance costs.
 ```py  
 import PIL.Image
 from dicebear import DAvatar, DStyle, DOptions, DColor, DFormat, bulk_create
+import os
+
+
+# Enable usage statistics
+os.environ['ENABLE_PYTHON_DICEBEAR_USAGE_STATS'] = 'true'
 
 
 # Creating options
