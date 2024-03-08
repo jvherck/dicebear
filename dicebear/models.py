@@ -23,6 +23,7 @@
 from typing import Union, List
 from random import choice, choices
 from requests import post, get
+from os import environ
 
 from .errors import *
 
@@ -243,6 +244,8 @@ def _statsIncrease(_file: str, _class: str, _function: str, *, _test: bool = Fal
     """
     Pings an API to update this package's usage stats. This will be used to analyse Dicebear's usage and improve your overall experience.
     """
+    if environ.get('ENABLE_PYTHON_DICEBEAR_USAGE_STATS', '').lower() != 'true':
+        return
     __body = {"file": _file, "class": _class, "function": _function, "test": str(_test).lower()}
     __headers = {"User-Agent": "pipedream/1", "Content-Type": "application/json", "-Key": "acbd2023"}
     post("https://eo1p6rm1ydzj8yl.m.pipedream.net/runs", json=__body, headers=__headers, timeout=10)
