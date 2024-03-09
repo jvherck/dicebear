@@ -1,2 +1,8 @@
 __pycache__
 .idea
+
+/build/
+/dicebear.egg-info/
+/dist/
+
+pyproject.toml

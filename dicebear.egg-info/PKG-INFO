@@ -1,14 +1,14 @@
 Metadata-Version: 2.1
 Name: dicebear
-Version: 2.7.2
+Version: 2.7.3
 Summary: A python wrapper for DiceBear's avatar generating API.
-Home-page: https://dicebear.janvh.tk
+Home-page: https://jvh.gitbook.io/dicebear
 Author: jvherck
 Author-email: contact@janvh.be
 Maintainer: jvherck
 Maintainer-email: contact@janvh.be
 License: MIT License
-Project-URL: Documentation, https://jvherck.github.io/dicebear
+Project-URL: Documentation, https://jvh.gitbook.io/dicebear
 Project-URL: Source, https://github.com/jvherck/dicebear
 Project-URL: Tracker, https://github.com/jvherck/dicebear/issues
 Keywords: python,dicebear,avatar,avatars,generating,generation,generator,API,wrapper,image,images,picture,pictures,png,jpg,svg,json,cli,pillow,pil,requests,adventurer,adventurer-neutral,avataaars,avataaars-neutral,big-ears,big-ears-neutral,big-smile,bottts,bottts-neutral,croodles,croodles-neutral,fun-emoji,icons,identicon,initials,lorelei,lorelei-neutral,micah,miniavs,notionists,notionists-neutral,open-peeps,personas,pixel-art,pixel-art-neutral,shapes,thumbs
@@ -39,7 +39,7 @@ License-File: LICENSE
 
 # DiceBear Py Wrapper  
 ![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads)
-![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=month&units=international_system&left_color=grey&right_color=orange&left_text=Downloads/Month)
+![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=month&units=international_system&left_color=grey&right_color=orange&left_text=Downloads/Month) \
 ![PyPI](https://img.shields.io/pypi/v/dicebear)
 ![GitHub issues](https://img.shields.io/github/issues/jvherck/dicebear)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dicebear)
@@ -47,7 +47,7 @@ License-File: LICENSE
 ![Maintenance](https://img.shields.io/maintenance/yes/2024)
 ![PyPI - Status](https://img.shields.io/pypi/status/dicebear)
 
-Always keep an eye on https://dicebear.janvh.tk for updates and warnings about this packages!
+Always keep an eye on https://jvh.gitbook.io/dicebear/ for updates and warnings about this packages!
 
 [`dicebear`](https://pypi.org/project/dicebear/) is an API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program. \
 For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebear/tree/main/examples).
@@ -57,7 +57,7 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 
 
 ## Useful links  
-* Docs: https://jvherck.github.io/dicebear  
+* Docs: https://jvh.gitbook.io/dicebear/  
 * PyPI: https://pypi.org/project/dicebear/  
 * GitHub: https://github.com/jvherck/dicebear  
 * Dicebear: https://dicebear.com/  
@@ -75,8 +75,8 @@ Find the changelog here: https://github.com/jvherck/dicebear/blob/main/CHANGELOG
 
 
 ## How to install  
-Run `pip install dicebear` \
-If that doesn't work try `py -m pip install dicebear`  
+Run `pip install -U dicebear` \
+If that doesn't work try `py -m pip install -U dicebear`  
 
 
 ---
@@ -85,9 +85,16 @@ If that doesn't work try `py -m pip install dicebear`
 ## Usage  
 Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`).
 When using a `PIL` function while it's not installed it will raise `dicebear.errors.PILError`.  
+
+When the environment variable `ENABLE_PYTHON_DICEBEAR_USAGE_STATS` is set to true, an API will be pinged on most function calls to update this package's usage stats. This will be used to analyse Dicebear's usage and improve your overall experience, but may have performance costs.
 ```py  
 import PIL.Image
+import os
 from dicebear import DAvatar, DStyle, DOptions, DColor, DFormat, bulk_create
+
+
+# Enable anonymous usage statistics
+os.environ['ENABLE_PYTHON_DICEBEAR_USAGE_STATS'] = 'true'
 
 
 # Creating options
@@ -276,4 +283,4 @@ making this amazing API and to [all artists](https://dicebear.com/licenses) that
 ## Licenses and privacy policy  
 - Dicebear **Licenses**: https://dicebear.com/licenses  
 - Dicebear **Privacy Policy**: https://dicebear.com/legal/privacy-policy  
-- Dicebear Python API wrapper (this project): https://dicebear.janvh.tk/license
+- Dicebear Python API wrapper (this project): https://jvh.gitbook.io/dicebear/license

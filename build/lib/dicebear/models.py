@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023 jvherck (on GitHub)
+# Copyright (c) 2024 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 from typing import Union, List
 from random import choice, choices
 from requests import post, get
+from os import environ
 
 from .errors import *
 
@@ -33,6 +34,7 @@ __all__ = (
     'DOptions',
     'options',
     'all_options',
+    'style_metadata',
     'styles',
     'default_options',
 )
@@ -43,6 +45,7 @@ class _FindPil:
     """Not important for you, just makes things easier for me on the back-end ;)"""
     found: bool = True
 
+
 _ascii_lowercase = "abcdef"
 _incorrect_lowercase = "ghijklmnopqrstuvwxyz"
 _digits = "0123456789"
@@ -50,10 +53,289 @@ _y = "https://api.dicebear.com/7.x/{}/schema.json"
 
 options = all_options = ["flip", "rotate", "scale", "radius", "size", "backgroundColor", "backgroundType",
                          "backgroundRotation", "translateX", "translateY", "randomizeIds"]
-styles = ["adventurer", "adventurer-neutral", "avataaars", "avataaars-neutral", "big-ears", "big-ears-neutral",
-          "big-smile", "bottts", "bottts-neutral", "croodles", "croodles-neutral", "fun-emoji", "icons",
-          "identicon", "initials", "lorelei", "lorelei-neutral", "micah", "miniavs", "open-peeps", "personas",
-          "pixel-art", "pixel-art-neutral", "rings", "shapes", "thumbs"]
+style_metadata = {
+    "adventurer": {
+        "title": "Adventurer",
+        "creator": "Lisa Wischofsky",
+        "source": "https://www.figma.com/community/file/1184595184137881796",
+        "homepage": "https://www.instagram.com/lischi_art/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "adventurer-neutral": {
+        "title": "Adventurer Neutral",
+        "creator": "Lisa Wischofsky",
+        "source": "https://www.figma.com/community/file/1184595184137881796",
+        "homepage": "https://www.instagram.com/lischi_art/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "avataaars": {
+        "title": "Avataaars",
+        "creator": "Pablo Stanley",
+        "source": "https://avataaars.com/",
+        "homepage": "https://twitter.com/pablostanley",
+        "license": {
+            "name": "Free for personal and commercial use",
+            "url": "https://avataaars.com/",
+        },
+    },
+    "avataaars-neutral": {
+        "title": "Avataaars",
+        "creator": "Pablo Stanley",
+        "source": "https://avataaars.com/",
+        "homepage": "https://twitter.com/pablostanley",
+        "license": {
+            "name": "Free for personal and commercial use.",
+            "url": "https://avataaars.com/",
+        },
+    },
+    "big-ears": {
+        "title": "Face Generator",
+        "creator": "The Visual Team",
+        "source": "https://www.figma.com/community/file/986078800058673824",
+        "homepage": "https://thevisual.team/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "big-ears-neutral": {
+        "title": "Face Generator",
+        "creator": "The Visual Team",
+        "source": "https://www.figma.com/community/file/986078800058673824",
+        "homepage": "https://thevisual.team/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "big-smile": {
+        "title": "Custom Avatar",
+        "creator": "Ashley Seo",
+        "source": "https://www.figma.com/community/file/881358461963645496",
+        "homepage": "http://www.ashleyseo.com/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "bottts": {
+        "title": "Bottts",
+        "creator": "Pablo Stanley",
+        "source": "https://bottts.com/",
+        "homepage": "https://twitter.com/pablostanley",
+        "license": {
+            "name": "Free for personal and commercial use",
+            "url": "https://bottts.com/",
+        },
+    },
+    "bottts-neutral": {
+        "title": "Bottts",
+        "creator": "Pablo Stanley",
+        "source": "https://bottts.com/",
+        "homepage": "https://twitter.com/pablostanley",
+        "license": {
+            "name": "Free for personal and commercial use",
+            "url": "https://bottts.com/",
+        },
+    },
+    "croodles": {
+        "title": "Croodles - Doodle your face",
+        "creator": "vijay verma",
+        "source": "https://www.figma.com/community/file/966199982810283152",
+        "homepage": "https://vjy.me/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "croodles-neutral": {
+        "title": "Croodles - Doodle your face",
+        "creator": "vijay verma",
+        "source": "https://www.figma.com/community/file/966199982810283152",
+        "homepage": "https://vjy.me/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "fun-emoji": {
+        "title": "Fun Emoji Set",
+        "creator": "Davis Uche",
+        "source": "https://www.figma.com/community/file/968125295144990435",
+        "homepage": "https://www.instagram.com/davedirect3/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "icons": {
+        "title": "Bootstrap Icons",
+        "creator": "The Bootstrap Authors",
+        "source": "https://github.com/twbs/icons",
+        "homepage": "https://getbootstrap.com/",
+        "license": {
+            "name": "MIT",
+            "url": "https://github.com/twbs/icons/blob/main/LICENSE",
+        },
+    },
+    "identicon": {
+        "title": "Identicon",
+        "creator": "DiceBear",
+        "source": "https://www.dicebear.com",
+        "homepage": "https://www.dicebear.com",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "initials": {
+        "title": "Initials",
+        "creator": "DiceBear",
+        "source": "https://github.com/dicebear/dicebear",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "lorelei": {
+        "title": "Lorelei",
+        "creator": "Lisa Wischofsky",
+        "source": "https://www.figma.com/community/file/1198749693280469639",
+        "homepage": "https://www.instagram.com/lischi_art/",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "lorelei-neutral": {
+        "title": "Lorelei Neutral",
+        "creator": "Lisa Wischofsky",
+        "source": "https://www.figma.com/community/file/1198749693280469639",
+        "homepage": "https://www.instagram.com/lischi_art/",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "micah": {
+        "title": "Avatar Illustration System",
+        "creator": "Micah Lanier",
+        "source": "https://www.figma.com/community/file/829741575478342595",
+        "homepage": "https://dribbble.com/micahlanier",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "miniavs": {
+        "title": "Miniavs - Free Avatar Creator",
+        "creator": "Webpixels",
+        "source": "https://www.figma.com/community/file/923211396597067458",
+        "homepage": "https://webpixels.io/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "notionists": {
+        "title": "Notionists",
+        "creator": "Zoish",
+        "source": "https://heyzoish.gumroad.com/l/notionists",
+        "homepage": "https://bio.link/heyzoish",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "notionists-neutral": {
+        "title": "Notionists",
+        "creator": "Zoish",
+        "source": "https://heyzoish.gumroad.com/l/notionists",
+        "homepage": "https://bio.link/heyzoish",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "open-peeps": {
+        "title": "Open Peeps",
+        "creator": "Pablo Stanley",
+        "source": "https://www.openpeeps.com/",
+        "homepage": "https://twitter.com/pablostanley",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "personas": {
+        "title": "Personas by Draftbit",
+        "creator": "Draftbit - draftbit.com",
+        "source": "https://personas.draftbit.com/",
+        "homepage": "https://draftbit.com/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "pixel-art": {
+        "title": "Pixel Art",
+        "creator": "DiceBear",
+        "source": "https://www.figma.com/community/file/1198754108850888330",
+        "homepage": "https://www.dicebear.com",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "pixel-art-neutral": {
+        "title": "Pixel Art Neutral",
+        "creator": "DiceBear",
+        "source": "https://www.figma.com/community/file/1198754108850888330",
+        "homepage": "https://www.dicebear.com",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "rings": {
+        "title": "Rings",
+        "creator": "DiceBear",
+        "source": "https://www.dicebear.com",
+        "homepage": "https://www.dicebear.com",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "shapes": {
+        "title": "Shapes",
+        "creator": "DiceBear",
+        "source": "https://www.dicebear.com",
+        "homepage": "https://www.dicebear.com",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+    "thumbs": {
+        "title": "Thumbs",
+        "creator": "DiceBear",
+        "source": "https://www.dicebear.com",
+        "homepage": "https://www.dicebear.com",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        },
+    },
+}
+
+styles = list(style_metadata.keys())
 # styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
 
 
@@ -72,8 +354,10 @@ class DColor:
         """
         code_list: list = []
         hex_list: list = []
-        if type(html_code) == str: code_list = html_code.replace(" ", "").split(",")
-        elif type(html_code) == list and all(type(x) == str for x in html_code): code_list = html_code
+        if type(html_code) == str:
+            code_list = html_code.replace(" ", "").split(",")
+        elif type(html_code) == list and all(type(x) == str for x in html_code):
+            code_list = html_code
         for code in code_list:
             if code.startswith("#"): code = code.replace("#", "")
             if (len(code) != 6 or any(x in code for x in _incorrect_lowercase)) and code != "transparent":
@@ -81,11 +365,16 @@ class DColor:
             hex_list.append(code)
         self.html_code: str = ",".join(hex_list)
 
-    def __str__(self): return str(self.html_code)
-    def __repr__(self): return str(self.html_code)
+    def __str__(self):
+        return str(self.html_code)
+
+    def __repr__(self):
+        return str(self.html_code)
+
     def __eq__(self, other):
         if type(other) == DColor: return self.html_code == other.html_code
         return self.html_code == other
+
     def __ne__(self, other):
         if type(other) == DColor: return self.html_code != other.html_code
         return self.html_code != other
@@ -125,13 +414,15 @@ class DStyle:
     lorelei_neutral = styles[16]
     micah = styles[17]
     miniavs = styles[18]
-    open_peeps = styles[19]
-    personas = styles[20]
-    pixel_art = styles[21]
-    pixel_art_neutral = styles[22]
-    rings = styles[23]
-    shapes = styles[24]
-    thumbs = styles[25]
+    notionists = styles[19]
+    notionists_neutral = styles[20]
+    open_peeps = styles[21]
+    personas = styles[22]
+    pixel_art = styles[23]
+    pixel_art_neutral = styles[24]
+    rings = styles[25]
+    shapes = styles[26]
+    thumbs = styles[27]
 
     def __init__(self):
         """Only use `.attribute` to use a style."""
@@ -205,14 +496,17 @@ default_options: dict = {options[0]: False, options[1]: 0, options[2]: 100, opti
                          options[5]: DColor(), options[6]: "solid", options[7]: 0, options[8]: 0, options[9]: 0,
                          options[10]: False}
 
+
 class DOptions(dict):
     """
     The options class for :py:class:`dicebear.avatar.DAvatar`
     """
     empty: dict = {}
     default_options = default = default_options
+
     def __init__(self, *, flip: bool = False, rotate: int = 0, scale: int = 100, radius: int = 0, size: int = 0,
-                 backgroundColor: Union[DColor, List[DColor]] = DColor(), backgroundType: str = "solid", backgroundRotation: int = 0,
+                 backgroundColor: Union[DColor, List[DColor]] = DColor(), backgroundType: str = "solid",
+                 backgroundRotation: int = 0,
                  translateX: int = 0, translateY: int = 0, randomizeIds: bool = False, **kwargs):
         """
         Go to https://github.com/jvherck/dicebear#base-options to see all info (important for minimum and maximum values for each option!)
@@ -221,7 +515,8 @@ class DOptions(dict):
         """
         dic = kwargs.get("fromdict", {})
         current: dict = {"flip": flip, "rotate": rotate, "scale": scale, "radius": radius, "size": size,
-                         "backgroundColor": backgroundColor, "backgroundType": backgroundType, "backgroundRotation": backgroundRotation,
+                         "backgroundColor": backgroundColor, "backgroundType": backgroundType,
+                         "backgroundRotation": backgroundRotation,
                          "translateX": translateX, "translateY": translateY, "randomizeIds": randomizeIds}
         if dic:
             for item in dic:
@@ -233,23 +528,28 @@ class DOptions(dict):
         super().__init__(dic)
 
     @property
-    def _ver(self): return type(self)
-
-
-
+    def _ver(self):
+        return type(self)
 
 
 def _statsIncrease(_file: str, _class: str, _function: str, *, _test: bool = False) -> None:
     """
     Pings an API to update this package's usage stats. This will be used to analyse Dicebear's usage and improve your overall experience.
     """
+    if environ.get('ENABLE_PYTHON_DICEBEAR_USAGE_STATS', '').lower() != 'true':
+        return
     __body = {"file": _file, "class": _class, "function": _function, "test": str(_test).lower()}
     __headers = {"User-Agent": "pipedream/1", "Content-Type": "application/json", "-Key": "acbd2023"}
     post("https://eo1p6rm1ydzj8yl.m.pipedream.net/runs", json=__body, headers=__headers, timeout=10)
 
+
 def _pilcheck(func):
     """Decorator to check if package Pillow is installed"""
+
     def wrapper(*args, **kwargs):
-        if _FindPil.found is True: return func(*args, **kwargs)
-        else: log_error(PILError())
+        if _FindPil.found is True:
+            return func(*args, **kwargs)
+        else:
+            log_error(PILError())
+
     return wrapper

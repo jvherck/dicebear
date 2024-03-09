@@ -1,6 +1,6 @@
 # DiceBear Py Wrapper  
 ![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads)
-![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=month&units=international_system&left_color=grey&right_color=orange&left_text=Downloads/Month)
+![Downloads](https://static.pepy.tech/personalized-badge/dicebear?period=month&units=international_system&left_color=grey&right_color=orange&left_text=Downloads/Month) \
 ![PyPI](https://img.shields.io/pypi/v/dicebear)
 ![GitHub issues](https://img.shields.io/github/issues/jvherck/dicebear)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dicebear)
@@ -8,7 +8,7 @@
 ![Maintenance](https://img.shields.io/maintenance/yes/2024)
 ![PyPI - Status](https://img.shields.io/pypi/status/dicebear)
 
-Always keep an eye on https://dicebear.janvh.tk for updates and warnings about this packages!
+Always keep an eye on https://jvh.gitbook.io/dicebear/ for updates and warnings about this packages!
 
 [`dicebear`](https://pypi.org/project/dicebear/) is an API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program. \
 For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebear/tree/main/examples).
@@ -18,7 +18,7 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 
 
 ## Useful links  
-* Docs: https://jvherck.github.io/dicebear  
+* Docs: https://jvh.gitbook.io/dicebear/  
 * PyPI: https://pypi.org/project/dicebear/  
 * GitHub: https://github.com/jvherck/dicebear  
 * Dicebear: https://dicebear.com/  
@@ -36,8 +36,8 @@ Find the changelog here: https://github.com/jvherck/dicebear/blob/main/CHANGELOG
 
 
 ## How to install  
-Run `pip install dicebear` \
-If that doesn't work try `py -m pip install dicebear`  
+Run `pip install -U dicebear` \
+If that doesn't work try `py -m pip install -U dicebear`  
 
 
 ---
@@ -47,14 +47,14 @@ If that doesn't work try `py -m pip install dicebear`
 Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`).
 When using a `PIL` function while it's not installed it will raise `dicebear.errors.PILError`.  
 
-When the environment variable `ENABLE_PYTHON_DICEBEAR_USAGE_STATS` is set, an API will be pinged on most function calls to update this package's usage stats. This will be used to analyse Dicebear's usage and improve your overall experience, but may have performance costs.
+When the environment variable `ENABLE_PYTHON_DICEBEAR_USAGE_STATS` is set to true, an API will be pinged on most function calls to update this package's usage stats. This will be used to analyse Dicebear's usage and improve your overall experience, but may have performance costs.
 ```py  
 import PIL.Image
-from dicebear import DAvatar, DStyle, DOptions, DColor, DFormat, bulk_create
 import os
+from dicebear import DAvatar, DStyle, DOptions, DColor, DFormat, bulk_create
 
 
-# Enable usage statistics
+# Enable anonymous usage statistics
 os.environ['ENABLE_PYTHON_DICEBEAR_USAGE_STATS'] = 'true'
 
 
@@ -244,4 +244,4 @@ making this amazing API and to [all artists](https://dicebear.com/licenses) that
 ## Licenses and privacy policy  
 - Dicebear **Licenses**: https://dicebear.com/licenses  
 - Dicebear **Privacy Policy**: https://dicebear.com/legal/privacy-policy  
-- Dicebear Python API wrapper (this project): https://dicebear.janvh.tk/license
+- Dicebear Python API wrapper (this project): https://jvh.gitbook.io/dicebear/license

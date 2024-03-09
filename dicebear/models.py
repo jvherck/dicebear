@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2023 jvherck (on GitHub)
+# Copyright (c) 2024 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -44,6 +44,7 @@ __filename__ = "models.py"
 class _FindPil:
     """Not important for you, just makes things easier for me on the back-end ;)"""
     found: bool = True
+
 
 _ascii_lowercase = "abcdef"
 _incorrect_lowercase = "ghijklmnopqrstuvwxyz"
@@ -353,8 +354,10 @@ class DColor:
         """
         code_list: list = []
         hex_list: list = []
-        if type(html_code) == str: code_list = html_code.replace(" ", "").split(",")
-        elif type(html_code) == list and all(type(x) == str for x in html_code): code_list = html_code
+        if type(html_code) == str:
+            code_list = html_code.replace(" ", "").split(",")
+        elif type(html_code) == list and all(type(x) == str for x in html_code):
+            code_list = html_code
         for code in code_list:
             if code.startswith("#"): code = code.replace("#", "")
             if (len(code) != 6 or any(x in code for x in _incorrect_lowercase)) and code != "transparent":
@@ -362,11 +365,16 @@ class DColor:
             hex_list.append(code)
         self.html_code: str = ",".join(hex_list)
 
-    def __str__(self): return str(self.html_code)
-    def __repr__(self): return str(self.html_code)
+    def __str__(self):
+        return str(self.html_code)
+
+    def __repr__(self):
+        return str(self.html_code)
+
     def __eq__(self, other):
         if type(other) == DColor: return self.html_code == other.html_code
         return self.html_code == other
+
     def __ne__(self, other):
         if type(other) == DColor: return self.html_code != other.html_code
         return self.html_code != other
@@ -488,14 +496,17 @@ default_options: dict = {options[0]: False, options[1]: 0, options[2]: 100, opti
                          options[5]: DColor(), options[6]: "solid", options[7]: 0, options[8]: 0, options[9]: 0,
                          options[10]: False}
 
+
 class DOptions(dict):
     """
     The options class for :py:class:`dicebear.avatar.DAvatar`
     """
     empty: dict = {}
     default_options = default = default_options
+
     def __init__(self, *, flip: bool = False, rotate: int = 0, scale: int = 100, radius: int = 0, size: int = 0,
-                 backgroundColor: Union[DColor, List[DColor]] = DColor(), backgroundType: str = "solid", backgroundRotation: int = 0,
+                 backgroundColor: Union[DColor, List[DColor]] = DColor(), backgroundType: str = "solid",
+                 backgroundRotation: int = 0,
                  translateX: int = 0, translateY: int = 0, randomizeIds: bool = False, **kwargs):
         """
         Go to https://github.com/jvherck/dicebear#base-options to see all info (important for minimum and maximum values for each option!)
@@ -504,7 +515,8 @@ class DOptions(dict):
         """
         dic = kwargs.get("fromdict", {})
         current: dict = {"flip": flip, "rotate": rotate, "scale": scale, "radius": radius, "size": size,
-                         "backgroundColor": backgroundColor, "backgroundType": backgroundType, "backgroundRotation": backgroundRotation,
+                         "backgroundColor": backgroundColor, "backgroundType": backgroundType,
+                         "backgroundRotation": backgroundRotation,
                          "translateX": translateX, "translateY": translateY, "randomizeIds": randomizeIds}
         if dic:
             for item in dic:
@@ -516,10 +528,8 @@ class DOptions(dict):
         super().__init__(dic)
 
     @property
-    def _ver(self): return type(self)
-
-
-
+    def _ver(self):
+        return type(self)
 
 
 def _statsIncrease(_file: str, _class: str, _function: str, *, _test: bool = False) -> None:
@@ -532,9 +542,14 @@ def _statsIncrease(_file: str, _class: str, _function: str, *, _test: bool = Fal
     __headers = {"User-Agent": "pipedream/1", "Content-Type": "application/json", "-Key": "acbd2023"}
     post("https://eo1p6rm1ydzj8yl.m.pipedream.net/runs", json=__body, headers=__headers, timeout=10)
 
+
 def _pilcheck(func):
     """Decorator to check if package Pillow is installed"""
+
     def wrapper(*args, **kwargs):
-        if _FindPil.found is True: return func(*args, **kwargs)
-        else: log_error(PILError())
+        if _FindPil.found is True:
+            return func(*args, **kwargs)
+        else:
+            log_error(PILError())
+
     return wrapper
