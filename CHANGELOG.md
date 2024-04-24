@@ -8,6 +8,17 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 ---
 
 
+## v2.7.4
+2024-04-24
+
+### Back-end
+- Back-end cleanup
+- Dicebear version upgrade to 8.x (which contains API bug fixes)
+
+
+---
+
+
 ## v2.7.3
 2024-03-09
 

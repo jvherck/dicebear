@@ -36,7 +36,7 @@ __filename__ = "utility.py"
 
 
 def create_avatar(
-        style: DStyle,
+        style: Union[str, DStyle],
         seed: str,
         options: Union[DOptions, None] = None,
         customisations: Union[dict, None] = None
@@ -68,14 +68,15 @@ def create_random(
     if randomOptions:
         _type = choice(["solid", "gradientLinear"])
         _color = [DColor.random()]
-        if _type == "gradientLinear": _color.append(DColor.random())
+        if _type == "gradientLinear":
+            _color.append(DColor.random())
         options = DOptions(flip=choice([True, False]), backgroundColor=DColor([str(x) for x in _color]),
                            backgroundType=_type, backgroundRotation=randint(0, 360))
     return DAvatar(DStyle.random(), "".join(choices(ascii_lowercase + digits, k=20)), options=options)
 
 
 def bulk_create(
-        style: DStyle = DStyle.random(),
+        style: Union[str, DStyle] = DStyle.random(),
         amount: Annotated[int, "Min: 1, Max: 50"] = 2,
         *,
         options: DOptions = None,

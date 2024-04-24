@@ -4,17 +4,3 @@ requires = [
     "wheel"
 ]
 build-backend = "setuptools.build_meta"
-
-[tool.portray]
-modules = ["dicebear"]
-output_dir = "_docs"
-
-[tool.portray.repository]
-repo_url = "https://github.com/jvherck/dicebear"
-
-[tool.portray.mkdocs.theme]
-favicon = "images/favicon.png"
-logo = "images/favicon.png"
-name = "readthedocs"
-highlightjs = true
-hljs_languages = ["python"]

@@ -22,7 +22,7 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 * PyPI: https://pypi.org/project/dicebear/  
 * GitHub: https://github.com/jvherck/dicebear  
 * Dicebear: https://dicebear.com/  
-- Dicebear CLI: https://github.com/jvherck/dicebear-cli  
+* Dicebear CLI: https://github.com/jvherck/dicebear-cli  
 
 
 ---
@@ -238,7 +238,7 @@ wider range of formats (Pillow doesn't support svg).
 
 ## Credits  
 Special thanks to [DiceBear](https://github.com/dicebear) ([Florian Körner](https://github.com/FlorianKoerner)) for 
-making this amazing API and to [all artists](https://dicebear.com/licenses) that helped making avatars!  
+making this amazing API and to [all artists](https://dicebear.com/licenses) for creating these avatars!  
 
 
 ## Licenses and privacy policy  

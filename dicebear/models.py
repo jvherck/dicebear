@@ -47,9 +47,9 @@ class _FindPil:
 
 
 _ascii_lowercase = "abcdef"
-_incorrect_lowercase = "ghijklmnopqrstuvwxyz"
 _digits = "0123456789"
-_y = "https://api.dicebear.com/7.x/{}/schema.json"
+_x = "https://api.dicebear.com/8.x"
+_y = _x + "/{}/schema.json"
 
 options = all_options = ["flip", "rotate", "scale", "radius", "size", "backgroundColor", "backgroundType",
                          "backgroundRotation", "translateX", "translateY", "randomizeIds"]
@@ -336,6 +336,8 @@ style_metadata = {
 }
 
 styles = list(style_metadata.keys())
+
+
 # styles_depricated = ["female", "gridy", "human", "jdenticon", "male"]
 
 
@@ -354,16 +356,23 @@ class DColor:
         """
         code_list: list = []
         hex_list: list = []
-        if type(html_code) == str:
+        if type(html_code) is str:
             code_list = html_code.replace(" ", "").split(",")
-        elif type(html_code) == list and all(type(x) == str for x in html_code):
+        elif type(html_code) is list and all(type(x) is str for x in html_code):
             code_list = html_code
         for code in code_list:
-            if code.startswith("#"): code = code.replace("#", "")
-            if (len(code) != 6 or any(x in code for x in _incorrect_lowercase)) and code != "transparent":
+            code = code.replace("#", "")
+            if (len(code) != 6 or any(x not in (_ascii_lowercase+_digits) for x in code)) and code != "transparent":
                 raise IncorrectColor(str(code))
             hex_list.append(code)
-        self.html_code: str = ",".join(hex_list)
+        self._html_code: str = ",".join(hex_list)
+
+    @property
+    def html_code(self) -> str:
+        """Returns the validated and formatted html/hex color codes."""
+        return str(self._html_code)
+
+    hex_code = html_code
 
     def __str__(self):
         return str(self.html_code)
@@ -371,12 +380,15 @@ class DColor:
     def __repr__(self):
         return str(self.html_code)
 
+    def __hash__(self):
+        return hash(self.html_code)
+
     def __eq__(self, other):
-        if type(other) == DColor: return self.html_code == other.html_code
+        if type(other) is DColor: return self.html_code == other.html_code
         return self.html_code == other
 
     def __ne__(self, other):
-        if type(other) == DColor: return self.html_code != other.html_code
+        if type(other) is DColor: return self.html_code != other.html_code
         return self.html_code != other
 
     @staticmethod
@@ -455,15 +467,15 @@ class DStyle:
         """
         return choice(styles)
 
-    @classmethod
-    def from_str(cls, style_str: str) -> str:
+    @staticmethod
+    def from_str(style_str: str) -> str:
         """
         Get an avatar style from a string.
 
         :param style_str: :py:class:`str` :: the string to convert to a DStyle
         :type style_str: str
         """
-        return getattr(cls, style_str.replace("-", "_"))
+        return getattr(DStyle, style_str.replace("-", "_"))
 
 
 class DFormat:
@@ -481,15 +493,15 @@ class DFormat:
         """Only use `.attribute` to use a format."""
         raise NotImplementedError("DFormat should not be initialized.")
 
-    @classmethod
-    def from_str(cls, format_str: str) -> str:
+    @staticmethod
+    def from_str(format_str: str) -> str:
         """
         Get an avatar format from a string
 
         :param format_str: :py:class:`str` :: the string to convert to a DFormat
         :type format_str: str
         """
-        return getattr(cls, format_str.replace("DFormat.", ""))
+        return getattr(DFormat, format_str.lower().replace("dformat.", ""))
 
 
 default_options: dict = {options[0]: False, options[1]: 0, options[2]: 100, options[3]: 0, options[4]: 0,
@@ -506,30 +518,29 @@ class DOptions(dict):
 
     def __init__(self, *, flip: bool = False, rotate: int = 0, scale: int = 100, radius: int = 0, size: int = 0,
                  backgroundColor: Union[DColor, List[DColor]] = DColor(), backgroundType: str = "solid",
-                 backgroundRotation: int = 0,
-                 translateX: int = 0, translateY: int = 0, randomizeIds: bool = False, **kwargs):
+                 backgroundRotation: int = 0, translateX: int = 0, translateY: int = 0, randomizeIds: bool = False):
         """
         Go to https://github.com/jvherck/dicebear#base-options to see all info (important for minimum and maximum values for each option!)
-
-        :param kwargs: `fromdict` to use a custom dict instead of args (if you use this kwarg all other args will be neglected)
         """
-        dic = kwargs.get("fromdict", {})
-        current: dict = {"flip": flip, "rotate": rotate, "scale": scale, "radius": radius, "size": size,
-                         "backgroundColor": backgroundColor, "backgroundType": backgroundType,
-                         "backgroundRotation": backgroundRotation,
-                         "translateX": translateX, "translateY": translateY, "randomizeIds": randomizeIds}
-        if dic:
-            for item in dic:
-                if item not in default_options.keys() or dic[item] == default_options[item]: dic.pop(item, None)
-        else:  # if not dic
-            for item in current:
-                if item in default_options and current[item] != default_options[item]: dic.update({item: current[item]})
-        if "size" in dic and dic["size"] == 0: dic.pop("size")
-        super().__init__(dic)
+        d = {"flip": flip, "rotate": rotate, "scale": scale, "radius": radius, "size": size,
+             "backgroundColor": backgroundColor, "backgroundType": backgroundType,
+             "backgroundRotation": backgroundRotation, "translateX": translateX, "translateY": translateY,
+             "randomizeIds": randomizeIds}
+        self.update(d.items() - default_options.items())
+        if "size" in self and self["size"] == 0:
+            self.pop("size")
+        super().__init__(self)
 
-    @property
-    def _ver(self):
-        return type(self)
+    @classmethod
+    def from_dict(cls, d: dict) -> "DOptions":
+        """Return a new instance of DOptions from a dict."""
+        for item in d:
+            if item not in default_options.keys() or d[item] == default_options[item]:
+                d.pop(item, None)
+        self = cls()
+        self.clear()
+        self.update(d)
+        return self
 
 
 def _statsIncrease(_file: str, _class: str, _function: str, *, _test: bool = False) -> None:

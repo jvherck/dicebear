@@ -49,7 +49,6 @@ class InvalidOption(Exception):
             wrong_option))
 
 
-
 class Error(Exception):
     """General error"""
     def __init__(self, error_type: str = "", message: str = ""):
@@ -58,9 +57,8 @@ class Error(Exception):
 
 class HTTPError(Error):
     """HTTP error"""
-    def __init__(self, dic: dict):
-        super().__init__(message=str(dic))
-
+    def __init__(self, d: dict):
+        super().__init__(message=str(d))
 
 
 class ImageError(Exception):
@@ -87,7 +85,6 @@ class PILError(ImageError):
         super().__init__('Module "PIL (=Pillow)" is not found! {}'.format(message))
 
 
-
 _error_logger = logging.getLogger()
 _error_handler = logging.StreamHandler()
 _error_logger.setLevel(logging.ERROR)
@@ -107,5 +104,4 @@ def log_error(exception: Union[Exception, str], raise_error: bool = False) -> No
         _error_handler.setFormatter(logging.Formatter(f"%(levelname)s: {exception.__class__.__name__}: %(message)s"))
         _error_logger.error(exception)
         return
-    raise Exception(exception) if type(exception) == str else exception
-
+    raise Exception(exception) if type(exception) is str else exception

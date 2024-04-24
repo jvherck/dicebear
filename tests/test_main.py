@@ -74,9 +74,14 @@ class TAvatar(unittest.TestCase):
         options = models.DOptions(flip=True, rotate=90, backgroundType="gradientLinear")
         av = avatar.DAvatar(style, seed, options=options)
         self.assertEqual(
-            av,
-            avatar._x.format(quote(style), quote(seed)) + "flip=true&rotate=90&backgroundType=gradientLinear"
+            str(av)[:-49],
+            avatar._y.format(quote(style), quote(seed))
         )
+        urlparams = str(av)[-68:]
+        self.assertIn("?seed=John%20Apple&", urlparams)
+        self.assertIn("flip=true", urlparams)
+        self.assertIn("rotate=90", urlparams)
+        self.assertIn("backgroundType=gradientLinear", urlparams)
 
     def test2(self):
         style = "John Apple"
@@ -107,8 +112,8 @@ class TAvatar(unittest.TestCase):
         }
         av = avatar.DAvatar(style, seed, options=options, custom=custom)
         self.assertEqual(
-            av,
-            avatar._x.format(quote(style), quote(seed)) + "flip=true&eyes=dizzy&texture=camo01&somethingWrong=doesNotMatter"
+            str(av),
+            avatar._y.format(quote(style), quote(seed)) + "flip=true&eyes=dizzy&texture=camo01&somethingWrong=doesNotMatter"
         )
 
 
@@ -121,7 +126,7 @@ class TUtil(unittest.TestCase):
         av = utility.create_avatar(style, seed, options, custom)
         self.assertEqual(
             av,
-            avatar._x.format(quote(style), quote(seed)) + "rotate=90&scale=52"
+            avatar._y.format(quote(style), quote(seed)) + "rotate=90&scale=52"
         )
 
     def testRandom(self):
