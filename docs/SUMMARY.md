@@ -17,10 +17,10 @@
 
 ## Extra
 
-* [Changelog](https://github.com/jvherck/dicebear/blob/main/CHANGELOG.md)
 * [Issues](https://github.com/jvherck/dicebear/issues)
 * [Discord](https://discord.com/users/331102626819080193)
 
 ***
 
+* [ℹ️ Changelog](changelog.md)
 * [📜 License](license.md)
