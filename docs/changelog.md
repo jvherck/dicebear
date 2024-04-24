@@ -14,7 +14,7 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 ### Back-end
 
 * Back-end cleanup
-* Dicebear version upgrade to 8.x (which contains API bug fixes)
+* Dicebear version upgrade to 8.x (API bug fixes)
 
 ***
 

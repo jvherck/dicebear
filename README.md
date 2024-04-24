@@ -8,9 +8,9 @@
 ![Maintenance](https://img.shields.io/maintenance/yes/2024)
 ![PyPI - Status](https://img.shields.io/pypi/status/dicebear)
 
-Always keep an eye on https://jvh.gitbook.io/dicebear/ for updates and warnings about this packages!
+Always keep an eye on https://dicebear.vhjan.me/ for updates and warnings about this packages!
 
-[`dicebear`](https://pypi.org/project/dicebear/) is an API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program. \
+[`dicebear`](https://pypi.org/project/dicebear/) is a Python API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program. \
 For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebear/tree/main/examples).
 
 
@@ -18,18 +18,18 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 
 
 ## Useful links  
-* Docs: https://jvh.gitbook.io/dicebear/  
+* Official Dicebear: https://dicebear.com/
+* Docs: https://dicebear.vhjan.me/  
 * PyPI: https://pypi.org/project/dicebear/  
 * GitHub: https://github.com/jvherck/dicebear  
-* Dicebear: https://dicebear.com/  
-* Dicebear CLI: https://github.com/jvherck/dicebear-cli  
+* Dicebear Python CLI: https://github.com/jvherck/dicebear-cli  
 
 
 ---
 
 
 ## Changelog
-Find the changelog here: https://github.com/jvherck/dicebear/blob/main/CHANGELOG.md
+Find the changelog here: https://dicebear.vhjan.me/changelog
 
 
 ---
@@ -244,4 +244,4 @@ making this amazing API and to [all artists](https://dicebear.com/licenses) for 
 ## Licenses and privacy policy  
 - Dicebear **Licenses**: https://dicebear.com/licenses  
 - Dicebear **Privacy Policy**: https://dicebear.com/legal/privacy-policy  
-- Dicebear Python API wrapper (this project): https://jvh.gitbook.io/dicebear/license
+- Dicebear Python API wrapper (this project): https://dicebear.vhjan.me/license
