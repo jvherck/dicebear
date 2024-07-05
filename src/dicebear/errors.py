@@ -24,63 +24,79 @@ from typing import Union
 import logging
 
 __all__ = (
-    'IncorrectColor',
-    'InvalidOption',
-    'Error',
-    'HTTPError',
-    'ImageError',
-    'ImageValueError',
-    'ImageOSError',
-    'PILError',
-    'log_error',
+    "IncorrectColor",
+    "InvalidOption",
+    "Error",
+    "HTTPError",
+    "ImageError",
+    "ImageValueError",
+    "ImageOSError",
+    "PILError",
+    "log_error",
 )
 __filename__ = "errors.py"
 
+
 class IncorrectColor(Exception):
     """Incorrect color"""
+
     def __init__(self, wrong_color: str = None):
         super().__init__('Incorrect color given: "{}" is not an html hex code! (example: #ffffff)'.format(wrong_color))
 
 
 class InvalidOption(Exception):
     """Invalid option"""
+
     def __init__(self, wrong_option: str = None):
-        super().__init__('Invalid option given: "{}" is not an existing option! (use `Avatar.options` to get all possible options)'.format(
-            wrong_option))
+        super().__init__(
+            'Invalid option given: "{}" is not an existing option! (use `Avatar.options` to get all possible options)'.format(
+                wrong_option
+            )
+        )
 
 
 class Error(Exception):
     """General error"""
+
     def __init__(self, error_type: str = "", message: str = ""):
-        super().__init__('{}{}'.format(error_type + (': ' if error_type else ''), message))
+        super().__init__("{}{}".format(error_type + (": " if error_type else ""), message))
 
 
 class HTTPError(Error):
     """HTTP error"""
+
     def __init__(self, d: dict):
         super().__init__(message=str(d))
 
 
 class ImageError(Exception):
     """General image error"""
+
     def __init__(self, message: str = None):
         super().__init__(message)
 
 
 class ImageValueError(ImageError):
     """Image value error"""
+
     def __init__(self, file_name: str = None):
         super().__init__('The output format could not be determined ("{}")'.format(file_name))
 
 
 class ImageOSError(ImageError):
     """Image OS error"""
+
     def __init__(self, message: str = None):
-        super().__init__('The file could not be written. The file may have been created, and may contain partial data. ("{}")'.format(message))
+        super().__init__(
+            'The file could not be written. The file may have been created, and may contain partial data. ("{}")'.format(
+                message
+            )
+        )
 
 
 class PILError(ImageError):
     """Pillow error"""
+
     def __init__(self, message: str = "To use this function you need to install Pillow."):
         super().__init__('Module "PIL (=Pillow)" is not found! {}'.format(message))
 
@@ -90,6 +106,7 @@ _error_handler = logging.StreamHandler()
 _error_logger.setLevel(logging.ERROR)
 _error_handler.setLevel(logging.ERROR)
 _error_logger.addHandler(_error_handler)
+
 
 def log_error(exception: Union[Exception, str], raise_error: bool = False) -> None:
     """

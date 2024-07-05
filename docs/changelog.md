@@ -7,6 +7,23 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 
 ***
 
+## v2.7.5
+
+2024-07-06
+
+### Back-end
+
+* Dicebear version upgrade to 9.x
+
+### Improvements
+
+* Added tox for code quality automation
+
+### Changed
+* Moved style metadata to separate file `dicebear.metadata.Metadata`
+
+***
+
 ## v2.7.4
 
 2024-04-24

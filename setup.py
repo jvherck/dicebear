@@ -20,14 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 from setuptools import setup, find_packages
-from dicebear import __version__
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
     name="dicebear",
-    version=__version__,
     license="MIT License",
     author="jvherck",
     author_email="jan@vhjan.me",
@@ -38,7 +36,8 @@ setup(
     description="A python wrapper for DiceBear's avatar generating API.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=find_packages(),
+    packages=find_packages("src"),
+    package_dir={"": "src"},
     install_requires=['requests', 'urllib3'],
     python_requires='>=3.7',
     keywords=['python', 'dicebear', 'avatar', 'avatars', 'generating', 'generation', 'generator', 'API', 'wrapper',

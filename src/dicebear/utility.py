@@ -20,26 +20,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from string import ascii_lowercase, digits
 from random import choices, choice, randint
+from string import ascii_lowercase, digits
 from typing import Union, List, Annotated
 
 from .avatar import DAvatar
 from .models import DStyle, DOptions, DColor, _statsIncrease
 
 __all__ = (
-    'create_avatar',
-    'create_random',
-    'bulk_create',
+    "create_avatar",
+    "create_random",
+    "bulk_create",
 )
 __filename__ = "utility.py"
 
 
 def create_avatar(
-        style: Union[str, DStyle],
-        seed: str,
-        options: Union[DOptions, None] = None,
-        customisations: Union[dict, None] = None
+    style: Union[str, DStyle],
+    seed: str,
+    options: Union[DOptions, None] = None,
+    customisations: Union[dict, None] = None,
 ) -> DAvatar:
     """
     Creates a DAvatar object and returns it.
@@ -53,9 +53,8 @@ def create_avatar(
     _statsIncrease(__filename__, "/", ".create_avatar()")
     return DAvatar(style, seed, options=options, custom=customisations)
 
-def create_random(
-        randomOptions: bool = False
-) -> DAvatar:
+
+def create_random(randomOptions: bool = False) -> DAvatar:
     """
     Creates a random DAvatar object and returns it.
 
@@ -70,17 +69,25 @@ def create_random(
         _color = [DColor.random()]
         if _type == "gradientLinear":
             _color.append(DColor.random())
-        options = DOptions(flip=choice([True, False]), backgroundColor=DColor([str(x) for x in _color]),
-                           backgroundType=_type, backgroundRotation=randint(0, 360))
-    return DAvatar(DStyle.random(), "".join(choices(ascii_lowercase + digits, k=20)), options=options)
+        options = DOptions(
+            flip=choice([True, False]),
+            backgroundColor=DColor([str(x) for x in _color]),
+            backgroundType=_type,
+            backgroundRotation=randint(0, 360),
+        )
+    return DAvatar(
+        DStyle.random(),
+        "".join(choices(ascii_lowercase + digits, k=20)),
+        options=options,
+    )
 
 
 def bulk_create(
-        style: Union[str, DStyle] = DStyle.random(),
-        amount: Annotated[int, "Min: 1, Max: 50"] = 2,
-        *,
-        options: DOptions = None,
-        custom: dict = None,
+    style: Union[str, DStyle] = DStyle.random(),
+    amount: Annotated[int, "Min: 1, Max: 50"] = 2,
+    *,
+    options: DOptions = None,
+    custom: dict = None,
 ) -> List[DAvatar]:
     """
     Creates a list of :py:class:`DAvatar` objects. Easy way to make multiple of the same style (but different randomly generated seeds) at once.
@@ -95,13 +102,22 @@ def bulk_create(
     :type custom: dict
     :return: list[DAvatar] :: a list with DAvatar objects
     """
-    if amount >= 50 or amount < 1: raise ValueError("argument `amount` must be between 1 and 50")
+    if amount >= 50 or amount < 1:
+        raise ValueError("argument `amount` must be between 1 and 50")
     _statsIncrease(__filename__, "/", ".bulk_create()")
-    if style is None: style = DStyle.random()
-    if custom is None: custom = {}
-    if options is None: options = DOptions.empty
+    if style is None:
+        style = DStyle.random()
+    if custom is None:
+        custom = {}
+    if options is None:
+        options = DOptions.empty
     result = []
     for _ in range(amount):
-        av = DAvatar(style, "".join(choices(ascii_lowercase + digits, k=20)), options=options, custom=custom)
+        av = DAvatar(
+            style,
+            "".join(choices(ascii_lowercase + digits, k=20)),
+            options=options,
+            custom=custom,
+        )
         result.append(av)
     return result

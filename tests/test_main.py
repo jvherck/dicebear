@@ -1,9 +1,9 @@
 import unittest
 from urllib.parse import quote
-from dicebear_wrapper.dicebear import avatar
-from dicebear_wrapper.dicebear import errors
-from dicebear_wrapper.dicebear import models
-from dicebear_wrapper.dicebear import utility
+from src.dicebear import avatar
+from src.dicebear import errors
+from src.dicebear import models
+from src.dicebear import utility
 
 
 class TColor(unittest.TestCase):
