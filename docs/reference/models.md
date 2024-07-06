@@ -8,7 +8,6 @@ description: Classes used to facilitate the module's usage.
 
 * `options` ([list](https://docs.python.org/3/library/stdtypes.html#list)): all possible basic options (work for all styles)
 * `default_options` ([dict](https://docs.python.org/3/library/stdtypes.html#dict)): a dict with all default options
-* `styles_metadata` ([dict](https://docs.python.org/3/library/stdtypes.html#dict)): a dict with metadata of all styles
 * `styles` ([list](https://docs.python.org/3/library/stdtypes.html#list)): all available styles
 
 

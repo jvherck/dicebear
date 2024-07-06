@@ -20,7 +20,7 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 * Added tox for code quality automation
 
 ### Changed
-* Moved style metadata to separate file `dicebear.metadata.Metadata`
+* Moved style metadata to separate file [`dicebear.metadata.Metadata`](https://dicebear.vhjan.me/reference/metadata#variables)
 
 ***
 
