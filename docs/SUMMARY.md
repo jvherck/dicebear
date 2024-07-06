@@ -12,6 +12,7 @@
 ## Reference
 
 * [Avatar](reference/avatar.md)
+* [Metadata](reference/metadata.md)
 * [Models](reference/models.md)
 * [Errors](reference/errors.md)
 
