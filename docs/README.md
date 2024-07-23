@@ -7,14 +7,14 @@ description: >-
 
 # 🐻 Dicebear Python API Wrapper
 
-<figure><img src="https://img.shields.io/pypi/v/dicebear" alt="Version"><figcaption><p>    <strong>CURRENT VERSION</strong>    </p></figcaption></figure>
+<figure><img src="https://img.shields.io/pypi/v/dicebear" alt="Version"><figcaption><p><strong>CURRENT VERSION</strong></p></figcaption></figure>
 
 ![Total Downloads](https://static.pepy.tech/badge/dicebear?period=total\&units=international\_system\&left\_color=grey\&right\_color=blue\&left\_text=Downloads) ![Downloads / Month](https://static.pepy.tech/badge/dicebear/month?period=month\&units=international\_system\&left\_color=grey\&right\_color=orange\&left\_text=Downloads/Month) ![License](https://img.shields.io/github/license/jvherck/dicebear)
 
 ![Supported Python Versions](https://img.shields.io/pypi/pyversions/dicebear) ![GitHub Issues](https://img.shields.io/github/issues/jvherck/dicebear) ![Maintenance](https://img.shields.io/maintenance/yes/2024) ![Version Status](https://img.shields.io/pypi/status/dicebear)
 
 {% hint style="info" %}
-Dicebear's Python package is <mark style="color:green;background-color:green;">up-to-date</mark> with Dicebear's API!
+Dicebear's Python package is <mark style="color:red;background-color:red;">out-to-date</mark> with Dicebear's API! Package <mark style="background-color:orange;">still works</mark> but does not yet have the latest features.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -109,8 +109,6 @@ avatars: list = bulk_create(style=DStyle.random(), amount=10)
 Dicebear has a CLI package that uses Python to generate avatars quickly. You can't customize each avatar, to do that you'll need to use the Python module.
 
 To use the CLI run `pip install dicebear-cli` in a terminal. Documentation can be found here: [https://github.com/jvherck/dicebear-cli](https://github.com/jvherck/dicebear-cli).
-
-
 
 ## Credits
 
