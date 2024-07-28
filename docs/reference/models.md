@@ -106,7 +106,9 @@ For more info check [#styles](../start/customization.md#styles "mention").
 * `bottts_neutral`
 * `croodles`
 * `croodles_neutral`
+* `dylan`
 * `fun_emoji`
+* `glass`
 * `icons`
 * `identicon`
 * `initials`
@@ -148,8 +150,11 @@ def from_str(
 
 * `list` = `all_formats`
 * `svg`
+* `webp`
+* `avif`
 * `png`
 * `jpg`
+* `jpeg`
 * `json`
 
 

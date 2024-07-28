@@ -22,7 +22,9 @@ All the possible avatar styles.\
 * `bottts-neutral`
 * `croodles`
 * `croodles-neutral`
+* `dylan`
 * `fun-emoji`
+* `glass`
 * `icons`
 * `identicon`
 * `initials`
@@ -73,7 +75,9 @@ Click the style to see its options.
 * [bottts-neutral](https://dicebear.com/styles/bottts-neutral#options)
 * [croodles](https://dicebear.com/styles/croodles#options)
 * [croodles-neutral](https://dicebear.com/styles/croodles-neutral#options)
+* [dylan](https://dicebear.com/styles/dylan#options)
 * [fun-emoji](https://dicebear.com/styles/fun-emoji#options)
+* [glass](https://dicebear.com/styles/glass#options)
 * [icons](https://dicebear.com/styles/icons#options)
 * [identicon](https://dicebear.com/styles/identicon#options)
 * [initials](https://dicebear.com/styles/initials#options)
@@ -97,6 +101,9 @@ These are the only supported formats.\
 If you have Pillow (PIL) installed you can convert [`DAvatar` ](../reference/avatar.md#class-davatar)to a [`PIL.Image.Image`](https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image) object to get a wider range of formats (Pillow doesn't support svg).
 
 * `DFormat.svg` (default)
+* `DFormat.webp`
+* `DFormat.avif`
 * `DFormat.png`
 * `DFormat.jpg`
+* `DFormat.jpeg`
 * `DFormat.json`

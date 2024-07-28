@@ -13,8 +13,11 @@ description: Base class for the avatar generator.
 * `options` ([DOptions](models.md#class-doptions)): the **options** of the avatar
 * `customisations` ([dict](https://docs.python.org/3/library/stdtypes.html#dict)): the **customisations** of the avatar (alias: `customs`)
 * `url_svg` ([str](https://docs.python.org/3/library/stdtypes.html#str)): **svg** url for the avatar
+* `url_webp` ([str](https://docs.python.org/3/library/stdtypes.html#str)): **webp** url for the avatar
+* `url_avif` ([str](https://docs.python.org/3/library/stdtypes.html#str)): **avif** url for the avatar
 * `url_png` ([str](https://docs.python.org/3/library/stdtypes.html#str)): **png** url for the avatar
 * `url_jpg` ([str](https://docs.python.org/3/library/stdtypes.html#str)): **jpg** url for the avatar
+* `url_jpeg` ([str](https://docs.python.org/3/library/stdtypes.html#str)): **jpeg** url for the avatar
 * `url_json` ([str](https://docs.python.org/3/library/stdtypes.html#str)): **json** url for the avatar data
 * `schema` ([dict](https://docs.python.org/3/library/stdtypes.html#dict)): the **dict schema** of the avatar style
 

@@ -29,7 +29,7 @@ av.edit(
 )
 # Using `extra_options` keep the `rotate` option but override the `backgroundColor` option
 
-print(av.url_png) # Prints the png url
+print(av.url_webp) # Prints the webp url
 
 
 # Editing the style specific customisations
@@ -40,7 +40,7 @@ av.customise(
 )
 # Using `blank_options` will delete your previous customisations for this DAvatar and generate new ones
 
-print(av.url_jpg) # Prints the jpg url
+print(av.url_png) # Prints the png url
 
 
 # Saving an avatar to your device

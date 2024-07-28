@@ -77,7 +77,7 @@ av.edit(
 )
 # Using `extra_options` keep the `rotate` option but override the `backgroundColor` option
 
-print(av.url_png)  # Prints the png url
+print(av.url_webp)  # Prints the webp url
 
 # Editing the style specific customisations
 av.customise(
@@ -87,7 +87,7 @@ av.customise(
 )
 # Using `blank_options` will delete your previous customisations for this DAvatar and generate new ones
 
-print(av.url_jpg)  # Prints the jpg url
+print(av.url_png)  # Prints the png url
 
 # Saving an avatar to your device
 av.save(
@@ -142,7 +142,9 @@ https://dicebear.com/styles
 * `bottts-neutral`  
 * `croodles`  
 * `croodles-neutral`  
+* `dylan`
 * `fun-emoji`  
+* `glass`
 * `icons`  
 * `identicon`  
 * `initials`  
@@ -195,7 +197,9 @@ Click the style to see its options.
 * [bottts-neutral](https://dicebear.com/styles/bottts-neutral#options)  
 * [croodles](https://dicebear.com/styles/croodles#options)  
 * [croodles-neutral](https://dicebear.com/styles/croodles-neutral#options)  
+* [dylan](https://dicebear.com/styles/dylan#options)  
 * [fun-emoji](https://dicebear.com/styles/fun-emoji#options)  
+* [glass](https://dicebear.com/styles/glass#options)  
 * [icons](https://dicebear.com/styles/icons#options)  
 * [identicon](https://dicebear.com/styles/identicon#options)  
 * [initials](https://dicebear.com/styles/initials#options)  
@@ -220,8 +224,11 @@ If you have Pillow (PIL) installed you can convert `DAvatar` to a `PIL.Image.Ima
 wider range of formats (Pillow doesn't support svg).  
   
 * `DFormat.svg` (default)  
+* `DFormat.webp`  
+* `DFormat.avif`  
 * `DFormat.png`  
 * `DFormat.jpg`  
+* `DFormat.jpeg`  
 * `DFormat.json`  
 
 

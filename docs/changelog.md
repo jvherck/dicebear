@@ -7,6 +7,16 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 
 ***
 
+## v2.9.2
+
+2024-07-28
+
+### Added
+* New styles [`dylan`](https://dicebear.vhjan.me/start/customization#styles) and [`glass`](https://dicebear.vhjan.me/start/customization#styles)
+* New modern alternative file formats [`webp`](https://dicebear.vhjan.me/start/customization#formats) and [`avif`](https://dicebear.vhjan.me/start/customization#formats) (use these instead of `png` or `jp(e)g`)
+
+***
+
 ## v2.7.5
 
 2024-07-06

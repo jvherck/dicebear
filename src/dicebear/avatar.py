@@ -149,6 +149,22 @@ class DAvatar:
         return self.__url_svg
 
     @property
+    def url_webp(self) -> str:
+        """
+        :return: url to webp avatar
+        """
+        _statsIncrease(__filename__, self.__class__.__name__, ".url_webp")
+        return self.__url_svg.replace("/svg?", "/webp?")
+
+    @property
+    def url_avif(self) -> str:
+        """
+        :return: url to avif avatar
+        """
+        _statsIncrease(__filename__, self.__class__.__name__, ".url_avif")
+        return self.__url_svg.replace("/svg?", "/avif?")
+
+    @property
     def url_png(self) -> str:
         """
         :return: url to png avatar
@@ -163,6 +179,14 @@ class DAvatar:
         """
         _statsIncrease(__filename__, self.__class__.__name__, ".url_jpg")
         return self.__url_svg.replace("/svg?", "/jpg?")
+
+    @property
+    def url_jpeg(self) -> str:
+        """
+        :return: url to jpeg avatar
+        """
+        _statsIncrease(__filename__, self.__class__.__name__, ".url_jpeg")
+        return self.__url_svg.replace("/svg?", "/jpeg?")
 
     @property
     def url_json(self) -> str:
@@ -185,7 +209,7 @@ class DAvatar:
         :return: returns the avatar's request's full text/file in str format
         """
         _statsIncrease(__filename__, self.__class__.__name__, ".text()")
-        req = r.get(regex.sub(r"/(svg|png|jpg|json)\?", f"/{format}?", self.__url_svg))
+        req = r.get(regex.sub(r"/(svg|webp|avif|png|jpg|jpeg|json)\?", f"/{format}?", self.__url_svg))
         self.__checkLinkError(req.text)
         return req.text
 
@@ -195,7 +219,7 @@ class DAvatar:
         :return: returns the bytes of the avatar in `io.BytesIO` format
         """
         _statsIncrease(__filename__, self.__class__.__name__, ".bytes()")
-        req = r.get(regex.sub(r"/(svg|png|jpg|json)\?", f"/{format}?", self.__url_svg))
+        req = r.get(regex.sub(r"/(svg|webp|avif|png|jpg|jpeg|json)\?", f"/{format}?", self.__url_svg))
         self.__checkLinkError(req.text)
         return io.BytesIO(req.content)
 

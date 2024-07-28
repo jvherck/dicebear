@@ -1,3 +1,28 @@
+# MIT License
+#
+# Copyright (c) 2024 jvherck (on GitHub)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+__all__ = ("Metadata",)
+__filename__ = "metadata.py"
+
 Metadata = {
     "adventurer": {
         "title": "Adventurer",
@@ -109,6 +134,16 @@ Metadata = {
             "url": "https://creativecommons.org/licenses/by/4.0/",
         },
     },
+    "dylan": {
+        "title": "Dylan! The Avatar Generator",
+        "creator": "Natalia Spivak",
+        "source": "https://www.figma.com/community/file/1356575240759683500",
+        "homepage": "https://nataspvk.tilda.ws/",
+        "license": {
+            "name": "CC BY 4.0",
+            "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
     "fun-emoji": {
         "title": "Fun Emoji Set",
         "creator": "Davis Uche",
@@ -117,6 +152,16 @@ Metadata = {
         "license": {
             "name": "CC BY 4.0",
             "url": "https://creativecommons.org/licenses/by/4.0/",
+        },
+    },
+    "glass": {
+        "title": "Glass",
+        "creator": "DiceBear",
+        "source": "https://www.dicebear.com/",
+        "homepage": "https://www.dicebear.com/",
+        "license": {
+            "name": "CC0 1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/",
         },
     },
     "icons": {

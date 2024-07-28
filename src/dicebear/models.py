@@ -153,23 +153,25 @@ class DStyle:
     bottts_neutral = styles[8]
     croodles = styles[9]
     croodles_neutral = styles[10]
-    fun_emoji = styles[11]
-    icons = styles[12]
-    identicon = styles[13]
-    initials = styles[14]
-    lorelei = styles[15]
-    lorelei_neutral = styles[16]
-    micah = styles[17]
-    miniavs = styles[18]
-    notionists = styles[19]
-    notionists_neutral = styles[20]
-    open_peeps = styles[21]
-    personas = styles[22]
-    pixel_art = styles[23]
-    pixel_art_neutral = styles[24]
-    rings = styles[25]
-    shapes = styles[26]
-    thumbs = styles[27]
+    dylan = styles[11]
+    fun_emoji = styles[12]
+    glass = styles[13]
+    icons = styles[14]
+    identicon = styles[15]
+    initials = styles[16]
+    lorelei = styles[17]
+    lorelei_neutral = styles[18]
+    micah = styles[19]
+    miniavs = styles[20]
+    notionists = styles[21]
+    notionists_neutral = styles[22]
+    open_peeps = styles[23]
+    personas = styles[24]
+    pixel_art = styles[25]
+    pixel_art_neutral = styles[26]
+    rings = styles[27]
+    shapes = styles[28]
+    thumbs = styles[29]
 
     def __init__(self):
         """Only use `.attribute` to use a style."""
@@ -219,10 +221,13 @@ class DFormat:
     - Note: Only works with attributes!
     """
 
-    list = all_formats = ["svg", "png", "jpg", "json"]
+    list = all_formats = ["svg", "webp", "avif", "png", "jpg", "jpeg", "json"]
     svg = "svg"
+    webp = "webp"
+    avif = "avif"
     png = "png"
     jpg = "jpg"
+    jpeg = "jpeg"
     json = "json"
 
     def __init__(self):
