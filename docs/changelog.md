@@ -12,10 +12,10 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 2025-01-04
 
 ### Back-end
-The back-end has been reworked a lot to make the whole framework faster and more efficient.
-The package now also supports caching to avoid making redundant requests.
 
-A safer way of making requests to avoid hanging indefinitely or raising generic/unnecessary errors.
+The back-end has been reworked a lot to make the whole framework faster and more efficient. The package now also supports caching to avoid making redundant requests.
+
+A safer way of making requests to avoid hanging indefinitely or raising generic/unnecessary errors has been implemented.
 
 ***
 
@@ -24,6 +24,7 @@ A safer way of making requests to avoid hanging indefinitely or raising generic/
 2024-07-28
 
 ### Added
+
 * New styles [`dylan`](https://dicebear.vhjan.me/start/customization#styles) and [`glass`](https://dicebear.vhjan.me/start/customization#styles)
 * New modern alternative file formats [`webp`](https://dicebear.vhjan.me/start/customization#formats) and [`avif`](https://dicebear.vhjan.me/start/customization#formats) (use these instead of `png` or `jp(e)g`)
 
@@ -42,6 +43,7 @@ A safer way of making requests to avoid hanging indefinitely or raising generic/
 * Added tox for code quality automation
 
 ### Changed
+
 * Moved style metadata to separate file [`dicebear.metadata.Metadata`](https://dicebear.vhjan.me/reference/metadata#variables)
 
 ***
@@ -96,12 +98,12 @@ A safer way of making requests to avoid hanging indefinitely or raising generic/
 
 ### Added
 
-- New attribute [`schema`](https://dicebear.vhjan.me/reference/avatar#properties) for [`DAvatar`](https://dicebear.vhjan.me/reference/avatar#properties) class
+* New attribute [`schema`](https://dicebear.vhjan.me/reference/avatar#properties) for [`DAvatar`](https://dicebear.vhjan.me/reference/avatar#properties) class
 
 ### Back-end
 
-- Removed `test` parameter on all functions
-- Improved type hinting and imports
+* Removed `test` parameter on all functions
+* Improved type hinting and imports
 
 ***
 
@@ -112,7 +114,7 @@ A safer way of making requests to avoid hanging indefinitely or raising generic/
 ### Added
 
 * New style [`rings`](https://dicebear.vhjan.me/start/customization#styles)
-* New function [`DStyle.get_schema(style: str)`](https://dicebear.vhjan.me/reference/models#def-get\_schema) to get the schema (all properties) of the given avatar style
+* New function [`DStyle.get_schema(style: str)`](https://dicebear.vhjan.me/reference/models#def-get_schema) to get the schema (all properties) of the given avatar style
 
 ### Back-end
 
