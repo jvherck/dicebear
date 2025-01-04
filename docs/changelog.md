@@ -7,6 +7,18 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 
 ***
 
+## v3.9.2
+
+2025-01-04
+
+### Back-end
+The back-end has been reworked a lot to make the whole framework faster and more efficient.
+The package now also supports caching to avoid making redundant requests.
+
+A safer way of making requests to avoid hanging indefinitely or raising generic/unnecessary errors.
+
+***
+
 ## v2.9.2
 
 2024-07-28

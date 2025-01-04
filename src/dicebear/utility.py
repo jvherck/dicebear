@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2024 jvherck (on GitHub)
+# Copyright (c) 2025 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@ from string import ascii_lowercase, digits
 from typing import Union, List, Annotated
 
 from .avatar import DAvatar
-from .models import DStyle, DOptions, DColor, _statsIncrease
+from .models import DStyle, DOptions, DColor, _stats_increase
 
 __all__ = (
     "create_avatar",
@@ -50,7 +50,9 @@ def create_avatar(
     :param customisations: class `dict` :: customisations for the specified avatar style
     :return: DAvatar object
     """
-    _statsIncrease(__filename__, "/", ".create_avatar()")
+    if not seed or not isinstance(seed, str):
+        raise ValueError("Seed must be a non-empty string")
+    _stats_increase(__filename__, "/", ".create_avatar()")
     return DAvatar(style, seed, options=options, custom=customisations)
 
 
@@ -62,7 +64,7 @@ def create_random(randomOptions: bool = False) -> DAvatar:
     :type randomOptions: bool
     :return: DAvatar object
     """
-    _statsIncrease(__filename__, "/", ".create_random()")
+    _stats_increase(__filename__, "/", ".create_random()")
     options = None
     if randomOptions:
         _type = choice(["solid", "gradientLinear"])
@@ -104,7 +106,7 @@ def bulk_create(
     """
     if amount >= 50 or amount < 1:
         raise ValueError("argument `amount` must be between 1 and 50")
-    _statsIncrease(__filename__, "/", ".bulk_create()")
+    _stats_increase(__filename__, "/", ".bulk_create()")
     if style is None:
         style = DStyle.random()
     if custom is None:
@@ -113,11 +115,15 @@ def bulk_create(
         options = DOptions.empty
     result = []
     for _ in range(amount):
-        av = DAvatar(
-            style,
-            "".join(choices(ascii_lowercase + digits, k=20)),
-            options=options,
-            custom=custom,
-        )
-        result.append(av)
+        try:
+            result.append(
+                DAvatar(
+                    style,
+                    "".join(choices(ascii_lowercase + digits, k=20)),
+                    options=options,
+                    custom=custom,
+                )
+            )
+        except Exception as e:
+            print(f"Error creating DAvatar: {e}")
     return result

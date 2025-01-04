@@ -160,3 +160,5 @@ cython_debug/
 .idea/
 
 terminal_commands.txt
+*.zip
+local_tests/

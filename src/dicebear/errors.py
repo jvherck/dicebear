@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2024 jvherck (on GitHub)
+# Copyright (c) 2025 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,9 +19,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-from typing import Union
-
 import logging
+from typing import Union
 
 __all__ = (
     "IncorrectColor",
@@ -41,7 +40,7 @@ class IncorrectColor(Exception):
     """Incorrect color"""
 
     def __init__(self, wrong_color: str = None):
-        super().__init__('Incorrect color given: "{}" is not an html hex code! (example: #ffffff)'.format(wrong_color))
+        super().__init__(f'Incorrect color given: "{wrong_color}" is not an html hex code! (example: #ffffff)')
 
 
 class InvalidOption(Exception):
@@ -49,9 +48,7 @@ class InvalidOption(Exception):
 
     def __init__(self, wrong_option: str = None):
         super().__init__(
-            'Invalid option given: "{}" is not an existing option! (use `Avatar.options` to get all possible options)'.format(
-                wrong_option
-            )
+            f'Invalid option given: "{wrong_option}" is not an existing option! (use `Avatar.options` to get all possible options)'
         )
 
 
@@ -59,7 +56,7 @@ class Error(Exception):
     """General error"""
 
     def __init__(self, error_type: str = "", message: str = ""):
-        super().__init__("{}{}".format(error_type + (": " if error_type else ""), message))
+        super().__init__(f"{error_type + (': ' if error_type else '')}{message}")
 
 
 class HTTPError(Error):
@@ -80,7 +77,7 @@ class ImageValueError(ImageError):
     """Image value error"""
 
     def __init__(self, file_name: str = None):
-        super().__init__('The output format could not be determined ("{}")'.format(file_name))
+        super().__init__(f'The output format could not be determined ("{file_name}")')
 
 
 class ImageOSError(ImageError):
@@ -88,9 +85,7 @@ class ImageOSError(ImageError):
 
     def __init__(self, message: str = None):
         super().__init__(
-            'The file could not be written. The file may have been created, and may contain partial data. ("{}")'.format(
-                message
-            )
+            f'The file could not be written. The file may have been created, and may contain partial data. ("{message}")'
         )
 
 
@@ -98,14 +93,14 @@ class PILError(ImageError):
     """Pillow error"""
 
     def __init__(self, message: str = "To use this function you need to install Pillow."):
-        super().__init__('Module "PIL (=Pillow)" is not found! {}'.format(message))
+        super().__init__(f'Module "PIL (=Pillow)" is not found! {message}')
 
 
-_error_logger = logging.getLogger()
+_logger = logging.getLogger()
 _error_handler = logging.StreamHandler()
-_error_logger.setLevel(logging.ERROR)
+_logger.setLevel(logging.ERROR)
 _error_handler.setLevel(logging.ERROR)
-_error_logger.addHandler(_error_handler)
+_logger.addHandler(_error_handler)
 
 
 def log_error(exception: Union[Exception, str], raise_error: bool = False) -> None:
@@ -118,7 +113,8 @@ def log_error(exception: Union[Exception, str], raise_error: bool = False) -> No
     :type raise_error: bool
     """
     if raise_error is False:
-        _error_handler.setFormatter(logging.Formatter(f"%(levelname)s: {exception.__class__.__name__}: %(message)s"))
-        _error_logger.error(exception)
+        exception_name = exception.__class__.__name__ if isinstance(exception, Exception) else "Error"
+        _error_handler.setFormatter(logging.Formatter(f"%(levelname)s: {exception_name}: %(message)s"))
+        _logger.error(exception)
         return
-    raise Exception(exception) if type(exception) is str else exception
+    raise RuntimeError(exception) if isinstance(exception, str) else exception

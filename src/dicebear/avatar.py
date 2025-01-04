@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2024 jvherck (on GitHub)
+# Copyright (c) 2025 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,11 +19,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
+import functools
 import io
+import itertools
 import os
 import pathlib
-import re as regex
 from ast import literal_eval
 from random import choices
 from string import ascii_lowercase, digits
@@ -34,7 +34,7 @@ import requests as r
 
 from .errors import *
 from .models import *
-from .models import _FindPil, _pilcheck, _statsIncrease, _x
+from .models import _FindPil, _pilcheck, _stats_increase, X, TIMEOUT
 
 __all__ = ("DAvatar",)
 __filename__ = "avatar.py"
@@ -45,12 +45,12 @@ except Exception:
 
     class Im:
         class Image:
-            def show(self):
+            def show(self, _):
                 pass
 
     _FindPil.found = False
 
-_y = _x + "/{}/svg?seed={}&"
+Y = X + "/{}/svg?seed={}&"
 
 
 class DAvatar:
@@ -86,7 +86,7 @@ class DAvatar:
         if style not in styles:
             raise Error(
                 "Invalid Style",
-                '"{}" is not a valid style! Use `DStyle.list` to see all available styles'.format(style),
+                f'"{style}" is not a valid style! Use `DStyle.list` to see all available styles',
             )
         if seed is None:
             seed = "".join(choices(ascii_lowercase + digits, k=20))
@@ -100,14 +100,14 @@ class DAvatar:
         self.__specific: dict = custom
         self.__url_svg: str
         self.__update()
-        _statsIncrease(__filename__, self.__class__.__name__, ".__init__()")
+        _stats_increase(__filename__, self.__class__.__name__, ".__init__()")
 
     @property
     def style(self) -> DStyle:
         """
         :return: the style of the avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".style")
+        _stats_increase(__filename__, self.__class__.__name__, ".style")
         return self.__style
 
     @property
@@ -115,7 +115,7 @@ class DAvatar:
         """
         :return: the seed of the avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".seed")
+        _stats_increase(__filename__, self.__class__.__name__, ".seed")
         return self.__seed
 
     @property
@@ -123,7 +123,7 @@ class DAvatar:
         """
         :return: the options of the avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".options")
+        _stats_increase(__filename__, self.__class__.__name__, ".options")
         _option_list = {}
         for key in self.__options:
             if self.__options[key] != default_options[key]:
@@ -135,17 +135,21 @@ class DAvatar:
         """
         :return: the customisations of the avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".customisations")
+        _stats_increase(__filename__, self.__class__.__name__, ".customisations")
         return self.__specific
 
     customizations = customs = customisations
+
+    def _get_url_for_format(self, fmt: str) -> str:
+        _stats_increase(__filename__, self.__class__.__name__, f".url_{fmt}")
+        return self.__url_svg.replace("/svg?", f"/{fmt}?")
 
     @property
     def url_svg(self) -> str:
         """
         :return: url to svg avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".url_svg")
+        _stats_increase(__filename__, self.__class__.__name__, ".url_svg")
         return self.__url_svg
 
     @property
@@ -153,75 +157,77 @@ class DAvatar:
         """
         :return: url to webp avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".url_webp")
-        return self.__url_svg.replace("/svg?", "/webp?")
+        return self._get_url_for_format("webp")
 
     @property
     def url_avif(self) -> str:
         """
         :return: url to avif avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".url_avif")
-        return self.__url_svg.replace("/svg?", "/avif?")
+        return self._get_url_for_format("avif")
 
     @property
     def url_png(self) -> str:
         """
         :return: url to png avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".url_png")
-        return self.__url_svg.replace("/svg?", "/png?")
+        return self._get_url_for_format("png")
 
     @property
     def url_jpg(self) -> str:
         """
         :return: url to jpg avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".url_jpg")
-        return self.__url_svg.replace("/svg?", "/jpg?")
+        return self._get_url_for_format("jpg")
 
     @property
     def url_jpeg(self) -> str:
         """
         :return: url to jpeg avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".url_jpeg")
-        return self.__url_svg.replace("/svg?", "/jpeg?")
+        return self._get_url_for_format("jpeg")
 
     @property
     def url_json(self) -> str:
         """
         :return: url to json data of avatar
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".url_json")
-        return self.__url_svg.replace("/svg?", "/json?")
+        return self._get_url_for_format("json")
 
     @property
     def schema(self) -> dict:
         """
         :return: dict object containing the schema of the avatar style
         """
-        return r.get(_x + f"/{self.style}/schema.json").json()
+        return _get_request(X + f"/{self.style}/schema.json").json()
 
     def text(self, format: DFormat = DFormat.svg) -> str:
         """
         :param format: class `dicebear.models.DFormat` :: which format to use
         :return: returns the avatar's request's full text/file in str format
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".text()")
-        req = r.get(regex.sub(r"/(svg|webp|avif|png|jpg|jpeg|json)\?", f"/{format}?", self.__url_svg))
-        self.__checkLinkError(req.text)
-        return req.text
+        _stats_increase(__filename__, self.__class__.__name__, ".text()")
+        try:
+            req = _get_request(self.__url_svg.replace("/svg?", f"/{format}?"))
+            # req = r.get(regex.sub(r"/(svg|webp|avif|png|jpg|jpeg|json)\?", f"/{format}?", self.__url_svg))
+            self.__check_link_error(req.text)
+            return req.text
+        except r.RequestException as e:
+            raise HTTPError({"statusCode": 500, "error": "Network Error", "message": str(e)})
 
     def bytes(self, format: DFormat = DFormat.png) -> io.BytesIO:
         """
         :param format: class `dicebear.models.DFormat` :: which format to use
         :return: returns the bytes of the avatar in `io.BytesIO` format
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".bytes()")
-        req = r.get(regex.sub(r"/(svg|webp|avif|png|jpg|jpeg|json)\?", f"/{format}?", self.__url_svg))
-        self.__checkLinkError(req.text)
-        return io.BytesIO(req.content)
+        _stats_increase(__filename__, self.__class__.__name__, ".bytes()")
+        try:
+            req = _get_request(self.__url_svg.replace("/svg?", f"/{format}?"))
+            # req = r.get(regex.sub(r"/(svg|webp|avif|png|jpg|jpeg|json)\?", f"/{format}?", self.__url_svg))
+            self.__check_link_error(req.text)
+            return io.BytesIO(req.content)
+        except r.RequestException as e:
+            raise HTTPError({"statusCode": 500, "error": "Network Error", "message": str(e)})
 
     def __repr__(self):
         return f'DAvatar(style=DStyle.{self.style}, seed="{self.seed}", *, options={self.options}, custom={self.customizations})'
@@ -230,42 +236,14 @@ class DAvatar:
         return self.__url_svg
 
     def __eq__(self, other):
-        if type(other) is DAvatar:
+        if isinstance(other, DAvatar):
             return self.__url_svg == other.__url_svg
         return self.__url_svg == other
 
     def __ne__(self, other):
-        if type(other) is DAvatar:
+        if isinstance(other, DAvatar):
             return self.__url_svg != other.__url_svg
         return self.__url_svg != other
-
-    def __le__(self, other):
-        if type(other) is DAvatar:
-            return self.options["size"] <= other.options["size"]
-        elif type(other) is dict:
-            return self.options["size"] <= other["size"]
-        return self.options["size"] <= other
-
-    def __lt__(self, other):
-        if type(other) is DAvatar:
-            return self.options["size"] < other.options["size"]
-        elif type(other) is dict:
-            return self.options["size"] < other["size"]
-        return self.options["size"] < other
-
-    def __ge__(self, other):
-        if type(other) is DAvatar:
-            return self.options["size"] >= other.options["size"]
-        elif type(other) is dict:
-            return self.options["size"] >= other["size"]
-        return self.options["size"] >= other
-
-    def __gt__(self, other):
-        if type(other) is DAvatar:
-            return self.options["size"] > other.options["size"]
-        elif type(other) is dict:
-            return self.options["size"] > other["size"]
-        return self.options["size"] > other
 
     def __dict__(self):
         return {
@@ -282,7 +260,7 @@ class DAvatar:
         return key in self.options.keys() or key in self.customisations.keys()
 
     @staticmethod
-    def __checkLinkError(text: str) -> None:
+    def __check_link_error(text: str) -> None:
         """
         :param text: requests.Response.text
         """
@@ -290,32 +268,29 @@ class DAvatar:
             status = literal_eval(text)
         except (ValueError, SyntaxError):
             status = ""
-        if type(status) is dict and "statusCode" in status:
+        if isinstance(status, dict) and "statusCode" in status:
             raise HTTPError(status)
 
     def __update(self) -> None:
-        _link = _y
-        _options, _specoptions, status = [], [], ""
+        _options, _specoptions = [], []
+
+        def param(p: str, plist: dict):
+            return f"{quote(p)}={str(plist[p]).replace('False', 'false').replace('True', 'true')}"
+
         for item in self.__options:
             if item in all_options and self.__options[item] != default_options[item]:
-                _options.append(
-                    "{}={}".format(
-                        quote(item),
-                        str(self.__options[item]).replace("False", "false").replace("True", "true"),
-                    )
-                )
+                _options.append(param(item, self.__options))
         for item in self.__specific:
-            _specoptions.append(
-                "{}={}".format(
-                    quote(item),
-                    str(self.__specific[item]).replace("False", "false").replace("True", "true"),
-                )
-            )
-        _link += "&".join(_options + _specoptions)
+            _specoptions.append(param(item, self.__specific))
+
+        _link = f"{Y}{'&'.join(itertools.chain(_options, _specoptions))}"
         _link = _link.format(quote(str(self.__style)), quote(self.__seed))
-        req = r.get(_link)
-        self.__checkLinkError(req.text)
-        self.__url_svg = req.url
+        try:
+            req = _get_request(_link)
+            self.__check_link_error(req.text)
+            self.__url_svg = req.url
+        except r.RequestException as e:
+            raise HTTPError({"statusCode": 500, "error": "Network Error", "message": str(e)})
 
     @staticmethod
     def __uniquify(path) -> str:
@@ -347,7 +322,7 @@ class DAvatar:
         :type blank_options: dicebear.models.DOptions
         :return: class `str` :: returns the link to the avatar url (svg)
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".edit()")
+        _stats_increase(__filename__, self.__class__.__name__, ".edit()")
         if style:
             self.__style = style
         if seed:
@@ -369,7 +344,7 @@ class DAvatar:
         :type blank_options: dicebear.models.DOptions
         :return: class `str` :: returns the link to the avatar url (svg)
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".customise()")
+        _stats_increase(__filename__, self.__class__.__name__, ".customise()")
         if extra_options:
             self.__specific.update(extra_options)
         elif blank_options:
@@ -403,15 +378,14 @@ class DAvatar:
         :type open_after_save: bool
         :return: class `str` :: the path of the saved image if saved successfully
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".save()")
+        _stats_increase(__filename__, self.__class__.__name__, ".save()")
         if file_format not in DFormat.all_formats:
             s = f'"{file_format}" is not a supported format!'
             raise ImageError(s)
         if location is None:
             location = pathlib.Path(os.getcwd())
-        _location = os.path.join(location, "{}.{}".format(file_name, file_format))
+        _location = os.path.join(location, f"{file_name}.{file_format}")
         _location = self.__uniquify(_location) if overwrite is False else _location
-        ret = -1
         try:
             if file_format in [DFormat.svg, DFormat.json]:
                 with open(_location, "w", encoding="UTF-8") as f:
@@ -421,14 +395,13 @@ class DAvatar:
                 with open(_location, "wb") as f:
                     f.write(self.bytes(file_format).read())
                 f.close()
-            ret = _location
         except ValueError:
             raise ImageValueError(_location)
         except OSError as e:
             raise ImageOSError(str(e))
         if open_after_save:
             self.view(use_pil=False)
-        return ret
+        return _location
 
     @_pilcheck
     def pillow(self) -> Im.Image:
@@ -438,7 +411,7 @@ class DAvatar:
         :return: :py:class:`PIL.Image.Image`
         :raise `dicebear.errors.PILError`:
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".pillow()")
+        _stats_increase(__filename__, self.__class__.__name__, ".pillow()")
         raw_img = Im.open(self.bytes(DFormat.png)).tobytes()
         img: Im.Image = Im.frombytes("RGBA", (256, 256), raw_img)
         return img
@@ -454,16 +427,34 @@ class DAvatar:
         :return: :py:class:`NoneType`
         :raise `dicebear.errors.PILError`:
         """
-        _statsIncrease(__filename__, self.__class__.__name__, ".view()")
+        _stats_increase(__filename__, self.__class__.__name__, ".view()")
+
+        if format not in DFormat.all_formats:
+            raise ImageError(f'"{format}" is not a supported format!')
+
         if use_pil and _FindPil.found is True:
             self.__view_pil()
         elif use_pil and _FindPil.found is False:
             log_error(ModuleNotFoundError("Module `Pillow` is not found or installed"), True)
         else:
-            os.startfile(getattr(self, "url_" + str(format)), "open")
+            attr_name = f"url_{str(format).lower()}"
+            import webbrowser
+
+            webbrowser.open(getattr(self, attr_name))
 
     open: callable = view
 
     @_pilcheck
     def __view_pil(self) -> None:
         self.pillow().show("Dicebear Avatar")
+
+
+@functools.lru_cache(maxsize=16)
+def _get_request_cached(url: str, **kwargs) -> r.Response:
+    return r.get(url, timeout=TIMEOUT, **kwargs)
+
+
+def _get_request(url: str, to_cache: bool = True, **kwargs) -> r.Response:
+    if to_cache:
+        return _get_request_cached(url, **kwargs)
+    return r.get(url, **kwargs)

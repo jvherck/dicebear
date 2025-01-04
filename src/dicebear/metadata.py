@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2024 jvherck (on GitHub)
+# Copyright (c) 2025 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -88,7 +88,7 @@ Metadata = {
         "title": "Custom Avatar",
         "creator": "Ashley Seo",
         "source": "https://www.figma.com/community/file/881358461963645496",
-        "homepage": "http://www.ashleyseo.com/",
+        "homepage": "https://www.ashleyseo.com/",
         "license": {
             "name": "CC BY 4.0",
             "url": "https://creativecommons.org/licenses/by/4.0/",

@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2024 jvherck (on GitHub)
+# Copyright (c) 2025 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,7 @@ from typing import Union, List
 from requests import post, get
 
 from .errors import *
+from .errors import _logger
 from .metadata import Metadata
 
 __all__ = (
@@ -48,10 +49,11 @@ class _FindPil:
     found: bool = True
 
 
-_ascii_lowercase = "abcdef"
-_digits = "0123456789"
-_x = "https://api.dicebear.com/9.x"
-_y = _x + "/{}/schema.json"
+ASCII_LOWERCASE = "abcdef"
+DIGITS = "0123456789"
+TIMEOUT = 30
+X = "https://api.dicebear.com/9.x"
+Y = X + "/{}/schema.json"
 
 options = all_options = [
     "flip",
@@ -88,13 +90,13 @@ class DColor:
         """
         code_list: list = []
         hex_list: list = []
-        if type(html_code) is str:
+        if isinstance(html_code, str):
             code_list = html_code.replace(" ", "").split(",")
-        elif type(html_code) is list and all(type(x) is str for x in html_code):
+        elif isinstance(html_code, list) and all(isinstance(x, str) for x in html_code):
             code_list = html_code
         for code in code_list:
             code = code.replace("#", "")
-            if (len(code) != 6 or any(x not in (_ascii_lowercase + _digits) for x in code)) and code != "transparent":
+            if (len(code) != 6 or any(x not in (ASCII_LOWERCASE + DIGITS) for x in code)) and code != "transparent":
                 raise IncorrectColor(str(code))
             hex_list.append(code)
         self._html_code: str = ",".join(hex_list)
@@ -116,12 +118,12 @@ class DColor:
         return hash(self.html_code)
 
     def __eq__(self, other):
-        if type(other) is DColor:
+        if isinstance(other, DColor):
             return self.html_code == other.html_code
         return self.html_code == other
 
     def __ne__(self, other):
-        if type(other) is DColor:
+        if isinstance(other, DColor):
             return self.html_code != other.html_code
         return self.html_code != other
 
@@ -132,7 +134,7 @@ class DColor:
 
         :return: :py:class:`dicebear.models.DColor`
         """
-        return DColor("".join(choices(_ascii_lowercase + _digits, k=6)))
+        return DColor("".join(choices(ASCII_LOWERCASE + DIGITS, k=6)))
 
 
 class DStyle:
@@ -189,11 +191,9 @@ class DStyle:
         if style not in styles:
             raise ValueError(f'"{style}" is not a valid avatar style.')
         try:
-            dictionary = get(_y.format(style)).json()
+            return get(Y.format(style), timeout=TIMEOUT).json()
         except Exception as e:
             raise HTTPError({"exception": str(type(e)), "error": str(e)})
-        else:
-            return dictionary
 
     @staticmethod
     def random() -> str:
@@ -212,7 +212,10 @@ class DStyle:
         :param style_str: :py:class:`str` :: the string to convert to a DStyle
         :type style_str: str
         """
-        return getattr(DStyle, style_str.replace("-", "_"))
+        try:
+            return getattr(DStyle, style_str.lower().replace("-", "_"))
+        except AttributeError:
+            raise ValueError(f"Invalid style: {style_str}")
 
 
 class DFormat:
@@ -246,17 +249,17 @@ class DFormat:
 
 
 default_options: dict = {
-    options[0]: False,
-    options[1]: 0,
-    options[2]: 100,
-    options[3]: 0,
-    options[4]: 0,
-    options[5]: DColor(),
-    options[6]: "solid",
-    options[7]: 0,
-    options[8]: 0,
-    options[9]: 0,
-    options[10]: False,
+    "flip": False,
+    "rotate": 0,
+    "scale": 100,
+    "radius": 0,
+    "size": 0,
+    "backgroundColor": DColor(),
+    "backgroundType": "solid",
+    "backgroundRotation": 0,
+    "translateX": 0,
+    "translateY": 0,
+    "randomizeIds": False,
 }
 
 
@@ -308,7 +311,7 @@ class DOptions(dict):
     def from_dict(cls, d: dict) -> "DOptions":
         """Return a new instance of DOptions from a dict."""
         for item in d:
-            if item not in default_options.keys() or d[item] == default_options[item]:
+            if item not in default_options or d[item] == default_options[item]:
                 d.pop(item, None)
         self = cls()
         self.clear()
@@ -316,7 +319,7 @@ class DOptions(dict):
         return self
 
 
-def _statsIncrease(_file: str, _class: str, _function: str, *, _test: bool = False) -> None:
+def _stats_increase(_file: str, _class: str, _function: str, *, _test: bool = False) -> None:
     """
     Pings an API to update this package's usage stats. This will be used to analyse Dicebear's usage and improve your overall experience.
     """
@@ -333,12 +336,15 @@ def _statsIncrease(_file: str, _class: str, _function: str, *, _test: bool = Fal
         "Content-Type": "application/json",
         "-Key": "acbd2023",
     }
-    post(
-        "https://eo1p6rm1ydzj8yl.m.pipedream.net/runs",
-        json=__body,
-        headers=__headers,
-        timeout=10,
-    )
+    try:
+        post(
+            "https://eo1p6rm1ydzj8yl.m.pipedream.net/runs",
+            json=__body,
+            headers=__headers,
+            timeout=10,
+        )
+    except Exception as e:
+        _logger.warning("Failed to ping the API to update the usage stats. Error: %s", str(e), exc_info=True)
 
 
 def _pilcheck(func):
@@ -347,7 +353,6 @@ def _pilcheck(func):
     def wrapper(*args, **kwargs):
         if _FindPil.found is True:
             return func(*args, **kwargs)
-        else:
-            log_error(PILError())
+        raise PILError()
 
     return wrapper

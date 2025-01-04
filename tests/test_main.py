@@ -1,6 +1,6 @@
 # MIT License
 #
-# Copyright (c) 2024 jvherck (on GitHub)
+# Copyright (c) 2025 jvherck (on GitHub)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -76,7 +76,7 @@ class TStyle(unittest.TestCase):
         self.assertEqual(alls, models.styles)
         self.assertEqual(bottts, "bottts")
         self.assertEqual(avataaars, "avataaars")
-        self.assertRaises(AttributeError, models.DStyle.from_str, style_str="something-wrong")
+        self.assertRaises(ValueError, models.DStyle.from_str, style_str="something-wrong")
         self.assertIn(models.DStyle.random(), models.styles)
         schema = models.DStyle.get_schema(models.DStyle.rings)
         self.assertEqual("object", schema["type"])
@@ -97,12 +97,9 @@ class TAvatar(unittest.TestCase):
         seed = "John Apple"
         options = models.DOptions(flip=True, rotate=90, backgroundType="gradientLinear")
         av = avatar.DAvatar(style, seed, options=options)
-        self.assertEqual(
-            str(av)[:-49],
-            avatar._y.format(quote(style), quote(seed))
-        )
-        urlparams = str(av)[-68:]
-        self.assertIn("?seed=John%20Apple&", urlparams)
+        self.assertTrue(str(av).startswith(avatar.Y.format(quote(style), quote(seed)))) # import re
+        urlparams = str(av).split('?')[1]
+        self.assertIn("seed=John%20Apple", urlparams)
         self.assertIn("flip=true", urlparams)
         self.assertIn("rotate=90", urlparams)
         self.assertIn("backgroundType=gradientLinear", urlparams)
@@ -137,7 +134,7 @@ class TAvatar(unittest.TestCase):
         av = avatar.DAvatar(style, seed, options=options, custom=custom)
         self.assertEqual(
             str(av),
-            avatar._y.format(quote(style), quote(seed)) + "flip=true&eyes=dizzy&texture=camo01&somethingWrong=doesNotMatter"
+            avatar.Y.format(quote(style), quote(seed)) + "flip=true&eyes=dizzy&texture=camo01&somethingWrong=doesNotMatter"
         )
 
 
@@ -150,7 +147,7 @@ class TUtil(unittest.TestCase):
         av = utility.create_avatar(style, seed, options, custom)
         self.assertEqual(
             av,
-            avatar._y.format(quote(style), quote(seed)) + "rotate=90&scale=52"
+            avatar.Y.format(quote(style), quote(seed)) + "rotate=90&scale=52"
         )
 
     def testRandom(self):
