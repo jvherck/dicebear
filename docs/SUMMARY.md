@@ -19,7 +19,7 @@
 ## Extra
 
 * [Issues](https://github.com/jvherck/dicebear/issues)
-* [Discord](https://discord.com/users/331102626819080193)
+* [Contact me](mailto:jan@vhjan.me)
 
 ***
 
