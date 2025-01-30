@@ -11,7 +11,7 @@ description: >-
 
 ![Total Downloads](https://static.pepy.tech/badge/dicebear?period=total\&units=international\_system\&left\_color=grey\&right\_color=blue\&left\_text=Downloads) ![Downloads / Month](https://static.pepy.tech/badge/dicebear/month?period=month\&units=international\_system\&left\_color=grey\&right\_color=orange\&left\_text=Downloads/Month) ![License](https://img.shields.io/github/license/jvherck/dicebear)
 
-![Supported Python Versions](https://img.shields.io/pypi/pyversions/dicebear) ![GitHub Issues](https://img.shields.io/github/issues/jvherck/dicebear) ![Maintenance](https://img.shields.io/maintenance/yes/2024) ![Version Status](https://img.shields.io/pypi/status/dicebear)
+![Supported Python Versions](https://img.shields.io/pypi/pyversions/dicebear) ![GitHub Issues](https://img.shields.io/github/issues/jvherck/dicebear) ![Maintenance](https://img.shields.io/maintenance/yes/2025) ![Version Status](https://img.shields.io/pypi/status/dicebear)
 
 {% hint style="info" %}
 Dicebear's Python package is <mark style="color:green;background-color:green;">up-to-date</mark> with Dicebear's API!{% endhint %}
