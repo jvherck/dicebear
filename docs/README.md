@@ -31,13 +31,13 @@ If you want to use Dicebear avatars but don't use Python, you can use the
 [official JS/TS package](https://github.com/dicebear/dicebear).
 
 ## Useful links  
-* Official Dicebear: https://dicebear.com/
-* PyPI: https://pypi.org/project/dicebear/
-* Docs: https://dicebear.vhjan.me/  
-* GitHub: https://github.com/jvherck/dicebear  
-* Dicebear Python CLI: https://github.com/jvherck/dicebear-cli  
-* Golang package: https://github.com/jvherck/dicebear-go
-* JS/TS library: https://github.com/dicebear/dicebear
+* Official Dicebear: [https://dicebear.com/](https://dicebear.com/)
+* PyPI: [https://pypi.org/project/dicebear/](https://pypi.org/project/dicebear/)
+* Docs: [https://dicebear.vhjan.me/](https://dicebear.vhjan.me/)  
+* GitHub: [https://github.com/jvherck/dicebear](https://github.com/jvherck/dicebear)  
+* Dicebear Python CLI: [https://github.com/jvherck/dicebear-cli](https://github.com/jvherck/dicebear-cli)  
+* Golang package: [https://github.com/jvherck/dicebear-go](https://github.com/jvherck/dicebear-go)
+* JS/TS library: [https://github.com/dicebear/dicebear](https://github.com/dicebear/dicebear)
 
 ## How to install
 
