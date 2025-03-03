@@ -5,7 +5,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/jvherck/dicebear)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dicebear)
 ![GitHub](https://img.shields.io/github/license/jvherck/dicebear)
-![Maintenance](https://img.shields.io/maintenance/yes/2024)
+![Maintenance](https://img.shields.io/maintenance/yes/2025)
 ![PyPI - Status](https://img.shields.io/pypi/status/dicebear)
 
 Always keep an eye on https://dicebear.vhjan.me/ for updates and warnings about this packages!
