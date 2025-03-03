@@ -68,6 +68,7 @@ class DAvatar:
         *,
         options: DOptions = None,
         custom: dict = None,
+        save_to_cache: bool = True,
     ) -> None:
         """
         Create a new avatar object.
@@ -80,6 +81,8 @@ class DAvatar:
         :type options: dicebear.models.DOptions
         :param custom: `class: dict` :: customisations for the specified avatar style; see all specific options at https://github.com/jvherck/dicebear#specific-style-options
         :type custom: dict
+        :param save_to_cache: `class: bool` :: whether to cache the avatar for quicker future access or manipulation, as well as reducing the amount of API calls
+        :type custom: bool
         """
         if style is None:
             style = DStyle.random()
@@ -99,6 +102,7 @@ class DAvatar:
         self.__options: DOptions = options
         self.__specific: dict = custom
         self.__url_svg: str
+        self.__cache: bool = save_to_cache
         self.__update()
         _stats_increase(__filename__, self.__class__.__name__, ".__init__()")
 
@@ -286,7 +290,7 @@ class DAvatar:
         _link = f"{Y}{'&'.join(itertools.chain(_options, _specoptions))}"
         _link = _link.format(quote(str(self.__style)), quote(self.__seed))
         try:
-            req = _get_request(_link)
+            req = _get_request(_link, to_cache=self.__cache)
             self.__check_link_error(req.text)
             self.__url_svg = req.url
         except r.RequestException as e:

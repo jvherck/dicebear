@@ -33,13 +33,14 @@ def __init__(self,
     seed: str = None,
     *,
     options: DOptions = DOptions.default,
-    custom: dict = None
+    custom: dict = None,
+    save_to_cache: bool = True,
 ) -> None
 ```
 
 > Returns: `None`: when called as string it will return the svg link
 
-<table><thead><tr><th width="137.80536912751677">Parameter</th><th width="150">Type</th><th width="195">Default</th><th>Description</th></tr></thead><tbody><tr><td><code>style</code></td><td><a href="models.md#class-dstyle">DStyle</a></td><td><code>DStyle.random()</code></td><td>The style of avatar you want to create (<a data-mention href="../start/customization.md#styles">#styles</a>)</td></tr><tr><td><code>seed</code></td><td><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></td><td><code>None</code></td><td>Base string to determine the avatar.</td></tr><tr><td><code>options</code></td><td><a href="models.md#class-doptions">DOptions</a></td><td><code>DOptions.empty</code></td><td>General options for the avatar.</td></tr><tr><td><code>custom</code></td><td><a href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></td><td><code>None</code></td><td>Customisations (for the chosen style)</td></tr></tbody></table>
+<table><thead><tr><th width="137.80536912751677">Parameter</th><th width="150">Type</th><th width="195">Default</th><th>Description</th></tr></thead><tbody><tr><td><code>style</code></td><td><a href="models.md#class-dstyle">DStyle</a></td><td><code>DStyle.random()</code></td><td>The style of avatar you want to create (<a data-mention href="../start/customization.md#styles">#styles</a>)</td></tr><tr><td><code>seed</code></td><td><a href="https://docs.python.org/3/library/stdtypes.html#str">str</a></td><td><code>None</code></td><td>Base string to determine the avatar.</td></tr><tr><td><code>options</code></td><td><a href="models.md#class-doptions">DOptions</a></td><td><code>DOptions.empty</code></td><td>General options for the avatar.</td></tr><tr><td><code>custom</code></td><td><a href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></td><td><code>None</code></td><td>Customisations (for the chosen style)</td></tr><tr><td><code>save_to_cache</code></td><td><a href="https://docs.python.org/3/library/stdtypes.html#typebool">bool</a></td><td><code>True</code></td><td>Whether to cache the avatar (improved efficiency)</td></tr></tbody></table>
 
 &#x20;
 

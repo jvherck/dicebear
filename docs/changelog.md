@@ -7,6 +7,17 @@ If you encounter any bugs or errors, please open an [issue](https://github.com/j
 
 ***
 
+## v3.9.3
+
+2025-03-03
+
+### Changed
+- [`DAvatar`](https://dicebear.vhjan.me/reference/avatar#class-davatar) now has a new parameter `save_to_cache` (default True) to choose whether to save
+avatars to the cache or not. Caching them will make it easier and quicker to access 
+the avatars again, and will reduce outgoing API calls.
+
+***
+
 ## v3.9.2
 
 2025-01-04

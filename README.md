@@ -17,12 +17,23 @@ For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebea
 ---
 
 
+## Other languages
+If you want to use Dicebear avatars but don't use Python, you can use the 
+[dicebear Golang package](https://github.com/jvherck/dicebear-go) or the 
+[official JS/TS package](https://github.com/dicebear/dicebear).
+
+
+---
+
+
 ## Useful links  
 * Official Dicebear: https://dicebear.com/
+* PyPI: https://pypi.org/project/dicebear/
 * Docs: https://dicebear.vhjan.me/  
-* PyPI: https://pypi.org/project/dicebear/  
 * GitHub: https://github.com/jvherck/dicebear  
 * Dicebear Python CLI: https://github.com/jvherck/dicebear-cli  
+* Golang package: https://github.com/jvherck/dicebear-go
+* JS/TS library: https://github.com/dicebear/dicebear
 
 
 ---
@@ -38,6 +49,7 @@ Find the changelog here: https://dicebear.vhjan.me/changelog
 ## How to install  
 Run `pip install -U dicebear` \
 If that doesn't work try `py -m pip install -U dicebear`  
+If that still does not work, try replacing `py` with `python` or `python3`
 
 
 ---
@@ -238,6 +250,11 @@ wider range of formats (Pillow doesn't support svg).
 ## Credits  
 Special thanks to [DiceBear](https://github.com/dicebear) ([Florian Körner](https://github.com/FlorianKoerner)) for 
 making this amazing API and to [all artists](https://dicebear.com/licenses) for creating these avatars!  
+
+Disclaimer: this repository and its owner are not affiliated with DiceBear.
+
+
+---
 
 
 ## Licenses and privacy policy  
