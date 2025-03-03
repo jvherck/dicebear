@@ -13,18 +13,10 @@ Always keep an eye on https://dicebear.vhjan.me/ for updates and warnings about 
 [`dicebear`](https://pypi.org/project/dicebear/) is a Python API wrapper for https://dicebear.com. Using this wrapper you can get custom avatars for your program. \
 For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebear/tree/main/examples).
 
-
----
-
-
 ## Other languages
 If you want to use Dicebear avatars but don't use Python, you can use the 
 [dicebear Golang package](https://github.com/jvherck/dicebear-go) or the 
 [official JS/TS package](https://github.com/dicebear/dicebear).
-
-
----
-
 
 ## Useful links  
 * Official Dicebear: https://dicebear.com/
@@ -35,25 +27,13 @@ If you want to use Dicebear avatars but don't use Python, you can use the
 * Golang package: https://github.com/jvherck/dicebear-go
 * JS/TS library: https://github.com/dicebear/dicebear
 
-
----
-
-
 ## Changelog
 Find the changelog here: https://dicebear.vhjan.me/changelog
-
-
----
-
 
 ## How to install  
 Run `pip install -U dicebear` \
 If that doesn't work try `py -m pip install -U dicebear`  
 If that still does not work, try replacing `py` with `python` or `python3`
-
-
----
-
 
 ## Usage  
 Important note: *Pillow* is not a required dependency, it's only required when you want to be able to edit the avatar images (using `DAvatar.pillow()`).
@@ -120,20 +100,12 @@ av.open(use_pil=True)  # or av.view()
 avatars: list = bulk_create(style=DStyle.random(), amount=10)
 ```
 
-
----
-
-
 ## CLI Usage  
 Dicebear has a CLI package that uses Python to generate avatars quickly.
 You can't customize each avatar, to do that you'll need to use the Python module.
 
 To use the CLI run `pip install dicebear-cli` in a terminal. 
 Documentation can be found here: https://github.com/jvherck/dicebear-cli.
-
-
----
-
 
 ## Customization
 Customize your avatars with these possibilities.  
@@ -241,21 +213,13 @@ wider range of formats (Pillow doesn't support svg).
 * `DFormat.png`  
 * `DFormat.jpg`  
 * `DFormat.jpeg`  
-* `DFormat.json`  
-
-
----
-
+* `DFormat.json`
 
 ## Credits  
 Special thanks to [DiceBear](https://github.com/dicebear) ([Florian Körner](https://github.com/FlorianKoerner)) for 
 making this amazing API and to [all artists](https://dicebear.com/licenses) for creating these avatars!  
 
 Disclaimer: this repository and its owner are not affiliated with DiceBear.
-
-
----
-
 
 ## Licenses and privacy policy  
 - Dicebear **Licenses**: https://dicebear.com/licenses  

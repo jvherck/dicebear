@@ -25,18 +25,25 @@ Always make sure to update to the latest version to avoid experiencing unresolve
 [`dicebear`](https://pypi.org/project/dicebear/) is an API wrapper for [https://dicebear.com](https://dicebear.com). Using this wrapper you can get custom avatars for your program.\
 For an example go to [`examples/dicebear.py`](https://github.com/jvherck/dicebear/tree/main/examples).
 
-## Useful links
+## Other languages
+If you want to use Dicebear avatars but don't use Python, you can use the 
+[dicebear Golang package](https://github.com/jvherck/dicebear-go) or the 
+[official JS/TS package](https://github.com/dicebear/dicebear).
 
-* Docs: [https://jvherck.github.io/dicebear](https://jvherck.github.io/dicebear)
-* PyPI: [https://pypi.org/project/dicebear/](https://pypi.org/project/dicebear/)
-* GitHub: [https://github.com/jvherck/dicebear](https://github.com/jvherck/dicebear)
-* Dicebear: [https://dicebear.com](https://dicebear.com)
-* Dicebear CLI: [https://github.com/jvherck/dicebear-cli](https://github.com/jvherck/dicebear-cli)
+## Useful links  
+* Official Dicebear: https://dicebear.com/
+* PyPI: https://pypi.org/project/dicebear/
+* Docs: https://dicebear.vhjan.me/  
+* GitHub: https://github.com/jvherck/dicebear  
+* Dicebear Python CLI: https://github.com/jvherck/dicebear-cli  
+* Golang package: https://github.com/jvherck/dicebear-go
+* JS/TS library: https://github.com/dicebear/dicebear
 
 ## How to install
 
 Run `pip install -U dicebear`\
 If that doesn't work try `py -m pip install -U dicebear`
+If that still does not work, try replacing `py` with `python` or `python3`
 
 ## Usage
 
